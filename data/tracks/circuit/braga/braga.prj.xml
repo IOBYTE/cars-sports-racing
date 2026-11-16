@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="20.0.1" class="java.beans.XMLDecoder">
+ <object class="utils.Properties" id="Properties0">
+  <void property="currentA">
+   <double>6.283185656245487</double>
+  </void>
+  <void property="currentX">
+   <double>0.07121305473458506</double>
+  </void>
+  <void property="currentY">
+   <double>-0.010483702277729866</double>
+  </void>
+  <void property="curveNameCount">
+   <int>26</int>
+  </void>
+  <void property="image">
+   <string>/home/leo/Escritorio/Braga2/BragaSat.png</string>
+  </void>
+  <void property="imgOffset">
+   <void property="x">
+    <double>-621.0</double>
+   </void>
+   <void property="y">
+    <double>449.0</double>
+   </void>
+  </void>
+  <void property="path">
+   <string>C:\Users\Leo\Desktop\SD\code\data\tracks\circuit\braga</string>
+  </void>
+  <void property="straightNameCount">
+   <int>35</int>
+  </void>
+ </object>
+</java>

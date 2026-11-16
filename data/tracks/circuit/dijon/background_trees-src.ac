@@ -1,0 +1,445 @@
+AC3Db
+MATERIAL "ac3dmat1" rgb 1 1 1  amb 0.2 0.2 0.2  emis 0 0 0  spec 0.5 0.5 0.5  shi 10  trans 0
+MATERIAL "" rgb 0 0 0  amb 0.59 0.59 0.59  emis 0.59 0.59 0.59  spec 0.9 0.9 0.9  shi 10  trans 0
+OBJECT world
+kids 10
+OBJECT group
+name "my_world"
+loc 1.72262 -0.176651 -4.86813
+kids 2
+OBJECT poly
+name "tree_p149"
+texture "pc-treeg1_n.png"
+crease 45.000000
+numvert 4
+0.102239 -0.220891 2.56109
+-0.102239 -0.220891 -2.56109
+0.102239 8.01832 2.56109
+-0.102239 8.01832 -2.56109
+numsurf 2
+SURF 0x20
+mat 1
+refs 3
+1 0.9995 0.0005
+3 0.9995 0.9995
+0 0.0005 0.0005
+SURF 0x20
+mat 1
+refs 3
+2 0.0005 0.9995
+0 0.0005 0.0005
+3 0.9995 0.9995
+kids 0
+OBJECT poly
+name "tree_p150"
+texture "pc-treeg1_n.png"
+crease 45.000000
+numvert 4
+2.93556 -0.220891 -0.0504189
+-2.93555 -0.220891 0.0504179
+2.93556 8.01832 -0.0504189
+-2.93555 8.01832 0.0504179
+numsurf 2
+SURF 0x20
+mat 1
+refs 3
+1 0.9995 0.0005
+3 0.9995 0.9995
+0 0.0005 0.0005
+SURF 0x20
+mat 1
+refs 3
+2 0.0005 0.9995
+0 0.0005 0.0005
+3 0.9995 0.9995
+kids 0
+OBJECT group
+name "my_world"
+loc 5.11005 -0.135042 -5.21737
+kids 2
+OBJECT poly
+name "tree_p149"
+texture "pc-treeg1_n.png"
+crease 45.000000
+numvert 4
+0.102239 -0.19863 2.56109
+-0.102239 -0.19863 -2.56109
+0.102239 7.21027 2.56109
+-0.102239 7.21027 -2.56109
+numsurf 2
+SURF 0x20
+mat 1
+refs 3
+2 0.0005 0.9995
+0 0.0005 0.0005
+3 0.9995 0.9995
+SURF 0x20
+mat 1
+refs 3
+1 0.9995 0.0005
+3 0.9995 0.9995
+0 0.0005 0.0005
+kids 0
+OBJECT poly
+name "tree_p150"
+texture "pc-treeg1_n.png"
+crease 45.000000
+numvert 4
+2.93555 -0.19863 -0.0504179
+-2.93556 -0.19863 0.0504189
+2.93555 7.21027 -0.0504179
+-2.93556 7.21027 0.0504189
+numsurf 2
+SURF 0x20
+mat 1
+refs 3
+2 0.0005 0.9995
+0 0.0005 0.0005
+3 0.9995 0.9995
+SURF 0x20
+mat 1
+refs 3
+1 0.9995 0.0005
+3 0.9995 0.9995
+0 0.0005 0.0005
+kids 0
+OBJECT group
+name "my_world"
+loc 8.63298 -0.117919 -5.50841
+kids 2
+OBJECT poly
+name "tree_p149"
+texture "pc-treeg1_n.png"
+crease 45.000000
+numvert 4
+0.102239 -0.215753 2.56109
+-0.10224 -0.215753 -2.56109
+0.102239 7.83185 2.56109
+-0.10224 7.83185 -2.56109
+numsurf 2
+SURF 0x20
+mat 1
+refs 3
+1 0.9995 0.0005
+3 0.9995 0.9995
+0 0.0005 0.0005
+SURF 0x20
+mat 1
+refs 3
+2 0.0005 0.9995
+0 0.0005 0.0005
+3 0.9995 0.9995
+kids 0
+OBJECT poly
+name "tree_p150"
+texture "pc-treeg1_n.png"
+crease 45.000000
+numvert 4
+2.93555 -0.215753 -0.0504189
+-2.93556 -0.215753 0.0504179
+2.93555 7.83185 -0.0504189
+-2.93556 7.83185 0.0504179
+numsurf 2
+SURF 0x20
+mat 1
+refs 3
+1 0.9995 0.0005
+3 0.9995 0.9995
+0 0.0005 0.0005
+SURF 0x20
+mat 1
+refs 3
+2 0.0005 0.9995
+0 0.0005 0.0005
+3 0.9995 0.9995
+kids 0
+OBJECT group
+name "my_world"
+loc 12.6301 -0.124768 -5.39199
+kids 2
+OBJECT poly
+name "tree_p149"
+texture "pc-treeg1_n.png"
+crease 45.000000
+numvert 4
+0.102239 -0.208904 2.56109
+-0.10224 -0.208904 -2.56109
+0.102239 7.58322 2.56109
+-0.10224 7.58322 -2.56109
+numsurf 2
+SURF 0x20
+mat 1
+refs 3
+2 0.0005 0.9995
+0 0.0005 0.0005
+3 0.9995 0.9995
+SURF 0x20
+mat 1
+refs 3
+1 0.9995 0.0005
+3 0.9995 0.9995
+0 0.0005 0.0005
+kids 0
+OBJECT poly
+name "tree_p150"
+texture "pc-treeg1_n.png"
+crease 45.000000
+numvert 4
+2.93555 -0.208904 -0.0504189
+-2.93556 -0.208904 0.0504179
+2.93555 7.58322 -0.0504189
+-2.93556 7.58322 0.0504179
+numsurf 2
+SURF 0x20
+mat 1
+refs 3
+2 0.0005 0.9995
+0 0.0005 0.0005
+3 0.9995 0.9995
+SURF 0x20
+mat 1
+refs 3
+1 0.9995 0.0005
+3 0.9995 0.9995
+0 0.0005 0.0005
+kids 0
+OBJECT poly
+name "tree1"
+loc 3.23194 2.85648 -3.44814
+texture "pc-tree1_n.png"
+crease 45.000000
+numvert 8
+-2.05536 3.22222 0
+2.05536 3.22222 0
+2.05536 -3.22222 0
+-2.05536 -3.22222 0
+0 3.22222 2.5
+0 3.22222 -2.5
+0 -3.22222 -2.5
+0 -3.22222 2.5
+numsurf 4
+SURF 0x30
+mat 0
+refs 3
+6 1 0
+5 1 1
+4 0 1
+SURF 0x30
+mat 0
+refs 3
+7 0 0
+6 1 0
+4 0 1
+SURF 0x30
+mat 0
+refs 3
+2 1 0
+1 1 1
+0 0 1
+SURF 0x30
+mat 0
+refs 3
+3 0 0
+2 1 0
+0 0 1
+kids 0
+OBJECT poly
+name "tree1"
+loc 5.18714 3.20776 -2.32826
+texture "pc-tree1_n.png"
+crease 45.000000
+numvert 8
+-2.05536 3.5735 0
+2.05536 3.5735 0
+2.05536 -3.5735 0
+-2.05536 -3.5735 0
+0 3.5735 2.5
+0 3.5735 -2.5
+0 -3.5735 -2.5
+0 -3.5735 2.5
+numsurf 4
+SURF 0x30
+mat 0
+refs 3
+3 0 0
+2 1 0
+0 0 1
+SURF 0x30
+mat 0
+refs 3
+2 1 0
+1 1 1
+0 0 1
+SURF 0x30
+mat 0
+refs 3
+7 0 0
+6 1 0
+4 0 1
+SURF 0x30
+mat 0
+refs 3
+6 1 0
+5 1 1
+4 0 1
+kids 0
+OBJECT poly
+name "tree1"
+loc 1.34915 2.85648 -2.54601
+texture "pc-tree1_n.png"
+crease 45.000000
+numvert 8
+-2.05536 3.22222 0
+2.05536 3.22222 0
+2.05536 -3.22222 0
+-2.05536 -3.22222 0
+0 3.22222 2.5
+0 3.22222 -2.5
+0 -3.22222 -2.5
+0 -3.22222 2.5
+numsurf 4
+SURF 0x30
+mat 0
+refs 3
+6 1 0
+5 1 1
+4 0 1
+SURF 0x30
+mat 0
+refs 3
+7 0 0
+6 1 0
+4 0 1
+SURF 0x30
+mat 0
+refs 3
+2 1 0
+1 1 1
+0 0 1
+SURF 0x30
+mat 0
+refs 3
+3 0 0
+2 1 0
+0 0 1
+kids 0
+OBJECT poly
+name "tree1"
+loc 9.20617 2.85648 -3.23039
+texture "pc-tree1_n.png"
+crease 45.000000
+numvert 8
+-2.05536 3.22222 0
+2.05536 3.22222 0
+2.05536 -3.22222 0
+-2.05536 -3.22222 0
+0 3.22222 2.5
+0 3.22222 -2.5
+0 -3.22222 -2.5
+0 -3.22222 2.5
+numsurf 4
+SURF 0x30
+mat 0
+refs 3
+3 0 0
+2 1 0
+0 0 1
+SURF 0x30
+mat 0
+refs 3
+2 1 0
+1 1 1
+0 0 1
+SURF 0x30
+mat 0
+refs 3
+7 0 0
+6 1 0
+4 0 1
+SURF 0x30
+mat 0
+refs 3
+6 1 0
+5 1 1
+4 0 1
+kids 0
+OBJECT poly
+name "tree1"
+loc 10.7153 3.14389 -2.11051
+texture "pc-tree1_n.png"
+crease 45.000000
+numvert 8
+-1.60931 3.50963 0
+1.60931 3.50963 0
+1.60931 -3.50963 0
+-1.60931 -3.50963 0
+0 3.50963 2.5
+0 3.50963 -2.5
+0 -3.50963 -2.5
+0 -3.50963 2.5
+numsurf 4
+SURF 0x30
+mat 0
+refs 3
+6 1 0
+5 1 1
+4 0 1
+SURF 0x30
+mat 0
+refs 3
+7 0 0
+6 1 0
+4 0 1
+SURF 0x30
+mat 0
+refs 3
+2 1 0
+1 1 1
+0 0 1
+SURF 0x30
+mat 0
+refs 3
+3 0 0
+2 1 0
+0 0 1
+kids 0
+OBJECT poly
+name "tree1"
+loc 7.32338 2.34552 -2.32826
+texture "pc-tree1_n.png"
+crease 45.000000
+numvert 8
+-2.05536 2.71126 0
+2.05536 2.71126 0
+2.05536 -2.71126 0
+-2.05536 -2.71126 0
+0 2.71126 2.5
+0 2.71126 -2.5
+0 -2.71126 -2.5
+0 -2.71126 2.5
+numsurf 4
+SURF 0x30
+mat 0
+refs 3
+3 0 0
+2 1 0
+0 0 1
+SURF 0x30
+mat 0
+refs 3
+2 1 0
+1 1 1
+0 0 1
+SURF 0x30
+mat 0
+refs 3
+7 0 0
+6 1 0
+4 0 1
+SURF 0x30
+mat 0
+refs 3
+6 1 0
+5 1 1
+4 0 1
+kids 0
