@@ -86,6 +86,7 @@ double       rmSkillMult;
 //unsigned int rmCredit = 0;
 
 static const char* CurCarName = "";
+static std::string CurCarCategory;
 static std::string CurChampionship;
 static std::string CurContract;
 static std::string CurSpecial;
@@ -1385,8 +1386,6 @@ RmCareerSelectInit(void *prevMenu)
         GfLogInfo("Career Skill Mult = %.2f\n", rmSkillMult);
     }
 
-    const char* pszCarId = "";
-
     rmCar = false;
     contracts = 0;
     LegacyMenu::self().setCareerMode(true);
@@ -1394,6 +1393,8 @@ RmCareerSelectInit(void *prevMenu)
     GfLogDebug("#careerselectmenu rmCareer = %i - rmChampionship = %i\n", LegacyMenu::self().getCareerMode(),
     LegacyMenu::self().getChampionshipMode());
     _pCategory = "";
+    CurCarCategory.clear();
+    rmCategory = CurCarCategory.c_str();
     CurChampionship = "none";
 
     void *hparmGarage = GfParmReadFileLocal(strGarageFileName, GFPARM_RMODE_STD | GFPARM_RMODE_REREAD);
@@ -1445,22 +1446,27 @@ RmCareerSelectInit(void *prevMenu)
 
         if(rmCar)
         {
-            pszCarId = GfParmGetStr(hparmHuman, sstring, "car career", "none");
-            GfLogDebug("# Car Career = %s\n", pszCarId);
+            const std::string carId = GfParmGetStr(hparmHuman, sstring, "car career", "none");
+            GfLogDebug("# Car Career = %s\n", carId.c_str());
 
-            if(!(strcmp(pszCarId, "none") == 0))
+            if (carId != "none")
                 CurChampionship = GfParmGetStr(hparmHuman, sstring, "championship", "none");
             GfLogDebug(" # championship load = %s\n", CurChampionship.c_str());
-            GfParmSetStr(hparmHuman, sstring, "car name", pszCarId);
+            GfParmSetStr(hparmHuman, sstring, "car name", carId.c_str());
 
-            std::string car = GfCars::self()->getCar(pszCarId)->getCategoryName();
-            rmCategory = car.c_str();
-            rmRaceCategoryInit();
-            Fame = cFame[rmIndex];
-            rmFame = (double)GfParmGetNum(hparmHuman, sstring, Fame, (char*)NULL, 0.0);
+            GfCar *pCar = GfCars::self()->getCar(carId);
+            if (!pCar) {
+                GfLogError("No car '%s'\n", carId.c_str());
+            } else {
+                CurCarCategory = pCar->getCategoryName();
+                rmCategory = CurCarCategory.c_str();
+                rmRaceCategoryInit();
+                Fame = cFame[rmIndex];
+                rmFame = (double)GfParmGetNum(hparmHuman, sstring, Fame, (char *)NULL, 0.0);
+            }
 
             GfLogDebug("Career mode Level = %u - Licence = %i - Credit = %lu - Fame = %.2f - sfame =%s\n",
-                       rmLevel[rmIndex], rmLicence, rmCredit, rmFame, Fame);
+                rmLevel[rmIndex], rmLicence, rmCredit, rmFame, Fame);
             GfLogDebug("Category = %s\n", rmCategory);
 
             GfParmWriteFile(0, hparmHuman, "human");

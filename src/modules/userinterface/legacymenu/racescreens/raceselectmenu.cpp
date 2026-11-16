@@ -54,6 +54,7 @@ static int   QuickraceButtonId;
 
 static int   NextButtonId;
 
+static std::string CurCarCategory;
 const char*  rmCategory = "";
 int          rmRanking[];
 int          rmIndex = 0;
@@ -456,8 +457,8 @@ RmRaceSelectInit(void *prevMenu)
         std::string CurCarName = pszCarId2;
         GfLogDebug("Car Name = %s - Car Race = %s\n", pszCarId, pszCarId2);
         GfParmSetStr(hparmHuman, sstring, "car name", pszCarId2);
-        std::string car = GfCars::self()->getCar(pszCarId2)->getCategoryName();
-        rmCategory = car.c_str();
+        CurCarCategory = GfCars::self()->getCar(pszCarId2)->getCategoryName();
+        rmCategory = CurCarCategory.c_str();
 
         GfLogDebug("Car              = %s\n", rmCategory);
         GfLogDebug("In non Career = %i - Credit = %lu\n", 0, rmCredit);
