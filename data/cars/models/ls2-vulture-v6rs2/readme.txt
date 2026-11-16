@@ -1,0 +1,11 @@
+ls2-vulture-v6rs2
+-----------------
+
+Model designed and textured by Andrew Sumner, 2007.
+
+Copyleft: this work of art is free, you can redistribute
+it and/or modify it according to terms of the Free Art license.
+You will find a specimen of this license on the site
+Copyleft Attitude http://artlibre.org as well as on other sites.
+
+sd2-accc +es 80 ls2-vulture-v6rs2-src.ac ls2-vulture-v6rs2.acc

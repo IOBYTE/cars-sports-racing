@@ -1,0 +1,28 @@
+AC3Db
+MATERIAL "body" rgb 1 1 1  amb 0.2 0.2 0.2  emis 0 0 0  spec 0.2 0.2 0.2  shi 128  trans 0
+OBJECT world
+kids 1
+OBJECT poly
+name "dashled1"
+loc -0.163573 0.0212502 -0.00449249
+texture "start-light-old-off.png"
+crease 45.000000
+numvert 4
+0.829679 0.552607 -0.0452018
+0.829676 0.552587 -0.0337019
+0.831314 0.564297 -0.0452018
+0.831314 0.564297 -0.0337019
+numsurf 2
+SURF 0x10
+mat 0
+refs 3
+3 1 1
+2 0 1
+1 1 0
+SURF 0x10
+mat 0
+refs 3
+1 1 0
+2 0 1
+0 0 0
+kids 0

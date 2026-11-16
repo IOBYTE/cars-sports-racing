@@ -1,0 +1,27 @@
+AC3Db
+MATERIAL "body" rgb 1.00 1.00 1.00  amb 0.20 0.20 0.20  emis 0.00 0.00 0.00  spec 0.20 0.20 0.20  shi 128  trans 0
+OBJECT world
+kids 1
+OBJECT poly
+name "DASHLED1_s_0"
+texture "engineligthbrok.png" base
+texture "engineligthbrok.png" tiled
+texture "engineligthbrok.png" skids
+texture "engineligthbrok.png" shad
+texture empty_texture_no_mapping normal
+texture empty_texture_no_mapping specular
+numvert 4
+0.667741 0.585547 -0.038194 -0.990358 0.138532 -0.000000
+0.667741 0.585547 -0.049694 -0.990359 0.138523 -0.000009
+0.666103 0.573837 -0.038194 -0.990359 0.138523 -0.000009
+0.666106 0.573857 -0.049694 -0.990360 0.138515 -0.000017
+numsurf 1
+SURF 0x14
+mat 0
+refs 5
+1 0.00000 1.00000 0.87535 0.99900 0.52793 0.65829 0.50000 0.50000
+3 0.00000 0.00000 0.87821 0.99900 0.52822 0.65166 -0.49817 0.50000
+1 0.00000 1.00000 0.87535 0.99900 0.52793 0.65829 0.50000 0.50000
+2 1.00000 0.00000 0.87846 0.99900 0.52170 0.65207 -0.50000 -0.50000
+0 1.00000 1.00000 0.87559 0.99900 0.52148 0.65871 0.50000 -0.50000
+kids 0
