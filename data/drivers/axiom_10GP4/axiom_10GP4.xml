@@ -1,0 +1,395 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--    This program is free software; you can redistribute it and/or modify  -->
+<!--    it under the terms of the GNU General Public License as published by  -->
+<!--    the Free Software Foundation; either version 2 of the License, or     -->
+<!--    (at your option) any later version.                                   -->
+<!DOCTYPE params SYSTEM "../../libs/tgf/params.dtd">
+<params name="axiom_11GPA" type="robotdef">
+  	<section name="Robots">
+    	<section name="index">
+      		<section name="0">
+				<attstr name="name" val="Rene Baecker"/>
+				<attstr name="short name" val="R. Baecker"/>
+				<attstr name="code name" val="BAE"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Freerun Team"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="7"/>
+				<attnum name="team efficiency" val="0.88"/>
+				<attnum name="red" val="0.0"/>
+				<attnum name="green" val="1.0"/>
+				<attnum name="blue" val="0.0"/>
+				<attstr name="nation" val="DE"/>
+      		</section>
+
+      		<section name="1">
+				<attstr name="name" val="Melvin Okeefe"/>
+				<attstr name="short name" val="M. Okeefe"/>
+				<attstr name="code name" val="OKE"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Freerun Team"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="8"/>
+				<attnum name="team efficiency" val="0.88"/>
+				<attnum name="red" val="0.0"/>
+				<attnum name="green" val="0.9"/>
+				<attnum name="blue" val="0.0"/>
+				<attstr name="nation" val="US"/>
+      		</section>
+
+      		<section name="2">
+				<attstr name="name" val="Shigehito Nakanishi"/>
+				<attstr name="short name" val="S. Nakanishi"/>
+				<attstr name="code name" val="NAK"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Fearless"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="36"/>
+				<attnum name="team efficiency" val="1.0"/>
+				<attnum name="red" val="0.0"/>
+				<attnum name="green" val="0.8"/>
+				<attnum name="blue" val="0.0"/>
+				<attstr name="nation" val="JP"/>
+      		</section>
+
+      		<section name="3">
+				<attstr name="name" val="Daniel Bell"/>
+				<attstr name="short name" val="D. Bell"/>
+				<attstr name="code name" val="BEL"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Fearless"/>
+				<attstr name="author" val="Daniel Schellhammer"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="37"/>
+				<attnum name="team efficiency" val="1.0"/>
+				<attnum name="red" val="0.1"/>
+				<attnum name="green" val="0.9"/>
+				<attnum name="blue" val="0.1"/>
+				<attstr name="nation" val="US"/>
+      		</section>
+
+      		<section name="4">
+				<attstr name="name" val="Hui Tu"/>
+				<attstr name="short name" val="H. Tu"/>
+				<attstr name="code name" val="TU "/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="March Racing"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="11"/>
+				<attnum name="team efficiency" val="0.95"/>
+				<attnum name="red" val="0.1"/>
+				<attnum name="green" val="0.8"/>
+				<attnum name="blue" val="0.0"/>
+				<attstr name="nation" val="CN"/>
+      		</section>
+
+      		<section name="5">
+				<attstr name="name" val="Andreas Knudsen"/>
+				<attstr name="short name" val="A. Knudsen"/>
+				<attstr name="code name" val="KNU"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="March Racing"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="12"/>
+				<attnum name="team efficiency" val="0.95"/>
+				<attnum name="red" val="0.2"/>
+				<attnum name="green" val="0.8"/>
+				<attnum name="blue" val="0.0"/>
+				<attstr name="nation" val="DK"/>
+      		</section>
+
+      		<section name="6">
+        		<attstr name="name" val="Claude Parenteau"/>
+				<attstr name="short name" val="C. Parenteau"/>
+				<attstr name="code name" val="PAR"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Mimshimmie Team"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="60"/>
+				<attnum name="team efficiency" val="1.0"/>
+				<attnum name="red" val="0.2"/>
+				<attnum name="green" val="0.4"/>
+				<attnum name="blue" val="1.0"/>
+				<attstr name="nation" val="FR"/>
+      		</section>
+
+      		<section name="7">
+				<attstr name="name" val="George Hicks"/>
+				<attstr name="short name" val="G. Hicks"/>
+				<attstr name="code name" val="HIC"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Mimshimmie Team"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="61"/>
+				<attnum name="team efficiency" val="1.0"/>
+				<attnum name="red" val="0.2"/>
+				<attnum name="green" val="0.4"/>
+				<attnum name="blue" val="1.0"/>
+				<attstr name="nation" val="UK"/>
+      		</section>
+
+      		<section name="8">
+				<attstr name="name" val="Gabriel Josseaume"/>
+				<attstr name="short name" val="G. Josseaume"/>
+				<attstr name="code name" val="JOS"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Adenauer Racing"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="20"/>
+				<attnum name="team efficiency" val="0.98"/>
+				<attnum name="red" val="0.4"/>
+				<attnum name="green" val="0.4"/>
+				<attnum name="blue" val="1.0"/>
+				<attstr name="nation" val="FR"/>
+      		</section>
+
+      		<section name="9">
+				<attstr name="name" val="Jule Dupont"/>
+				<attstr name="short name" val="J. Dupont"/>
+				<attstr name="code name" val="DUP"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Adenauer Racing"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="21"/>
+				<attnum name="team efficiency" val="0.98"/>
+				<attnum name="red" val="0.4"/>
+				<attnum name="green" val="0.4"/>
+				<attnum name="blue" val="1.0"/>
+				<attstr name="nation" val="FR"/>
+      		</section>
+
+      		<section name="10">
+				<attstr name="name" val="Marco Gerber"/>
+				<attstr name="short name" val="M. Gerber"/>
+				<attstr name="code name" val="GER"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Team Keisinger"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="1"/>
+				<attnum name="team efficiency" val="0.83"/>
+				<attnum name="red" val="0.9"/>
+				<attnum name="green" val="0.4"/>
+				<attnum name="blue" val="0.3"/>
+				<attstr name="nation" val="DE"/>
+      		</section>
+
+      		<section name="11">
+				<attstr name="name" val="Daniel Dumoulin"/>
+				<attstr name="short name" val="D. Dumoulin"/>
+				<attstr name="code name" val="DUM"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Team Keisinger"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="2"/>
+				<attnum name="team efficiency" val="0.83"/>
+				<attnum name="red" val="0.4"/>
+				<attnum name="green" val="0.4"/>
+				<attnum name="blue" val="0.4"/>
+				<attstr name="nation" val="FR"/>
+      		</section>
+
+      		<section name="12">
+				<attstr name="name" val="Philipp Nagel"/>
+				<attstr name="short name" val="P. Nagel"/>
+				<attstr name="code name" val="NAG"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Fearless racing"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="72"/>
+				<attnum name="team efficiency" val="0.99"/>
+				<attnum name="red" val="0.5"/>
+				<attnum name="green" val="0.5"/>
+				<attnum name="blue" val="0.5"/>
+				<attstr name="nation" val="DE"/>
+      		</section>
+
+      		<section name="13">
+				<attstr name="name" val="William Gibson"/>
+				<attstr name="short name" val="W. Gibson"/>
+				<attstr name="code name" val="GIB"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Fearless racing"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="73"/>
+				<attnum name="team efficiency" val="0.99"/>
+				<attnum name="red" val="0.0"/>
+				<attnum name="green" val="0.9"/>
+				<attnum name="blue" val="0.0"/>
+				<attstr name="nation" val="US"/>
+      		</section>
+
+      		<section name="14">
+				<attstr name="name" val="Akinori Kajihara"/>
+				<attstr name="short name" val="A. Kajihara"/>
+				<attstr name="code name" val="KAJ"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Team Poplar"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="04"/>
+				<attnum name="team efficiency" val="0.86"/>
+				<attnum name="red" val="0.0"/>
+				<attnum name="green" val="0.8"/>
+				<attnum name="blue" val="0.0"/>
+				<attstr name="nation" val="JP"/>
+      		</section>
+
+      		<section name="15">
+				<attstr name="name" val="Robert Dean"/>
+				<attstr name="short name" val="R. Dean"/>
+				<attstr name="code name" val="DEA"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Team Poplar"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="05"/>
+				<attnum name="team efficiency" val="0.86"/>
+				<attnum name="red" val="0.1"/>
+				<attnum name="green" val="0.9"/>
+				<attnum name="blue" val="0.1"/>
+				<attstr name="nation" val="US"/>
+      		</section>
+
+      		<section name="16">
+				<attstr name="name" val="Kong Hung"/>
+				<attstr name="short name" val="K. Hung"/>
+				<attstr name="code name" val="HUN"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Moe2 Racing"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="84"/>
+				<attnum name="team efficiency" val="1.0"/>
+				<attnum name="red" val="0.1"/>
+				<attnum name="green" val="0.8"/>
+				<attnum name="blue" val="0.0"/>
+				<attstr name="nation" val="CN"/>
+      		</section>
+
+      		<section name="17">
+				<attstr name="name" val="Michael Hansen"/>
+				<attstr name="short name" val="M. Hansen"/>
+				<attstr name="code name" val="HAN"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Moe2 Racing"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="85"/>
+				<attnum name="team efficiency" val="1.0"/>
+				<attnum name="red" val="0.2"/>
+				<attnum name="green" val="0.8"/>
+				<attnum name="blue" val="0.0"/>
+				<attstr name="nation" val="DK"/>
+      		</section>
+
+      		<section name="18">
+        		<attstr name="name" val="Michel Leblanc"/>
+				<attstr name="short name" val="M. Leblanc"/>
+				<attstr name="code name" val="LEB"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Team Oceania"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="22"/>
+				<attnum name="team efficiency" val="0.94"/>
+				<attnum name="red" val="0.2"/>
+				<attnum name="green" val="0.4"/>
+				<attnum name="blue" val="1.0"/>
+				<attstr name="nation" val="FR"/>
+      		</section>
+
+      		<section name="19">
+				<attstr name="name" val="Peter Rose"/>
+				<attstr name="short name" val="P. Rose"/>
+				<attstr name="code name" val="ROS"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Team Oceania"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="23"/>
+				<attnum name="team efficiency" val="0.94"/>
+				<attnum name="red" val="0.2"/>
+				<attnum name="green" val="0.4"/>
+				<attnum name="blue" val="1.0"/>
+				<attstr name="nation" val="UK"/>
+      		</section>
+
+      		<section name="20">
+				<attstr name="name" val="Denis Rossignol"/>
+				<attstr name="short name" val="D. Rossignol"/>
+				<attstr name="code name" val="ROS"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Mobile Racing"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="13"/>
+				<attnum name="team efficiency" val="0.90"/>
+				<attnum name="red" val="0.4"/>
+				<attnum name="green" val="0.4"/>
+				<attnum name="blue" val="1.0"/>
+				<attstr name="nation" val="FR"/>
+      		</section>
+
+      		<section name="21">
+				<attstr name="name" val="Theordore Sabourin"/>
+				<attstr name="short name" val="T. Sabourin"/>
+				<attstr name="code name" val="SAB"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Mobile Racing"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="14"/>
+				<attnum name="team efficiency" val="0.90"/>
+				<attnum name="red" val="0.4"/>
+				<attnum name="green" val="0.4"/>
+				<attnum name="blue" val="1.0"/>
+				<attstr name="nation" val="FR"/>
+      		</section>
+
+      		<section name="22">
+				<attstr name="name" val="Felix Burger"/>
+				<attstr name="short name" val="F. Burger"/>
+				<attstr name="code name" val="BUR"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Arc Racing"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="44"/>
+				<attnum name="team efficiency" val="0.99"/>
+				<attnum name="red" val="0.9"/>
+				<attnum name="green" val="0.4"/>
+				<attnum name="blue" val="0.3"/>
+				<attstr name="nation" val="DE"/>
+      		</section>
+
+      		<section name="23">
+				<attstr name="name" val="Christophe Riviere"/>
+				<attstr name="short name" val="C. Riviere"/>
+				<attstr name="code name" val="RIV"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Arc Racing"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="10gp4-diamond"/>
+				<attnum name="race number" val="45"/>
+				<attnum name="team efficiency" val="0.99"/>
+				<attnum name="red" val="0.9"/>
+				<attnum name="green" val="0.4"/>
+				<attnum name="blue" val="0.3"/>
+				<attstr name="nation" val="FR"/>
+      		</section>
+    	</section>
+  	</section>
+</params>

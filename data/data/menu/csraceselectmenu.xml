@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    file                 : csraceselectmenu.xml
+    created              : 2009
+    copyright            : (C) 2009 by Brian Gavin, Eckhard M. Jaeger
+    web                  : speed-dreams.sourceforge.net
+    version              : $Id$
+-->
+
+<!--    This program is free software; you can redistribute it and/or modify  -->
+<!--    it under the terms of the GNU General Public License as published by  -->
+<!--    the Free Software Foundation; either version 2 of the License, or     -->
+<!--    (at your option) any later version.                                   -->
+
+<!-- 
+
+	Race mode/type selection menu
+
+-->
+
+<!DOCTYPE params SYSTEM "../tgf/params.dtd">
+
+<params name="optionsmenu">
+	<section name="dynamic controls">
+		<!--
+		Beware with the control names :
+		* "(race manager type)Button"
+		* "(race manager type)Combo"
+		where (race manager type) comes from (racemanager).xml, "type" field in the "Header".
+		-->
+		<section name="PracticeButton">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="200"/>
+			<attnum name="height" val="150"/>	  	  	  	  
+			<attstr name="tip" val="Test Drive on track"/>
+			<attnum name="x" val="10"/>
+			<attnum name="y" val="240"/>
+			<attstr name="disabled image" val="data/img/arrow-left-top-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-testdrive.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-testdrive-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-testdrive-pushed.png"/>
+		</section>
+
+		<!-- second button for STANDARDGAME only -->
+		<section name="Challenge1Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="200"/>
+			<attnum name="height" val="150"/>	  	  	  	  
+			<attstr name="tip" val="Challenge with limited opponents and short distance race"/>
+			<attnum name="x" val="220"/>
+			<attnum name="y" val="240"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-chall1-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-chall1.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-chall1-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-chall1-pushed.png"/>
+		</section>
+
+		<section name="Challenge2Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="200"/>
+			<attnum name="height" val="150"/>	  	  	  	  
+			<attstr name="tip" val="Challenge 2 with limited opponents and more laps"/>
+			<attnum name="x" val="220"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-chall2-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-chall2.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-chall2-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-chall2-pushed.png"/>
+		</section>
+
+		<section name="Endurance1Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="200"/>
+			<attnum name="height" val="150"/>	  	  	  	  
+			<attstr name="tip" val="First Endurance race"/>
+			<attnum name="x" val="430"/>
+			<attnum name="y" val="240"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-endur1-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-endur1.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-endur1-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-endur1-pushed.png"/>
+		</section>
+
+		<section name="Championship1Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="200"/>
+			<attnum name="height" val="150"/>	  	  	  	  
+			<attstr name="tip" val="First championship with all opponents"/>
+			<attnum name="x" val="430"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-champ1-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-champ1.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-champ1-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-champ1-pushed.png"/>
+		</section>
+
+		<section name="QuickraceButton">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="200"/>
+			<attnum name="height" val="150"/>	  	  	  	  
+			<attstr name="tip" val="Quick Race"/>
+			<attnum name="x" val="10"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/arrow-left-top-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-quickrace.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-quickrace-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-quickrace-pushed.png"/>
+		</section>
+
+		<section name="BackButton">
+			<attstr name="type" val="text button"/>
+			<attstr name="show box" val="no"/>	  	  	  
+			<attstr name="text" val="Back"/>
+			<attstr name="tip" val="Back to main menu"/>
+			<attstr name="h align" val="left"/>
+			<attnum name="x" val="150"/>
+			<attnum name="y" val="40"/>
+			<attnum name="width" val="100"/>
+			<attstr name="font" val="big"/>
+			<attstr name="color" val="0xFFFFFF"/>
+			<attstr name="focused color" val="0xFFFFFF"/>
+			<attstr name="pushed color" val="0xFF0000"/>
+			<attnum name="image x" val="-48"/>
+			<attnum name="image y" val="0"/>
+			<attnum name="image width" val="220"/>
+			<attnum name="image height" val="33"/>
+			<attstr name="focused image" val="data/img/bg-button-big-focused-last.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-pushed-last.png"/>
+		</section>
+
+		<section name="NextButton">
+			<attstr name="type" val="text button"/>
+			<attstr name="show box" val="no"/>	  	  	  
+			<attstr name="text" val="Next"/>
+			<attstr name="tip" val="Next select race menu"/>
+			<attstr name="h align" val="left"/>
+			<attnum name="x" val="410"/>
+			<attnum name="y" val="40"/>
+			<attnum name="width" val="100"/>
+			<attstr name="font" val="big"/>
+			<attstr name="color" val="0xFFFFFF"/>
+			<attstr name="focused color" val="0xFFFFFF"/>
+			<attstr name="pushed color" val="0xFF0000"/>
+			<attnum name="image x" val="-48"/>
+			<attnum name="image y" val="0"/>
+			<attnum name="image width" val="220"/>
+			<attnum name="image height" val="33"/>
+			<attstr name="focused image" val="data/img/bg-button-big-focused-last.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-pushed-last.png"/>
+		</section>
+  	</section>
+
+	<section name="static controls">
+		<section name="1">
+			<attstr name="type" val="background image"/>
+			<attstr name="image" val="data/img/splash-raceselect.jpg"/>
+		</section>	
+	</section>
+</params>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE params SYSTEM "../../../../src/libs/tgf/params.dtd">
+
+<params name="Skill" type="template">
+ 	<section name="skill">
+	  <!-- This skill level is added to the global skill level set in        -->
+	  <!-- raceman/config/extra/skill.xml to provide a unique value for      -->
+	  <!-- each driver.  The values should be between 0 and 1, with 0 being  -->
+	  <!-- the highest skill level.                                          -->
+	  <attnum name="level" min="0.0" max="1.0" val="0.01"/>
+	  <attnum name="level qualif" min="0.0" max="5.0" val="0.01"/>
+  	  <attnum name="aggression" min="0.0" max="0.04" val="0.04"/>
+	  <attnum name="skill random" min="0" max="10" val="10"/>
+	  <attnum name="skill random qualif" min="0" max="10" val="10"/>
+ 	</section>
+
+	<section name="Options">
+		<attnum name="options mass" val="3"/>
+		<attnum name="options gear" val="1"/>
+		<attnum name="options engine" val="7"/>
+		<attnum name="options springs" val="2"/>
+		<attnum name="options anti-roll bars" val="2"/>
+		<attnum name="options wings" val="2"/>
+		<attnum name="options tires" val="1"/>
+ 	</section>
+</params>

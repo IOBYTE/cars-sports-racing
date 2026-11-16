@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    file        : practice.xml
+    created     : Sat Jan 25 08:58:03 CET 2003
+    copyright   : (C) 2003 by Eric Espie
+    email       : Eric.Espie@torcs.org
+    version     : $Id: practice.xml 6614 2019-04-05 19:07:58Z torcs-ng $
+-->
+
+<!--    This program is free software; you can redistribute it and/or modify  -->
+<!--    it under the terms of the GNU General Public License as published by  -->
+<!--    the Free Software Foundation; either version 2 of the License, or     -->
+<!--    (at your option) any later version.                                   -->
+
+<!DOCTYPE params SYSTEM "params.dtd">
+
+<params name="LS-GT2 Practice" version="1.02">
+  <section name="Header">
+    <attstr name="name" val="LS GT2 Practice"/>
+    <attstr name="type" val="Practice"/>
+    <attstr name="description" val="Practice"/>
+    <attnum name="priority" val="100"/>
+    <attstr name="menu image" val="data/img/splash-practice.jpg"/>
+    <attstr name="run image" val="data/img/splash-run-practice.jpg"/>
+  </section>
+
+  <section name="Tracks">
+    <attnum name="maximum number" val="1"/>
+    <section name="1">
+      <attstr name="name" val="forza"/>
+      <attstr name="category" val="grandprix"/>
+    </section>
+  </section>
+
+  <section name="Races">
+    <section name="1">
+      <attstr name="name" val="Practice"/>
+    </section>
+  </section>
+
+  <section name="All Sessions">
+    <attstr name="time of day" val="afternoon"/>
+    <attstr name="rain" val="no"/>
+    <attstr name="clouds" val="random"/>
+	<attstr name="season" val="summer"/>
+    <attstr name="weather" val="config"/>   
+  </section>
+
+
+  <section name="Practice">
+    <attnum name="laps" val="10"/>
+    <attstr name="type" val="practice"/>
+    <attstr name="starting order" val="drivers list"/>
+    <attstr name="restart" val="yes"/>
+    <attstr name="display mode" val="normal"/>
+    <attstr name="display results" val="yes"/>
+
+    <section name="Starting Grid">
+      <attnum name="rows" val="1"/>
+      <attnum name="distance to start" val="100"/>
+      <attnum name="distance between columns" val="20"/>
+      <attnum name="offset within a column" val="10"/>
+      <attnum name="initial speed" unit="km/h" val="0"/>
+      <attnum name="initial height" unit="m" val="0.2"/>
+    </section>
+  </section>
+
+  <section name="Drivers">
+    <attnum name="maximum number" val="1"/>
+    <attstr name="focused module" val="human"/>
+    <attnum name="focused idx" val="1"/>
+    <attstr name="rejected types" val="networkhuman"/>
+	<attstr name="accepted categories" val="LS-GT2"/> 
+
+    <section name="1">
+      <attnum name="idx" val="1"/>
+      <attstr name="module" val="human"/>
+    </section>
+  </section>
+
+  <section name="Configuration">
+    <attnum name="current configuration" val="2"/>
+    <section name="1">
+      <attstr name="type" val="drivers select"/>
+    </section>
+  </section>
+
+</params>

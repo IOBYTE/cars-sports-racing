@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+   file				  : carstuningmenu.xml
+   created			  : Sun Nov 9 2025
+   copyright		  : (C) 2025 Xavier Bertaux
+   web				  : www.cars-sports-racing.net
+   version			  : $Id: $
+  -->
+
+<!--	This program is free software; you can redistribute it and/or modify  -->
+<!--	it under the terms of the GNU General Public License as published by  -->
+<!--	the Free Software Foundation; either version 2 of the License, or	  -->
+<!--	(at your option) any later version.								      -->
+
+<!DOCTYPE params SYSTEM "../tgf/params.dtd">
+
+<params name="carstuningmenu">	
+	<section name="dynamic controls">
+		<section name="loseweight1Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="90"/>
+			<attnum name="height" val="90"/>	  	  	  	  
+			<attstr name="tip" val="Lose Weight car Level 1"/>
+			<attnum name="x" val="5"/>
+			<attnum name="y" val="290"/>
+			<attstr name="disabled image" val="data/img/bg-weight1-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-weight1.png"/>
+			<attstr name="focused image" val="data/img/bg-weight1-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-weight1-pushed.png"/>
+		</section>
+
+		<section name="Weight1Label">
+	  		<attstr name="type" val="label"/>
+	  		<attnum name="max len" val="100"/>
+	  		<attstr name="text" val=""/>
+	  		<attnum name="x" val="55"/>
+	  		<attnum name="y" val="276"/>
+	  		<attstr name="h align" val="center"/>  
+	  		<attstr name="font" val="small_c"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<section name="loseweight2Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="90"/>
+			<attnum name="height" val="90"/>	  	  	  	  
+			<attstr name="tip" val="Lose Weight car Level 2"/>
+			<attnum name="x" val="5"/>
+			<attnum name="y" val="186"/>
+			<attstr name="disabled image" val="data/img/bg-weight2-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-weight2.png"/>
+			<attstr name="focused image" val="data/img/bg-weight2-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-weight2-pushed.png"/>
+		</section>
+
+		<section name="Weight2Label">
+	  		<attstr name="type" val="label"/>
+	  		<attnum name="max len" val="100"/>
+	  		<attstr name="text" val=""/>
+	  		<attnum name="x" val="55"/>
+	  		<attnum name="y" val="174"/>
+	  		<attstr name="h align" val="center"/>  
+	  		<attstr name="font" val="small_c"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<section name="loseweight3Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="90"/>
+			<attnum name="height" val="90"/>	  	  	  	  
+			<attstr name="tip" val="Lose Weight car Level 2"/>
+			<attnum name="x" val="5"/>
+			<attnum name="y" val="84"/>
+			<attstr name="disabled image" val="data/img/bg-weight3-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-weight3.png"/>
+			<attstr name="focused image" val="data/img/bg-weight3-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-weight3-pushed.png"/>
+		</section>
+
+		<section name="Weight3Label">
+	  		<attstr name="type" val="label"/>
+	  		<attnum name="max len" val="100"/>
+	  		<attstr name="text" val=""/>
+	  		<attnum name="x" val="55"/>
+	  		<attnum name="y" val="71"/>
+	  		<attstr name="h align" val="center"/>  
+	  		<attstr name="font" val="small_c"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<section name="gearsportsButton">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="90"/>
+			<attnum name="height" val="90"/>	  	  	  	  
+			<attstr name="tip" val="Gears Sports with possible settings for each track"/>
+			<attnum name="x" val="105"/>
+			<attnum name="y" val="290"/>
+			<attstr name="disabled image" val="data/img/bg-gear-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-gear.png"/>
+			<attstr name="focused image" val="data/img/bg-gear-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-gear-pushed.png"/>
+		</section>
+
+		<section name="Gear1Label">
+	  		<attstr name="type" val="label"/>
+	  		<attnum name="max len" val="100"/>
+	  		<attstr name="text" val=""/>
+	  		<attnum name="x" val="160"/>
+	  		<attnum name="y" val="276"/>
+	  		<attstr name="h align" val="center"/>  
+	  		<attstr name="font" val="small_c"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<section name="TiresportsButton">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="90"/>
+			<attnum name="height" val="90"/>	  	  	  	  
+			<attstr name="tip" val="Gears Sports with possible settings for each track"/>
+			<attnum name="x" val="105"/>
+			<attnum name="y" val="84"/>
+			<attstr name="disabled image" val="data/img/bg-sports-tires-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-sports-tires.png"/>
+			<attstr name="focused image" val="data/img/bg-sports-tires-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-sports-tires-pushed.png"/>
+		</section>
+
+		<section name="Wheel1Label">
+	  		<attstr name="type" val="label"/>
+	  		<attnum name="max len" val="100"/>
+	  		<attstr name="text" val=""/>
+	  		<attnum name="x" val="160"/>
+	  		<attnum name="y" val="71"/>
+	  		<attstr name="h align" val="center"/>  
+	  		<attstr name="font" val="small_c"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<section name="airfilterButton">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="90"/>
+			<attnum name="height" val="90"/>	  	  	  	  
+			<attstr name="tip" val="Change Air Filter for better engine"/>
+			<attnum name="x" val="208"/>
+			<attnum name="y" val="290"/>
+			<attstr name="disabled image" val="data/img/bg-filter-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-filter.png"/>
+			<attstr name="focused image" val="data/img/bg-filter-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-filter-pushed.png"/>
+		</section>
+
+		<section name="AirLabel">
+	  		<attstr name="type" val="label"/>
+	  		<attnum name="max len" val="100"/>
+	  		<attstr name="text" val=""/>
+	  		<attnum name="x" val="260"/>
+	  		<attnum name="y" val="276"/>
+	  		<attstr name="h align" val="center"/>  
+	  		<attstr name="font" val="small_c"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<section name="exaustButton">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="90"/>
+			<attnum name="height" val="90"/>	  	  	  	  
+			<attstr name="tip" val="Change Exaust for better engine"/>
+			<attnum name="x" val="208"/>
+			<attnum name="y" val="186"/>
+			<attstr name="disabled image" val="data/img/bg-exaust-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-exaust.png"/>
+			<attstr name="focused image" val="data/img/bg-exaust-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-exaust-pushed.png"/>
+		</section>
+
+		<section name="ExaustLabel">
+	  		<attstr name="type" val="label"/>
+	  		<attnum name="max len" val="100"/>
+	  		<attstr name="text" val=""/>
+	  		<attnum name="x" val="260"/>
+	  		<attnum name="y" val="174"/>
+	  		<attstr name="h align" val="center"/>  
+	  		<attstr name="font" val="small_c"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<section name="ecuButton">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="90"/>
+			<attnum name="height" val="90"/>	  	  	  	  
+			<attstr name="tip" val="Added ECU for better engine"/>
+			<attnum name="x" val="208"/>
+			<attnum name="y" val="84"/>
+			<attstr name="disabled image" val="data/img/bg-ecu-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-ecu.png"/>
+			<attstr name="focused image" val="data/img/bg-ecu-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-ecu-pushed.png"/>
+		</section>
+
+		<section name="EcuLabel">
+	  		<attstr name="type" val="label"/>
+	  		<attnum name="max len" val="100"/>
+	  		<attstr name="text" val=""/>
+	  		<attnum name="x" val="260"/>
+	  		<attnum name="y" val="71"/>
+	  		<attstr name="h align" val="center"/>  
+	  		<attstr name="font" val="small_c"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<section name="springs1Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="90"/>
+			<attnum name="height" val="90"/>	  	  	  	  
+			<attstr name="tip" val="Springs for race"/>
+			<attnum name="x" val="318"/>
+			<attnum name="y" val="290"/>
+			<attstr name="disabled image" val="data/img/bg-spring-sport-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-springs-sport.png"/>
+			<attstr name="focused image" val="data/img/bg-spring-sport-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-spring-sport-pushed.png"/>
+		</section>
+
+		<section name="Spring1Label">
+	  		<attstr name="type" val="label"/>
+	  		<attnum name="max len" val="100"/>
+	  		<attstr name="text" val=""/>
+	  		<attnum name="x" val="368"/>
+	  		<attnum name="y" val="276"/>
+	  		<attstr name="h align" val="center"/>  
+	  		<attstr name="font" val="small_c"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<section name="springs2Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="90"/>
+			<attnum name="height" val="90"/>	  	  	  	  
+			<attstr name="tip" val="Springs with possible setups for each track"/>
+			<attnum name="x" val="318"/>
+			<attnum name="y" val="186"/>
+			<attstr name="disabled image" val="data/img/bg-springs-racing-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-springs-racing.png"/>
+			<attstr name="focused image" val="data/img/bg-springs-racing-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-springs-racing-pushed.png"/>
+		</section>
+
+		<section name="Spring2Label">
+	  		<attstr name="type" val="label"/>
+	  		<attnum name="max len" val="100"/>
+	  		<attstr name="text" val=""/>
+	  		<attnum name="x" val="368"/>
+	  		<attnum name="y" val="174"/>
+	  		<attstr name="h align" val="center"/>  
+	  		<attstr name="font" val="small_c"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<section name="antiroll1Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="90"/>
+			<attnum name="height" val="90"/>	  	  	  	  
+			<attstr name="tip" val="Anti-roll bars setting for race"/>
+			<attnum name="x" val="428"/>
+			<attnum name="y" val="290"/>
+			<attstr name="disabled image" val="data/img/bg-antiroll-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-antiroll.png"/>
+			<attstr name="focused image" val="data/img/bg-antiroll-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-antiroll-pushed.png"/>
+		</section>
+
+		<section name="Arb1Label">
+	  		<attstr name="type" val="label"/>
+	  		<attnum name="max len" val="100"/>
+	  		<attstr name="text" val=""/>
+	  		<attnum name="x" val="475"/>
+	  		<attnum name="y" val="276"/>
+	  		<attstr name="h align" val="center"/>  
+	  		<attstr name="font" val="small_c"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<section name="antiroll2Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="90"/>
+			<attnum name="height" val="90"/>	  	  	  	  
+			<attstr name="tip" val="Anti-roll bars with possible setups for each track"/>
+			<attnum name="x" val="428"/>
+			<attnum name="y" val="186"/>
+			<attstr name="disabled image" val="data/img/bg-antiroll-race-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-antiroll-race.png"/>
+			<attstr name="focused image" val="data/img/bg-antiroll-race-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-antiroll-race-pushed.png"/>
+		</section>
+
+		<section name="Arb2Label">
+	  		<attstr name="type" val="label"/>
+	  		<attnum name="max len" val="100"/>
+	  		<attstr name="text" val=""/>
+	  		<attnum name="x" val="475"/>
+	  		<attnum name="y" val="174"/>
+	  		<attstr name="h align" val="center"/>  
+	  		<attstr name="font" val="small_c"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<section name="wings1Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="90"/>
+			<attnum name="height" val="90"/>	  	  	  	  
+			<attstr name="tip" val="Wings for race"/>
+			<attnum name="x" val="536"/>
+			<attnum name="y" val="290"/>
+			<attstr name="disabled image" val="data/img/bg-wings-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-wings.png"/>
+			<attstr name="focused image" val="data/img/bg-wings-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-wings-pushed.png"/>
+		</section>
+
+		<section name="Wing1Label">
+	  		<attstr name="type" val="label"/>
+	  		<attnum name="max len" val="100"/>
+	  		<attstr name="text" val=""/>
+	  		<attnum name="x" val="588"/>
+	  		<attnum name="y" val="276"/>
+	  		<attstr name="h align" val="center"/>  
+	  		<attstr name="font" val="small_c"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<section name="wings2Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="90"/>
+			<attnum name="height" val="90"/>	  	  	  	  
+			<attstr name="tip" val="Wings for race with possible setup for each track"/>
+			<attnum name="x" val="536"/>
+			<attnum name="y" val="186"/>
+			<attstr name="disabled image" val="data/img/bg-wings-racing-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-wings-racing.png"/>
+			<attstr name="focused image" val="data/img/bg-wings-racing-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-wings-racing-pushed.png"/>
+		</section>
+
+		<section name="Wing2Label">
+	  		<attstr name="type" val="label"/>
+	  		<attnum name="max len" val="100"/>
+	  		<attstr name="text" val=""/>
+	  		<attnum name="x" val="588"/>
+	  		<attnum name="y" val="174"/>
+	  		<attstr name="h align" val="center"/>  
+	  		<attstr name="font" val="small_c"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<!-- Cancel button -->
+		<section name="BackButton">
+			<attstr name="type" val="text button"/>
+			<attstr name="show box" val="no"/>
+			<attstr name="text" val="Back"/>
+			<attstr name="tip" val="Cancel and back to career"/>
+			<attstr name="h align" val="left"/>
+			<attnum name="x" val="100"/>
+			<attnum name="y" val="44"/>
+			<attnum name="width" val="120"/>
+			<attstr name="font" val="medium"/>
+			<attstr name="color" val="0xFFFFFF"/>
+			<attstr name="focused color" val="0xFFFFFF"/>
+			<attstr name="pushed color" val="0xFF0000"/>
+			<attnum name="image x" val="-10"/>
+			<attnum name="image y" val="4"/>
+			<attnum name="image width" val="60"/>
+			<attnum name="image height" val="16"/>
+			<attstr name="focused image" val="data/img/button-left-focused.png"/>
+			<attstr name="enabled image" val="data/img/button-left.png"/>
+			<attstr name="pushed image" val="data/img/button-left-pushed.png"/>    
+		</section>
+
+		<section name="CreditLabel">
+	  		<attstr name="type" val="label"/>
+	  		<attnum name="max len" val="20"/>
+	  		<attstr name="text" val=""/>
+	  		<attnum name="x" val="550"/>
+	  		<attnum name="y" val="50"/>
+	  		<attstr name="h align" val="left"/>  
+	  		<attstr name="font" val="medium"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+  	</section>
+
+  	<section name="static controls">
+		<section name="1">
+			<attstr name="type" val="background image"/>
+			<attstr name="image" val="data/img/splash-tuning.jpg"/>
+		</section>
+
+		<!-- Labels -->
+		<section name="2">
+		  <attstr name="type" val="label"/>
+		  <attnum name="x" val="15"/>
+		  <attnum name="y" val="385"/>
+		  <attstr name="h align" val="center"/>
+		  <attstr name="text" val="Body Update"/>
+		  <attstr name="font" val="small_t"/>
+		</section>
+
+		<section name="3">
+		  <attstr name="type" val="label"/>
+		  <attnum name="x" val="115"/>
+		  <attnum name="y" val="385"/>
+		  <attstr name="h align" val="center"/>
+		  <attstr name="text" val="Gear Update"/>
+		  <attstr name="font" val="small_t"/>
+		</section>
+
+		<section name="4">
+		  <attstr name="type" val="label"/>
+		  <attnum name="x" val="120"/>
+		  <attnum name="y" val="180"/>
+		  <attstr name="h align" val="center"/>
+		  <attstr name="text" val="Tires Sports"/>
+		  <attstr name="font" val="small_t"/>
+		</section>
+
+		<section name="5">
+		  <attstr name="type" val="label"/>
+		  <attnum name="x" val="220"/>
+		  <attnum name="y" val="385"/>
+		  <attstr name="h align" val="center"/>
+		  <attstr name="text" val="Engine Update"/>
+		  <attstr name="font" val="small_t"/>
+		</section>
+
+		<section name="6">
+		  <attstr name="type" val="label"/>
+		  <attnum name="x" val="325"/>
+		  <attnum name="y" val="385"/>
+		  <attstr name="h align" val="center"/>
+		  <attstr name="text" val="Springs Update"/>
+		  <attstr name="font" val="small_t"/>
+		</section>
+
+		<section name="7">
+		  <attstr name="type" val="label"/>
+		  <attnum name="x" val="434"/>
+		  <attnum name="y" val="385"/>
+		  <attstr name="h align" val="center"/>
+		  <attstr name="text" val="Anti-roll Update"/>
+		  <attstr name="font" val="small_t"/>
+		</section>
+
+		<section name="8">
+		  <attstr name="type" val="label"/>
+		  <attnum name="x" val="545"/>
+		  <attnum name="y" val="385"/>
+		  <attstr name="h align" val="center"/>
+		  <attstr name="text" val="Added Wings"/>
+		  <attstr name="font" val="small_t"/>
+		</section>
+
+		<section name="9">
+		  	<attstr name="type" val="label"/>
+		  	<attnum name="x" val="480"/>
+		  	<attnum name="y" val="50"/>
+		  	<attstr name="text" val="Credits:"/>
+		  	<attstr name="font" val="medium"/>
+		</section>
+  	</section>
+
+   <section name="music">
+      <attstr name="music file" val="data/music/credits.ogg"/>
+   </section>
+</params>

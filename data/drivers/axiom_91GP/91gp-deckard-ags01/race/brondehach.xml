@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    file                 : default.xml
+    created              : Sun Mar 25 01:36:37 CET 2001
+    copyright            : (C) 2001 by Eric Espi�
+    email                : Eric.Espie@torcs.org
+    version              : $Id: default.xml,v 1.5 2005/04/10 23:37:21 olethros Exp $
+-->
+
+<!--    This program is free software; you can redistribute it and/or modify  -->
+<!--    it under the terms of the GNU General Public License as published by  -->
+<!--    the Free Software Foundation; either version 2 of the License, or     -->
+<!--    (at your option) any later version.                                   -->
+
+<!DOCTYPE params SYSTEM "../../../../src/libs/tgf/params.dtd">
+
+<params name="91gp-deckard-ags01">
+	<section name="Front Wing">
+		<attnum name="angle" unit="deg" min="1" max="26" val="12"/>
+	</section>
+
+	<section name="Rear Wing">
+		<attnum name="angle" unit="deg" min="6" max="25" val="10"/>
+	</section>
+
+	  <section	name="Gearbox">
+		 <section	name="gears">
+		   <section name="1">
+			 <attnum name="ratio" min="0" max="5" val="3.60"/>
+		   </section>
+
+		   <section name="2">
+			 <attnum name="ratio" min="0" max="5" val="2.805"/>
+		   </section>
+
+		   <section name="3">
+			 <attnum name="ratio" min="0" max="5" val="2.1"/>
+		   </section>
+
+		   <section name="4">
+			 <attnum name="ratio" min="0" max="5" val="1.610"/>
+		   </section>
+
+		   <section name="5">
+			 <attnum name="ratio" min="0" max="5" val="1.349"/>
+		   </section>
+
+		   <section name="6">
+			 <attnum name="ratio" min="0" max="5" val="1.060"/>
+		   </section>
+	 	</section>
+	  </section>
+
+
+	<section name="Brake System">
+		<attnum name="front-rear brake repartition" min="0.4" max="0.7" val="0.40"/>
+		<attnum name="max pressure" unit="kPa" min="5000" max="50000" val="42500"/>
+	</section>
+
+	<section name="private">
+		<!-- Others -->
+		<attnum name="test line" min="0" max="2" val="0"/> <!-- test line: 1 left, 2 right -->
+		<attnum name="message on" min="0" max="1" val="0"/>
+		<attnum name="data log on" min="0" max="1" val="0"/>
+
+		<attnum name="ABS slip" val="14.0"/>
+		<attnum name="TCL side slip" val="25.0"/>
+		<attnum name="TCL side slip qualy" val="40.0"/>
+		<attnum name="TCL side slip factor" val="0.03"/>
+		<attnum name="brake mu factor" val="0.82"/>
+		<attnum name="brake mu factor cold" val="0.86"/>
+		<attnum name="brake mu factor rain1" val="0.93"/>
+		<attnum name="brake mu cold rain1" val="0.95"/>
+		<attnum name="brake mu factor rain2" val="0.93"/>
+		<attnum name="brake mu cold rain2" val="0.95"/>
+		<attnum name="brake mu factor rain3" val="0.82"/>
+		<attnum name="brake mu cold rain3" val="0.86"/>
+		<attnum name="LR mu scale" val="0.60"/>
+		<attnum name="mu scale" val="0.72"/>
+		<attnum name="mu scale cold" val="0.74"/>
+		<attnum name="mu scale rain1" val="0.97"/>
+		<attnum name="mu scale cold rain1" val="0.98"/>
+		<attnum name="mu scale rain2" val="0.95"/>
+		<attnum name="mu scale cold rain2" val="0.98"/>
+		<attnum name="mu scale rain3" val="0.90"/>
+		<attnum name="mu scale cold rain3" val="0.95"/>
+		<attnum name="brakepressrace" val="31000"/>
+		<attnum name="brakepressnorm" val="31000"/>
+		<attnum name="bump speed factor" val="1000.0"/>
+		<attnum name="fuel per meter" val="0.0012"/>
+		<attnum name="fuel weight factor" val="1.0"/>
+		<attnum name="tire wear per meter" val="0.007"/>
+		<attnum name="max fuel" val="120"/>
+
+		<attnum name="pitdamage" val="5000"/>
+		<attnum name="pitentrymargin" val="50.0"/>
+		<attnum name="pitentryspeed" val="50.0"/>
+		<attnum name="pitexitspeed" val="50.0"/>
+		<attnum name="pittest" val="0"/>
+
+		<attnum name="targetfactor" val="0.32"/>
+		<attnum name="targetwalldist" val="0.5"/>
+		<attnum name="lookahead" val="14.0"/>
+		<!-- Race line ClothoidPath -->
+		<attnum name="maxleft" val="10.0"/>
+		<attnum name="maxright" val="10.0"/>
+		<attnum name="clothoidfactor" val="1.013"/>
+		<attnum name="seglen" val="4.0"/>
+		<attnum name="vmaxk" val="0.00183"/>
+
+		<!-- Mu Factor -->
+		<attnum name="1 from" val="0"/>
+		<attnum name="1 mufactor" val="0.75"/>
+		<attnum name="1 brakemufactor" val="1.20"/>
+
+		<attnum name="2 from" val="450"/>
+		<attnum name="2 mufactor" val="0.96"/>
+		<attnum name="2 brakemufactor" val="0.95"/>
+
+		<attnum name="3 from" val="700"/>
+		<attnum name="3 mufactor" val="0.94"/>
+		<attnum name="3 brakemufactor" val="0.94"/>
+
+		<attnum name="4 from" val="2000"/>
+		<attnum name="4 mufactor" val="0.76"/>
+		<attnum name="4 brakemufactor" val="0.92"/>
+
+		<attnum name="5 from" val="2200"/>
+		<attnum name="5 mufactor" val="0.96"/>
+		<attnum name="5 brakemufactor" val="0.96"/>
+
+		<attnum name="6 from" val="3500"/>
+		<attnum name="6 mufactor" val="0.75"/>
+		<attnum name="6 brakemufactor" val="0.92"/>
+
+		<attnum name="7 from" val="3600"/>
+		<attnum name="7 mufactor" val="0.96"/>
+		<attnum name="7 brakemufactor" val="0.96"/>
+
+		<!-- Margins -->
+		<attnum name="1 from margins" val="0"/>
+		<attnum name="1 left" val="1.2"/>
+		<attnum name="1 right" val="1.2"/>
+
+		<attnum name="2 from margins" val="2000"/>
+		<attnum name="2 left" val="1.9"/>
+		<attnum name="2 right" val="0.5"/>
+
+		<attnum name="3 from margins" val="2200"/>
+		<attnum name="3 left" val="1.2"/>
+		<attnum name="3 right" val="1.2"/>
+	</section>
+
+	<section name="strategy fuel">
+		<attnum name="fuel 5 laps" val="40.0"/>
+		<attnum name="fuel 10 laps" val="50.0"/>
+		<attnum name="fuel 80 km" val="38.0"/>
+		<attnum name="fuel 160 km" val="86.0"/>
+		<attnum name="fuel 320 km" val="86.0"/>
+		<attnum name="fuel others" val="120.0"/>
+	</section>
+
+	<section name="strategy soft 8">
+		<attnum name="pressure FR" unit="PSI" val="28.0"/>
+		<attnum name="pressure FL" unit="PSI" val="28.0"/>
+		<attnum name="pressure RR" unit="PSI" val="28.0"/>
+		<attnum name="pressure RL" unit="PSI" val="28.0"/>
+		<attnum name="camber FR" unit="deg" val="-0.27"/>
+		<attnum name="camber FL" unit="deg" val="-0.27"/>
+		<attnum name="camber RR" unit="deg" val="-0.3"/>
+		<attnum name="camber RL" unit="deg" val="-0.3"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy soft 15">
+		<attnum name="pressure FR" unit="PSI" val="35.0"/>
+		<attnum name="pressure FL" unit="PSI" val="35.0"/>
+		<attnum name="pressure RR" unit="PSI" val="35.0"/>
+		<attnum name="pressure RL" unit="PSI" val="35.0"/>
+		<attnum name="camber FR" unit="deg" val="-3.0"/>
+		<attnum name="camber FL" unit="deg" val="-3.0"/>
+		<attnum name="camber RR" unit="deg" val="-2.0"/>
+		<attnum name="camber RL" unit="deg" val="-2.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy soft 20">
+		<attnum name="pressure FR" unit="PSI" val="40.0"/>
+		<attnum name="pressure FL" unit="PSI" val="40.0"/>
+		<attnum name="pressure RR" unit="PSI" val="35.0"/>
+		<attnum name="pressure RL" unit="PSI" val="35.0"/>
+		<attnum name="camber FR" unit="deg" val="-1.0"/>
+		<attnum name="camber FL" unit="deg" val="-1.0"/>
+		<attnum name="camber RR" unit="deg" val="-1.0"/>
+		<attnum name="camber RL" unit="deg" val="-1.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy soft 25">
+		<attnum name="pressure FR" unit="PSI" val="45.0"/>
+		<attnum name="pressure FL" unit="PSI" val="45.0"/>
+		<attnum name="pressure RR" unit="PSI" val="35.0"/>
+		<attnum name="pressure RL" unit="PSI" val="35.0"/>
+		<attnum name="camber FR" unit="deg" val="-2.0"/>
+		<attnum name="camber FL" unit="deg" val="-2.0"/>
+		<attnum name="camber RR" unit="deg" val="-2.0"/>
+		<attnum name="camber RL" unit="deg" val="-2.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy soft 30">
+		<attnum name="pressure FR" unit="PSI" val="35.0"/>
+		<attnum name="pressure FL" unit="PSI" val="35.0"/>
+		<attnum name="pressure RR" unit="PSI" val="45.0"/>
+		<attnum name="pressure RL" unit="PSI" val="45.0"/>
+		<attnum name="camber FR" unit="deg" val="-1.5"/>
+		<attnum name="camber FL" unit="deg" val="-1.5"/>
+		<attnum name="camber RR" unit="deg" val="-3.0"/>
+		<attnum name="camber RL" unit="deg" val="-3.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy soft 35">
+		<attnum name="pressure FR" unit="PSI" val="45.0"/>
+		<attnum name="pressure FL" unit="PSI" val="45.0"/>
+		<attnum name="pressure RR" unit="PSI" val="45.0"/>
+		<attnum name="pressure RL" unit="PSI" val="45.0"/>
+		<attnum name="camber FR" unit="deg" val="-2.0"/>
+		<attnum name="camber FL" unit="deg" val="-2.0"/>
+		<attnum name="camber RR" unit="deg" val="-2.0"/>
+		<attnum name="camber RL" unit="deg" val="-2.0"/>
+		<attnum name="num arrets" val="0"/>
+	</section>
+
+	<section name="strategy medium 8">
+		<attnum name="pressure FR" unit="PSI" val="35.0"/>
+		<attnum name="pressure FL" unit="PSI" val="35.0"/>
+		<attnum name="pressure RR" unit="PSI" val="35.0"/>
+		<attnum name="pressure RL" unit="PSI" val="35.0"/>
+		<attnum name="camber FR" unit="deg" val="-0.5"/>
+		<attnum name="camber FL" unit="deg" val="-0.5"/>
+		<attnum name="camber RR" unit="deg" val="-3.0"/>
+		<attnum name="camber RL" unit="deg" val="-3.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy medium 15">
+		<attnum name="pressure FR" unit="PSI" val="35.0"/>
+		<attnum name="pressure FL" unit="PSI" val="35.0"/>
+		<attnum name="pressure RR" unit="PSI" val="35.0"/>
+		<attnum name="pressure RL" unit="PSI" val="35.0"/>
+		<attnum name="camber FR" unit="deg" val="-3.0"/>
+		<attnum name="camber FL" unit="deg" val="-3.0"/>
+		<attnum name="camber RR" unit="deg" val="-2.0"/>
+		<attnum name="camber RL" unit="deg" val="-2.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy medium 20">
+		<attnum name="pressure FR" unit="PSI" val="40.0"/>
+		<attnum name="pressure FL" unit="PSI" val="40.0"/>
+		<attnum name="pressure RR" unit="PSI" val="35.0"/>
+		<attnum name="pressure RL" unit="PSI" val="35.0"/>
+		<attnum name="camber FR" unit="deg" val="-1.0"/>
+		<attnum name="camber FL" unit="deg" val="-1.0"/>
+		<attnum name="camber RR" unit="deg" val="-1.0"/>
+		<attnum name="camber RL" unit="deg" val="-1.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy medium 25">
+		<attnum name="pressure FR" unit="PSI" val="45.0"/>
+		<attnum name="pressure FL" unit="PSI" val="45.0"/>
+		<attnum name="pressure RR" unit="PSI" val="35.0"/>
+		<attnum name="pressure RL" unit="PSI" val="35.0"/>
+		<attnum name="camber FR" unit="deg" val="-2.0"/>
+		<attnum name="camber FL" unit="deg" val="-2.0"/>
+		<attnum name="camber RR" unit="deg" val="-2.0"/>
+		<attnum name="camber RL" unit="deg" val="-2.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy medium 30">
+		<attnum name="pressure FR" unit="PSI" val="48.0"/>
+		<attnum name="pressure FL" unit="PSI" val="40.0"/>
+		<attnum name="pressure RR" unit="PSI" val="40.0"/>
+		<attnum name="pressure RL" unit="PSI" val="39.0"/>
+		<attnum name="camber FR" unit="deg" val="-1.8"/>
+		<attnum name="camber FL" unit="deg" val="-2.4"/>
+		<attnum name="camber RR" unit="deg" val="-3.4"/>
+		<attnum name="camber RL" unit="deg" val="-3.4"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy medium 35">
+		<attnum name="pressure FR" unit="PSI" val="45.0"/>
+		<attnum name="pressure FL" unit="PSI" val="45.0"/>
+		<attnum name="pressure RR" unit="PSI" val="45.0"/>
+		<attnum name="pressure RL" unit="PSI" val="45.0"/>
+		<attnum name="camber FR" unit="deg" val="-2.0"/>
+		<attnum name="camber FL" unit="deg" val="-2.0"/>
+		<attnum name="camber RR" unit="deg" val="-2.0"/>
+		<attnum name="camber RL" unit="deg" val="-2.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy hard 8">
+		<attnum name="pressure FR" unit="PSI" val="35.0"/>
+		<attnum name="pressure FL" unit="PSI" val="35.0"/>
+		<attnum name="pressure RR" unit="PSI" val="35.0"/>
+		<attnum name="pressure RL" unit="PSI" val="35.0"/>
+		<attnum name="camber FR" unit="deg" val="-0.5"/>
+		<attnum name="camber FL" unit="deg" val="-0.5"/>
+		<attnum name="camber RR" unit="deg" val="-3.0"/>
+		<attnum name="camber RL" unit="deg" val="-3.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy hard 15">
+		<attnum name="pressure FR" unit="PSI" val="35.0"/>
+		<attnum name="pressure FL" unit="PSI" val="35.0"/>
+		<attnum name="pressure RR" unit="PSI" val="35.0"/>
+		<attnum name="pressure RL" unit="PSI" val="35.0"/>
+		<attnum name="camber FR" unit="deg" val="-3.0"/>
+		<attnum name="camber FL" unit="deg" val="-3.0"/>
+		<attnum name="camber RR" unit="deg" val="-2.0"/>
+		<attnum name="camber RL" unit="deg" val="-2.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy hard 20">
+		<attnum name="pressure FR" unit="PSI" val="40.0"/>
+		<attnum name="pressure FL" unit="PSI" val="40.0"/>
+		<attnum name="pressure RR" unit="PSI" val="35.0"/>
+		<attnum name="pressure RL" unit="PSI" val="35.0"/>
+		<attnum name="camber FR" unit="deg" val="-1.0"/>
+		<attnum name="camber FL" unit="deg" val="-1.0"/>
+		<attnum name="camber RR" unit="deg" val="-1.0"/>
+		<attnum name="camber RL" unit="deg" val="-1.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy hard 25">
+		<attnum name="pressure FR" unit="PSI" val="45.0"/>
+		<attnum name="pressure FL" unit="PSI" val="45.0"/>
+		<attnum name="pressure RR" unit="PSI" val="35.0"/>
+		<attnum name="pressure RL" unit="PSI" val="35.0"/>
+		<attnum name="camber FR" unit="deg" val="-2.0"/>
+		<attnum name="camber FL" unit="deg" val="-2.0"/>
+		<attnum name="camber RR" unit="deg" val="-2.0"/>
+		<attnum name="camber RL" unit="deg" val="-2.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy hard 30">
+		<attnum name="pressure FR" unit="PSI" val="35.0"/>
+		<attnum name="pressure FL" unit="PSI" val="35.0"/>
+		<attnum name="pressure RR" unit="PSI" val="45.0"/>
+		<attnum name="pressure RL" unit="PSI" val="45.0"/>
+		<attnum name="camber FR" unit="deg" val="-1.5"/>
+		<attnum name="camber FL" unit="deg" val="-1.5"/>
+		<attnum name="camber RR" unit="deg" val="-3.0"/>
+		<attnum name="camber RL" unit="deg" val="-3.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy hard 35">
+		<attnum name="pressure FR" unit="PSI" val="45.0"/>
+		<attnum name="pressure FL" unit="PSI" val="45.0"/>
+		<attnum name="pressure RR" unit="PSI" val="45.0"/>
+		<attnum name="pressure RL" unit="PSI" val="35.0"/>
+		<attnum name="camber FR" unit="deg" val="-2.0"/>
+		<attnum name="camber FL" unit="deg" val="-2.0"/>
+		<attnum name="camber RR" unit="deg" val="-2.0"/>
+		<attnum name="camber RL" unit="deg" val="-2.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy wet 8">
+		<attnum name="pressure FR" unit="PSI" val="35.0"/>
+		<attnum name="pressure FL" unit="PSI" val="35.0"/>
+		<attnum name="pressure RR" unit="PSI" val="35.0"/>
+		<attnum name="pressure RL" unit="PSI" val="35.0"/>
+		<attnum name="camber FR" unit="deg" val="-0.5"/>
+		<attnum name="camber FL" unit="deg" val="-0.5"/>
+		<attnum name="camber RR" unit="deg" val="-3.0"/>
+		<attnum name="camber RL" unit="deg" val="-3.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy wet 15">
+		<attnum name="pressure FR" unit="PSI" val="35.0"/>
+		<attnum name="pressure FL" unit="PSI" val="35.0"/>
+		<attnum name="pressure RR" unit="PSI" val="35.0"/>
+		<attnum name="pressure RL" unit="PSI" val="35.0"/>
+		<attnum name="camber FR" unit="deg" val="-3.0"/>
+		<attnum name="camber FL" unit="deg" val="-3.0"/>
+		<attnum name="camber RR" unit="deg" val="-2.0"/>
+		<attnum name="camber RL" unit="deg" val="-2.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy wet 20">
+		<attnum name="pressure FR" unit="PSI" val="40.0"/>
+		<attnum name="pressure FL" unit="PSI" val="40.0"/>
+		<attnum name="pressure RR" unit="PSI" val="35.0"/>
+		<attnum name="pressure RL" unit="PSI" val="35.0"/>
+		<attnum name="camber FR" unit="deg" val="-1.0"/>
+		<attnum name="camber FL" unit="deg" val="-1.0"/>
+		<attnum name="camber RR" unit="deg" val="-1.0"/>
+		<attnum name="camber RL" unit="deg" val="-1.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy wet 25">
+		<attnum name="pressure FR" unit="PSI" val="45.0"/>
+		<attnum name="pressure FL" unit="PSI" val="45.0"/>
+		<attnum name="pressure RR" unit="PSI" val="35.0"/>
+		<attnum name="pressure RL" unit="PSI" val="35.0"/>
+		<attnum name="camber FR" unit="deg" val="-2.0"/>
+		<attnum name="camber FL" unit="deg" val="-2.0"/>
+		<attnum name="camber RR" unit="deg" val="-2.0"/>
+		<attnum name="camber RL" unit="deg" val="-2.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy wet 30">
+		<attnum name="pressure FR" unit="PSI" val="35.0"/>
+		<attnum name="pressure FL" unit="PSI" val="35.0"/>
+		<attnum name="pressure RR" unit="PSI" val="45.0"/>
+		<attnum name="pressure RL" unit="PSI" val="45.0"/>
+		<attnum name="camber FR" unit="deg" val="-1.5"/>
+		<attnum name="camber FL" unit="deg" val="-1.5"/>
+		<attnum name="camber RR" unit="deg" val="-3.0"/>
+		<attnum name="camber RL" unit="deg" val="-3.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy wet 35">
+		<attnum name="pressure FR" unit="PSI" val="45.0"/>
+		<attnum name="pressure FL" unit="PSI" val="45.0"/>
+		<attnum name="pressure RR" unit="PSI" val="45.0"/>
+		<attnum name="pressure RL" unit="PSI" val="35.0"/>
+		<attnum name="camber FR" unit="deg" val="-2.0"/>
+		<attnum name="camber FL" unit="deg" val="-2.0"/>
+		<attnum name="camber RR" unit="deg" val="-2.0"/>
+		<attnum name="camber RL" unit="deg" val="-2.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy extrem wet 8">
+		<attnum name="pressure FR" unit="PSI" val="35.0"/>
+		<attnum name="pressure FL" unit="PSI" val="35.0"/>
+		<attnum name="pressure RR" unit="PSI" val="35.0"/>
+		<attnum name="pressure RL" unit="PSI" val="35.0"/>
+		<attnum name="camber FR" unit="deg" val="-0.5"/>
+		<attnum name="camber FL" unit="deg" val="-0.5"/>
+		<attnum name="camber RR" unit="deg" val="-3.0"/>
+		<attnum name="camber RL" unit="deg" val="-3.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy extrem wet 15">
+		<attnum name="pressure FR" unit="PSI" val="30.0"/>
+		<attnum name="pressure FL" unit="PSI" val="30.0"/>
+		<attnum name="pressure RR" unit="PSI" val="30.0"/>
+		<attnum name="pressure RL" unit="PSI" val="30.0"/>
+		<attnum name="camber FR" unit="deg" val="-1.0"/>
+		<attnum name="camber FL" unit="deg" val="-1.0"/>
+		<attnum name="camber RR" unit="deg" val="-0.8"/>
+		<attnum name="camber RL" unit="deg" val="-0.8"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy extrem wet 20">
+		<attnum name="pressure FR" unit="PSI" val="40.0"/>
+		<attnum name="pressure FL" unit="PSI" val="40.0"/>
+		<attnum name="pressure RR" unit="PSI" val="35.0"/>
+		<attnum name="pressure RL" unit="PSI" val="35.0"/>
+		<attnum name="camber FR" unit="deg" val="-1.0"/>
+		<attnum name="camber FL" unit="deg" val="-1.0"/>
+		<attnum name="camber RR" unit="deg" val="-1.0"/>
+		<attnum name="camber RL" unit="deg" val="-1.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy extrem wet 25">
+		<attnum name="pressure FR" unit="PSI" val="45.0"/>
+		<attnum name="pressure FL" unit="PSI" val="45.0"/>
+		<attnum name="pressure RR" unit="PSI" val="35.0"/>
+		<attnum name="pressure RL" unit="PSI" val="35.0"/>
+		<attnum name="camber FR" unit="deg" val="-2.0"/>
+		<attnum name="camber FL" unit="deg" val="-2.0"/>
+		<attnum name="camber RR" unit="deg" val="-2.0"/>
+		<attnum name="camber RL" unit="deg" val="-2.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy extrem wet 30">
+		<attnum name="pressure FR" unit="PSI" val="35.0"/>
+		<attnum name="pressure FL" unit="PSI" val="35.0"/>
+		<attnum name="pressure RR" unit="PSI" val="45.0"/>
+		<attnum name="pressure RL" unit="PSI" val="45.0"/>
+		<attnum name="camber FR" unit="deg" val="-1.5"/>
+		<attnum name="camber FL" unit="deg" val="-1.5"/>
+		<attnum name="camber RR" unit="deg" val="-3.0"/>
+		<attnum name="camber RL" unit="deg" val="-3.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+
+	<section name="strategy extrem wet 35">
+		<attnum name="pressure FR" unit="PSI" val="45.0"/>
+		<attnum name="pressure FL" unit="PSI" val="45.0"/>
+		<attnum name="pressure RR" unit="PSI" val="45.0"/>
+		<attnum name="pressure RL" unit="PSI" val="35.0"/>
+		<attnum name="camber FR" unit="deg" val="-2.0"/>
+		<attnum name="camber FL" unit="deg" val="-2.0"/>
+		<attnum name="camber RR" unit="deg" val="-2.0"/>
+		<attnum name="camber RL" unit="deg" val="-2.0"/>
+		<attnum name="num arrets" val="2"/>
+	</section>
+</params>

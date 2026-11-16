@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    file                 : carseermenu.xml
+    created              : August 2024
+    copyright            : (C) 2024 by Xavier Bertaux
+    web                  : www.cars-sports-racing.net
+    version              : $Id: $
+-->
+
+<!--    This program is free software; you can redistribute it and/or modify  -->
+<!--    it under the terms of the GNU General Public License as published by  -->
+<!--    the Free Software Foundation; either version 2 of the License, or     -->
+<!--    (at your option) any later version.                                   -->
+
+<!DOCTYPE params SYSTEM "../tgf/params.dtd">
+
+<params name="careermenu">
+	<section name="dynamic controls">
+		<!-- portrait image -->
+		<section name="PortraitImage">
+		  	<attstr name="type" val="static image"/>
+		  	<attnum name="x" val="50"/>
+		  	<attnum name="y" val="330"/>
+		  	<attnum name="width" val="64"/>
+		  	<attnum name="height" val="64"/>
+		  	<attstr name="can deform" val="no"/>
+		  	<attstr name="image" val="data/img/portrait8.png"/>
+		</section>
+
+		<section name="Text1Label">
+		  	<attstr name="type" val="label"/>
+		  	<attnum name="max len" val="250"/>
+		  	<attstr name="text" val=""/>
+		  	<attnum name="x" val="50"/>
+		  	<attnum name="y" val="310"/>
+		  	<attstr name="h align" val="left"/>
+		  	<attstr name="font" val="small_t"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<section name="Text2Label">
+		  	<attstr name="type" val="label"/>
+		  	<attnum name="max len" val="350"/>
+		  	<attstr name="text" val=""/>
+		  	<attnum name="x" val="50"/>
+		  	<attnum name="y" val="290"/>
+		  	<attstr name="h align" val="left"/>
+		  	<attstr name="font" val="small_t"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<section name="Text3Label">
+		  	<attstr name="type" val="label"/>
+		  	<attnum name="max len" val="250"/>
+		  	<attstr name="text" val=""/>
+		  	<attnum name="x" val="50"/>
+		  	<attnum name="y" val="270"/>
+		  	<attstr name="h align" val="left"/>
+		  	<attstr name="font" val="small_t"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<section name="Text4Label">
+		  	<attstr name="type" val="label"/>
+		  	<attnum name="max len" val="250"/>
+		  	<attstr name="text" val=""/>
+		  	<attnum name="x" val="50"/>
+		  	<attnum name="y" val="250"/>
+		  	<attstr name="h align" val="left"/>
+		  	<attstr name="font" val="small_t"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<section name="Text5Label">
+		  	<attstr name="type" val="label"/>
+		  	<attnum name="max len" val="350"/>
+		  	<attstr name="text" val=""/>
+		  	<attnum name="x" val="50"/>
+		  	<attnum name="y" val="230"/>
+		  	<attstr name="h align" val="left"/>
+		  	<attstr name="font" val="small_t"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<section name="Text6Label">
+		  	<attstr name="type" val="label"/>
+		  	<attnum name="max len" val="250"/>
+		  	<attstr name="text" val=""/>
+		  	<attnum name="x" val="50"/>
+		  	<attnum name="y" val="210"/>
+		  	<attstr name="h align" val="left"/>
+		  	<attstr name="font" val="small_t"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<section name="Text7Label">
+		  	<attstr name="type" val="label"/>
+		  	<attnum name="max len" val="250"/>
+		  	<attstr name="text" val=""/>
+		  	<attnum name="x" val="50"/>
+		  	<attnum name="y" val="190"/>
+		  	<attstr name="h align" val="left"/>
+		  	<attstr name="font" val="small_t"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<section name="Text8Label">
+		  	<attstr name="type" val="label"/>
+		  	<attnum name="max len" val="250"/>
+		  	<attstr name="text" val=""/>
+		  	<attnum name="x" val="50"/>
+		  	<attnum name="y" val="170"/>
+		  	<attstr name="h align" val="left"/>
+		  	<attstr name="font" val="small_t"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<section name="Race1Label">
+		  	<attstr name="type" val="label"/>
+		  	<attnum name="max len" val="200"/>
+		  	<attstr name="text" val=""/>
+		  	<attnum name="x" val="100"/>
+		  	<attnum name="y" val="210"/>
+		  	<attstr name="h align" val="left"/>
+		  	<attstr name="font" val="medium"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<section name="Race2Label">
+		  	<attstr name="type" val="label"/>
+		  	<attnum name="max len" val="200"/>
+		  	<attstr name="text" val=""/>
+		  	<attnum name="x" val="350"/>
+		  	<attnum name="y" val="210"/>
+		  	<attstr name="h align" val="left"/>
+		  	<attstr name="font" val="medium"/>
+		  	<attstr name="color" val="0xFFFFFF"/>
+		</section>
+
+		<!-- Buttons -->
+		<section name="PracticeButton">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="150"/>
+			<attnum name="height" val="120"/>	  	  	  	  
+			<attstr name="tip" val="Test Drive"/>
+			<attnum name="x" val="100"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-testdrive-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-testdrive.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-testdrive-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-testdrive-pushed.png"/>
+		</section>
+
+		<section name="SpecialButton1">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="150"/>
+			<attnum name="height" val="120"/>	  	  	  	  
+			<attstr name="tip" val="Special race 1"/>
+			<attnum name="x" val="100"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-special1-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-special1.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-special1-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-special1-pushed.png"/>
+		</section>
+
+		<section name="SpecialButton2">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="150"/>
+			<attnum name="height" val="120"/>	  	  	  	  
+			<attstr name="tip" val="Special race 2"/>
+			<attnum name="x" val="100"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-special2-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-special2.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-special2-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-special2-pushed.png"/>
+		</section>
+
+		<section name="SpecialButton3">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="150"/>
+			<attnum name="height" val="120"/>	  	  	  	  
+			<attstr name="tip" val="Special race 3"/>
+			<attnum name="x" val="100"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-special3-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-special3.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-special3-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-special3-pushed.png"/>
+		</section>
+
+		<section name="SpecialButton4">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="150"/>
+			<attnum name="height" val="120"/>	  	  	  	  
+			<attstr name="tip" val="Special race 4"/>
+			<attnum name="x" val="100"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-special4-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-special4.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-special4-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-special4-pushed.png"/>
+		</section>
+
+		<section name="Challenge1Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="150"/>
+			<attnum name="height" val="120"/>	  	  	  	  
+			<attstr name="tip" val="Race Challenge 1"/>
+			<attnum name="x" val="100"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-chall1-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-chall1.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-chall1-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-chall1-pushed.png"/>
+		</section>
+
+		<section name="Challenge2Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="150"/>
+			<attnum name="height" val="120"/>	  	  	  	  
+			<attstr name="tip" val="Race Challenge 2"/>
+			<attnum name="x" val="350"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-chall2-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-chall2.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-chall2-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-chall2-pushed.png"/>
+		</section>
+
+		<section name="Challenge2aButton">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="150"/>
+			<attnum name="height" val="120"/>	  	  	  	  
+			<attstr name="tip" val="Race Challenge 2"/>
+			<attnum name="x" val="100"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-chall2-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-chall2.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-chall2-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-chall2-pushed.png"/>
+		</section>
+
+		<section name="Challenge3Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="150"/>
+			<attnum name="height" val="120"/>	  	  	  	  
+			<attstr name="tip" val="Race Challenge 3"/>
+			<attnum name="x" val="100"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-chall3-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-chall3.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-chall3-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-chall3-pushed.png"/>
+		</section>
+
+		<section name="Challenge4Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="150"/>
+			<attnum name="height" val="120"/>	  	  	  	  
+			<attstr name="tip" val="Race Challenge 4"/>
+			<attnum name="x" val="100"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-chall4-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-chall4.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-chall4-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-chall4-pushed.png"/>
+		</section>
+
+		<section name="Challenge5Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="150"/>
+			<attnum name="height" val="120"/>	  	  	  	  
+			<attstr name="tip" val="Race Challenge 5"/>
+			<attnum name="x" val="100"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-chall2-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-chall2.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-chall2-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-chall2-pushed.png"/>
+		</section>
+
+		<section name="Challenge6Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="150"/>
+			<attnum name="height" val="120"/>	  	  	  	  
+			<attstr name="tip" val="Race Challenge 6"/>
+			<attnum name="x" val="100"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-chall3-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-chall3.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-chall3-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-chall3-pushed.png"/>
+		</section>
+
+		<section name="Challenge7Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="150"/>
+			<attnum name="height" val="120"/>	  	  	  	  
+			<attstr name="tip" val="Race Challenge 7"/>
+			<attnum name="x" val="100"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-chall4-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-chall4.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-chall4-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-chall4-pushed.png"/>
+		</section>
+
+		<section name="Endurance1Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="150"/>
+			<attnum name="height" val="120"/>	  	  	  	  
+			<attstr name="tip" val="Race Endurance 1"/>
+			<attnum name="x" val="350"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-endur1-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-endur1.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-endur1-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-endur1-pushed.png"/>
+		</section>
+
+		<section name="Endurance2Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="150"/>
+			<attnum name="height" val="120"/>	  	  	  	  
+			<attstr name="tip" val="Race Endurance 2"/>
+			<attnum name="x" val="350"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-endur2-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-endur2.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-endur2-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-endur2-pushed.png"/>
+		</section>
+
+		<section name="Endurance3Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="150"/>
+			<attnum name="height" val="120"/>	  	  	  	  
+			<attstr name="tip" val="Race Endurance 1"/>
+			<attnum name="x" val="350"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-endur3-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-endur3.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-endur3-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-endur3-pushed.png"/>
+		</section>
+
+		<section name="Endurance4Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="150"/>
+			<attnum name="height" val="120"/>	  	  	  	  
+			<attstr name="tip" val="Race endurance 4"/>
+			<attnum name="x" val="350"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-endur4-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-endur4.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-endur4-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-endur4-pushed.png"/>
+		</section>
+
+		<section name="Championship1Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="150"/>
+			<attnum name="height" val="120"/>	  	  	  	  
+			<attstr name="tip" val="Races Championship 1"/>
+			<attnum name="x" val="350"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-champ1-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-champ1.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-champ1-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-champ1-pushed.png"/>
+		</section>
+
+		<section name="Championship2Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="150"/>
+			<attnum name="height" val="120"/>	  	  	  	  
+			<attstr name="tip" val="Races Championship 2"/>
+			<attnum name="x" val="350"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-champ2-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-champ2.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-champ2-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-champ2-pushed.png"/>
+		</section>
+
+		<section name="Championship3Button">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="150"/>
+			<attnum name="height" val="120"/>	  	  	  	  
+			<attstr name="tip" val="Races Championship 3"/>
+			<attnum name="x" val="350"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-champ3-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-champ3.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-champ3-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-champ3-pushed.png"/>
+		</section>
+
+		<section name="QuitButton">
+			<attstr name="type" val="text button"/>
+			<attstr name="show box" val="no"/>
+			<attstr name="text" val="Quit"/>
+			<attstr name="tip" val="Quit Career Mode"/>
+			<attstr name="h align" val="left"/>
+			<attnum name="x" val="70"/>
+			<attnum name="y" val="44"/>
+			<attnum name="width" val="120"/>
+			<attstr name="font" val="medium"/>
+			<attstr name="color" val="0xFFFFFF"/>
+			<attstr name="focused color" val="0xFFFFFF"/>
+			<attstr name="pushed color" val="0xFF0000"/>
+			<attnum name="image x" val="-10"/>
+			<attnum name="image y" val="4"/>
+			<attnum name="image width" val="60"/>
+			<attnum name="image height" val="16"/>
+			<attstr name="focused image" val="data/img/button-left-focused.png"/>
+			<attstr name="enabled image" val="data/img/button-left.png"/>
+			<attstr name="pushed image" val="data/img/button-left-pushed.png"/> 
+		</section>
+
+		<section name="BuyButton">
+			<attstr name="type" val="text button"/>
+			<attstr name="show box" val="no"/>
+			<attstr name="text" val="Buy"/>
+			<attstr name="tip" val="Buy a car"/>
+			<attstr name="h align" val="left"/>
+			<attnum name="x" val="200"/>
+			<attnum name="y" val="44"/>
+			<attnum name="width" val="120"/>
+			<attstr name="font" val="medium"/>
+			<attstr name="color" val="0xFFFFFF"/>
+			<attstr name="focused color" val="0xFFFFFF"/>
+			<attstr name="pushed color" val="0xFF0000"/>
+			<attnum name="image x" val="-10"/>
+			<attnum name="image y" val="4"/>
+			<attnum name="image width" val="60"/>
+			<attnum name="image height" val="16"/>
+			<attstr name="focused image" val="data/img/button-left-focused.png"/>
+			<attstr name="enabled image" val="data/img/button-left.png"/>
+			<attstr name="pushed image" val="data/img/button-left-pushed.png"/> 
+		</section>
+
+		<section name="UpgradeButton">
+			<attstr name="type" val="text button"/>
+			<attstr name="show box" val="no"/>
+			<attstr name="text" val="Tuning"/>
+			<attstr name="tip" val="Upgrade your car"/>
+			<attstr name="h align" val="left"/>
+			<attnum name="x" val="320"/>
+			<attnum name="y" val="44"/>
+			<attnum name="width" val="120"/>
+			<attstr name="font" val="medium"/>
+			<attstr name="color" val="0xFFFFFF"/>
+			<attstr name="focused color" val="0xFFFFFF"/>
+			<attstr name="pushed color" val="0xFF0000"/>
+			<attnum name="image x" val="-10"/>
+			<attnum name="image y" val="4"/>
+			<attnum name="image width" val="60"/>
+			<attnum name="image height" val="16"/>
+			<attstr name="focused image" val="data/img/button-left-focused.png"/>
+			<attstr name="enabled image" val="data/img/button-left.png"/>
+			<attstr name="pushed image" val="data/img/button-left-pushed.png"/> 
+		</section>
+
+		<section name="GarageButton">
+			<attstr name="type" val="text button"/>
+			<attstr name="show box" val="no"/>
+			<attstr name="text" val="Garage"/>
+			<attstr name="tip" val="Select a car for races"/>
+			<attstr name="h align" val="left"/>
+			<attnum name="x" val="490"/>
+			<attnum name="y" val="44"/>
+			<attnum name="width" val="120"/>
+			<attstr name="font" val="medium"/>
+			<attstr name="color" val="0xFFFFFF"/>
+			<attstr name="focused color" val="0xFFFFFF"/>
+			<attstr name="pushed color" val="0xFF0000"/>
+			<attnum name="image x" val="-10"/>
+			<attnum name="image y" val="4"/>
+			<attnum name="image width" val="60"/>
+			<attnum name="image height" val="16"/>
+			<attstr name="focused image" val="data/img/button-left-focused.png"/>
+			<attstr name="enabled image" val="data/img/button-left.png"/>
+			<attstr name="pushed image" val="data/img/button-left-pushed.png"/> 
+    	</section>
+
+		<section name="DeclineButton">
+			<attstr name="type" val="text button"/>
+			<attstr name="show box" val="no"/>
+			<attstr name="text" val="Decline"/>
+			<attstr name="tip" val="Decline contract"/>
+			<attstr name="h align" val="left"/>
+			<attnum name="x" val="150"/>
+			<attnum name="y" val="44"/>
+			<attnum name="width" val="120"/>
+			<attstr name="font" val="medium"/>
+			<attstr name="color" val="0xFFFFFF"/>
+			<attstr name="focused color" val="0xFFFFFF"/>
+			<attstr name="pushed color" val="0xFF0000"/>
+			<attnum name="image x" val="-10"/>
+			<attnum name="image y" val="4"/>
+			<attnum name="image width" val="60"/>
+			<attnum name="image height" val="16"/>
+			<attstr name="focused image" val="data/img/button-left-focused.png"/>
+			<attstr name="enabled image" val="data/img/button-left.png"/>
+			<attstr name="pushed image" val="data/img/button-left-pushed.png"/> 
+		</section>
+
+		<section name="AcceptButton">
+			<attstr name="type" val="text button"/>
+			<attstr name="show box" val="no"/>
+			<attstr name="text" val="Accept"/>
+			<attstr name="tip" val="Accept contract"/>
+			<attstr name="h align" val="left"/>
+			<attnum name="x" val="386"/>
+			<attnum name="y" val="44"/>
+			<attnum name="width" val="120"/>
+			<attstr name="font" val="medium"/>
+			<attstr name="color" val="0xFFFFFF"/>
+			<attstr name="focused color" val="0xFFFFFF"/>
+			<attstr name="pushed color" val="0xFF0000"/>
+			<attnum name="image x" val="-10"/>
+			<attnum name="image y" val="4"/>
+			<attnum name="image width" val="60"/>
+			<attnum name="image height" val="16"/>
+			<attstr name="focused image" val="data/img/button-left-focused.png"/>
+			<attstr name="enabled image" val="data/img/button-left.png"/>
+			<attstr name="pushed image" val="data/img/button-left-pushed.png"/> 
+    	</section>
+	</section>
+
+	<section name="static controls">
+		<section name="1">
+		  	<attstr name="type" val="background image"/>
+		  	<attstr name="image" val="data/img/splash-career.jpg"/>
+		</section>  
+	</section>
+
+   <section name="music">
+      <attstr name="music file" val="data/music/career.ogg"/>
+   </section>
+
+   <section name="voice">
+      <attstr name="voice file" val="none"/>
+   </section>
+</params>

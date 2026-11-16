@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    file                 : helpmenu.xml
+    created              : 2009
+    copyright            : (C) 2009 by Brian Gavin, Eckhard M. Jaeger
+    web                  : speed-dreams.sourceforge.net
+    version              : $Id: mainmenu.xml 8352 2022-08-01 02:48:28Z beaglejoe $
+-->
+
+<!--    This program is free software; you can redistribute it and/or modify  -->
+<!--    it under the terms of the GNU General Public License as published by  -->
+<!--    the Free Software Foundation; either version 2 of the License, or     -->
+<!--    (at your option) any later version.                                   -->
+
+<!--
+
+	Main / welcome menu
+
+-->
+
+<!DOCTYPE params SYSTEM "../tgf/params.dtd">
+
+<params name="mainmenu">
+	<section name="dynamic controls">
+		<section name="career">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="260"/>
+			<attnum name="height" val="170"/>	  	  	  	  
+			<attstr name="tip" val="Enter Career mode"/>
+			<attnum name="x" val="62"/>
+			<attnum name="y" val="235"/>
+			<attstr name="disabled image" val="data/img/bg-career-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-career.png"/>
+			<attstr name="focused image" val="data/img/bg-career-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-career-pushed.png"/>
+		</section>
+
+		<section name="race">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="260"/>
+			<attnum name="height" val="170"/>	  	  	  	  
+			<attstr name="tip" val="Enter Race's day mode"/>
+			<attnum name="x" val="62"/>
+			<attnum name="y" val="65"/>
+			<attstr name="disabled image" val="data/img/bg-raceday-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-raceday.png"/>
+			<attstr name="focused image" val="data/img/bg-raceday-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-raceday-pushed.png"/>
+		</section>
+
+		<section name="championship">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="130"/>
+			<attnum name="height" val="85"/>	  	  	  	  
+			<attstr name="tip" val="Enter Championships race"/>
+			<attnum name="x" val="320"/>
+			<attnum name="y" val="320"/>
+			<attstr name="disabled image" val="data/img/bg-championship-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-championship.png"/>
+			<attstr name="focused image" val="data/img/bg-championship-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-championship-pushed.png"/>
+		</section>
+
+		<section name="practice">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="130"/>
+			<attnum name="height" val="85"/>	  	  	  	  
+			<attstr name="tip" val="Enter free practice"/>
+			<attnum name="x" val="320"/>
+			<attnum name="y" val="235"/>
+			<attstr name="disabled image" val="data/img/bg-practice-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-practice.png"/>
+			<attstr name="focused image" val="data/img/bg-practice-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-practice-pushed.png"/>
+		</section>
+
+		<section name="multiplayer">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="130"/>
+			<attnum name="height" val="85"/>	  	  	  	  
+			<attstr name="tip" val="Enter multiplayers game"/>
+			<attnum name="x" val="320"/>
+			<attnum name="y" val="150"/>
+			<attstr name="disabled image" val="data/img/bg-multiplayers-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-multiplayers.png"/>
+			<attstr name="focused image" val="data/img/bg-multiplayers-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-multiplayers-pushed.png"/>
+		</section>
+
+		<section name="management">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="130"/>
+			<attnum name="height" val="85"/>	  	  	  	  
+			<attstr name="tip" val="Enter teams management game"/>
+			<attnum name="x" val="320"/>
+			<attnum name="y" val="65"/>
+			<attstr name="disabled image" val="data/img/bg-management-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-management.png"/>
+			<attstr name="focused image" val="data/img/bg-management-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-management-pushed.png"/>
+		</section>
+
+		<section name="marketplace">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="130"/>
+			<attnum name="height" val="85"/>	  	  	  	  
+			<attstr name="tip" val="Buy or sells a car"/>
+			<attnum name="x" val="450"/>
+			<attnum name="y" val="320"/>
+			<attstr name="disabled image" val="data/img/bg-marketplace-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-marketplace.png"/>
+			<attstr name="focused image" val="data/img/bg-marketplace-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-marketplace-pushed.png"/>
+		</section>
+
+		<section name="tuning">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="64"/>
+			<attnum name="height" val="85"/>	  	  	  	  
+			<attstr name="tip" val="Tuning yours cars"/>
+			<attnum name="x" val="450"/>
+			<attnum name="y" val="235"/>
+			<attstr name="disabled image" val="data/img/bg-tuning-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-tuning.png"/>
+			<attstr name="focused image" val="data/img/bg-tuning-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-tuning-pushed.png"/>
+		</section>
+
+		<section name="garage">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="64"/>
+			<attnum name="height" val="85"/>	  	  	  	  
+			<attstr name="tip" val="select your car in your garage"/>
+			<attnum name="x" val="515"/>
+			<attnum name="y" val="235"/>
+			<attstr name="disabled image" val="data/img/bg-garage-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-garage.png"/>
+			<attstr name="focused image" val="data/img/bg-garage-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-garage-pushed.png"/>
+		</section>
+
+		<section name="options">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="64"/>
+			<attnum name="height" val="85"/>	  	  	  	  
+			<attstr name="tip" val="Options for graphics, sound and opponents"/>
+			<attnum name="x" val="450"/>
+			<attnum name="y" val="150"/>
+			<attstr name="disabled image" val="data/img/bg-options.png"/>
+			<attstr name="enabled image" val="data/img/bg-options.png"/>
+			<attstr name="focused image" val="data/img/bg-options-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-options-pushed.png"/>
+		</section>
+
+		<section name="profils">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="64"/>
+			<attnum name="height" val="85"/>	  	  	  	  
+			<attstr name="tip" val="Select or create profils player"/>
+			<attnum name="x" val="515"/>
+			<attnum name="y" val="150"/>
+			<attstr name="disabled image" val="data/img/bg-profils.png"/>
+			<attstr name="enabled image" val="data/img/bg-profils.png"/>
+			<attstr name="focused image" val="data/img/bg-profils-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-profils-pushed.png"/>
+		</section>
+
+		<section name="stats">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="64"/>
+			<attnum name="height" val="85"/>	  	  	  	  
+			<attstr name="tip" val="Hall of fame players"/>
+			<attnum name="x" val="450"/>
+			<attnum name="y" val="65"/>
+			<attstr name="disabled image" val="data/img/bg-stats-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-stats.png"/>
+			<attstr name="focused image" val="data/img/bg-stats-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-stats-pushed.png"/>
+		</section>
+
+		<section name="credits">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="64"/>
+			<attnum name="height" val="85"/>	  	  	  	  
+			<attstr name="tip" val="All people behind Cars Sports Racing"/>
+			<attnum name="x" val="515"/>
+			<attnum name="y" val="65"/>
+			<attstr name="disabled image" val="data/img/bg-credits.png"/>
+			<attstr name="enabled image" val="data/img/bg-credits.png"/>
+			<attstr name="focused image" val="data/img/bg-credits-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-credits-pushed.png"/>
+		</section>
+
+		<section name="quit">
+			<attstr name="type" val="text button"/>
+			<attstr name="show box" val="no"/>
+			<attstr name="text" val="Quit"/>
+			<attstr name="tip" val="Quit Cars Sports Racing"/>
+			<attstr name="h align" val="left"/>
+			<attnum name="x" val="290"/>
+			<attnum name="y" val="32"/>
+			<attnum name="width" val="320"/>
+			<attstr name="font" val="big"/>
+			<attstr name="color" val="0xFFFFFF"/>
+			<attstr name="focused color" val="0xFFFFFF"/>
+			<attstr name="pushed color" val="0xFF0000"/>
+			<attnum name="image x" val="-48"/>
+			<attnum name="image y" val="0"/>
+			<attnum name="image width" val="320"/>
+			<attnum name="image height" val="33"/>
+			<attstr name="focused image" val="data/img/bg-button-big-focused-last.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-pushed-last.png"/>
+		</section>
+	</section>
+
+	<section name="static controls">
+		<section name="1">
+			<attstr name="type" val="background image"/>
+			<attstr name="image" val="data/img/splash-main.jpg"/>
+		</section>
+  	</section>
+
+   	<section name="music">
+      	<attstr name="music file" val="data/music/main.ogg"/>
+   	</section>
+
+</params>

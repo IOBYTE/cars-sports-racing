@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+    file                 : axiom.xml
+    created              : Aug 27 08:30:00 UTC 2013
+    copyright            : (C) 2013 Xavier Bertaux
+-->
+<!--    This program is free software; you can redistribute it and/or modify  -->
+<!--    it under the terms of the GNU General Public License as published by  -->
+<!--    the Free Software Foundation; either version 2 of the License, or     -->
+<!--    (at your option) any later version.                                   -->
+<!DOCTYPE params SYSTEM "../../libs/tgf/params.dtd">
+<params name="axiom_lp2" type="robotdef">
+  <section name="Robots">
+    <section name="index">
+      <section name="0">
+        <attstr name="name" val="Chip Salzenberg"/>
+        <attstr name="short name" val="C. Salzenberg"/>
+        <attstr name="code name" val="SAL"/>
+        <attstr name="desc" val=""/>
+        <attstr name="team" val="Condor Racing"/>
+        <attstr name="author" val="Xavier Bertaux"/>
+        <attstr name="car name" val="lp2-bravery-brc6"/>
+        <attnum name="race number" val="129"/>
+        <attnum name="red" val="0.9"/>
+        <attnum name="green" val="0.2"/>
+        <attnum name="blue" val="0.1"/>
+        <attstr name="features" val="wet track"/>
+        <attstr name="nation" val="US"/>
+      </section>
+
+      <section name="1">
+        <attstr name="name" val="Chris DiBona"/>
+        <attstr name="short name" val="C. DiBona"/>
+        <attstr name="code name" val="DIB"/>
+        <attstr name="desc" val=""/>
+        <attstr name="team" val="Condor Racing"/>
+        <attstr name="author" val="Xavier Bertaux"/>
+        <attstr name="car name" val="lp2-bravery-brc6"/>
+        <attnum name="race number" val="130"/>
+        <attnum name="red" val="0.9"/>
+        <attnum name="green" val="0.2"/>
+        <attnum name="blue" val="0.1"/>
+        <attstr name="features" val="wet track"/>
+        <attstr name="nation" val="US"/>
+      </section>
+
+      <section name="2">
+        <attstr name="name" val="Russ Nelson"/>
+        <attstr name="short name" val="R. Nelson"/>
+        <attstr name="code name" val="NEL"/>
+        <attstr name="desc" val=""/>
+        <attstr name="team" val="Razo Team"/>
+        <attstr name="author" val="Xavier Bertaux"/>
+        <attstr name="car name" val="lp2-lolita-exr57"/>
+        <attnum name="race number" val="131"/>
+        <attnum name="red" val="0.0"/>
+        <attnum name="green" val="0.2"/>
+        <attnum name="blue" val="0.8"/>
+        <attstr name="features" val="wet track"/>
+        <attstr name="nation" val="US"/>
+      </section>
+
+      <section name="3">
+        <attstr name="name" val="Mike Godwin"/>
+        <attstr name="short name" val="M. Godwin"/>
+        <attstr name="code name" val="GOD"/>
+        <attstr name="desc" val=""/>
+        <attstr name="team" val="Razo Team"/>
+        <attstr name="author" val="Xavier Bertaux"/>
+        <attstr name="car name" val="lp2-lolita-exr57"/>
+        <attnum name="race number" val="132"/>
+        <attnum name="red" val="0.0"/>
+        <attnum name="green" val="0.2"/>
+        <attnum name="blue" val="0.8"/>
+        <attstr name="features" val="wet track"/>
+        <attstr name="nation" val="US"/>
+      </section>
+
+      <section name="4">
+        <attstr name="name" val="Ken Coar"/>
+        <attstr name="short name" val="K. Coar"/>
+        <attstr name="code name" val="COA"/>
+        <attstr name="desc" val=""/>
+        <attstr name="team" val="Pansport"/>
+        <attstr name="author" val="Xavier Bertaux"/>
+        <attstr name="car name" val="lp2-spire-s101"/>
+        <attnum name="race number" val="133"/>
+        <attnum name="red" val="0.8"/>
+        <attnum name="green" val="0.7"/>
+        <attnum name="blue" val="0.2"/>
+        <attstr name="features" val="wet track"/>
+        <attstr name="nation" val="US"/>
+      </section>
+
+      <section name="5">
+        <attstr name="name" val="Fabio Kon"/>
+        <attstr name="short name" val="F. Kon"/>
+        <attstr name="code name" val="KON"/>
+        <attstr name="desc" val=""/>
+        <attstr name="team" val="Pansport"/>
+        <attstr name="author" val="Xavier Bertaux"/>
+        <attstr name="car name" val="lp2-spire-s101"/>
+        <attnum name="race number" val="134"/>
+        <attnum name="red" val="0.8"/>
+        <attnum name="green" val="0.7"/>
+        <attnum name="blue" val="0.2"/>
+        <attstr name="features" val="wet track"/>
+        <attstr name="nation" val="BR"/>
+      </section>
+
+      <!--section name="6">
+        <attstr name="name" val="Jim Jagielski"/>
+        <attstr name="short name" val="J. Jagielski"/>
+        <attstr name="code name" val="JAG"/>
+        <attstr name="desc" val=""/>
+        <attstr name="team" val="Vortex GT"/>
+        <attstr name="author" val="Xavier Bertaux"/>
+        <attstr name="car name" val="ls2-vortex-gt"/>
+        <attnum name="race number" val="135"/>
+        <attnum name="red" val="0.4"/>
+        <attnum name="green" val="0.4"/>
+        <attnum name="blue" val="1.0"/>
+        <attstr name="features" val="wet track"/>
+        <attstr name="nation" val="US"/>
+      </section>
+
+      <section name="7">
+        <attstr name="name" val="Karl Fogel"/>
+        <attstr name="short name" val="K. Fogel"/>
+        <attstr name="code name" val="FOG"/>
+        <attstr name="desc" val=""/>
+        <attstr name="team" val="Vortex GT"/>
+        <attstr name="author" val="Xavier Bertaux"/>
+        <attstr name="car name" val="ls2-vortex-gt"/>
+        <attnum name="race number" val="136"/>
+        <attnum name="red" val="0.4"/>
+        <attnum name="green" val="0.4"/>
+        <attnum name="blue" val="1.0"/>
+        <attstr name="features" val="wet track"/>
+        <attstr name="nation" val="DE"/>
+      </section>
+
+      <section name="8">
+        <attstr name="name" val="Luis Villa"/>
+        <attstr name="short name" val="L. Villa"/>
+        <attstr name="code name" val="VIL"/>
+        <attstr name="desc" val=""/>
+        <attstr name="team" val="Beast Racing"/>
+        <attstr name="author" val="Xavier Bertaux"/>
+        <attstr name="car name" val="ls2-vulture-v6rs2"/>
+        <attnum name="race number" val="139"/>
+        <attnum name="red" val="0.8"/>
+        <attnum name="green" val="0.7"/>
+        <attnum name="blue" val="0.2"/>
+        <attstr name="features" val="wet track"/>
+        <attstr name="nation" val="US"/>
+      </section>
+
+      <section name="9">
+        <attstr name="name" val="Richard Fontana"/>
+        <attstr name="short name" val="R. Fontana"/>
+        <attstr name="code name" val="FON"/>
+        <attstr name="desc" val=""/>
+        <attstr name="team" val="Beast Racing"/>
+        <attstr name="author" val="Xavier Bertaux"/>
+        <attstr name="car name" val="ls2-vulture-v6rs2"/>
+        <attnum name="race number" val="140"/>
+        <attnum name="red" val="0.8"/>
+        <attnum name="green" val="0.7"/>
+        <attnum name="blue" val="0.2"/>
+        <attstr name="features" val="wet track"/>
+        <attstr name="nation" val="US"/>
+      </section-->
+    </section>
+  </section>
+</params>

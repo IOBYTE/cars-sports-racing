@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE params SYSTEM "params.dtd">
+
+
+<params name="Supercars-C-challenge 6" version="1.20">
+	<section name="Header">
+		<attstr name="name" val="SC type C Challenge 6"/>
+		<attnum name="ranking" val="1"/>
+		<attstr name="type" val="Single Event"/>
+		<attstr name="description" val="Supercars type C race weekend"/>
+		<attnum name="priority" val="70"/>
+		<attstr name="menu image" val="data/img/splash-chall.jpg"/>
+		<attstr name="run image" val="data/img/splash-run-practice.jpg"/>
+		<attstr name="start image" val="data/img/splash-challstart.jpg"/>
+	</section>
+
+	<section name="Tracks">
+		<attnum name="maximum number" val="1"/>
+		<section name="1">
+			<attstr name="name" val="chemisay"/>
+			<attstr name="category" val="circuit"/>
+		</section>
+	</section>
+
+	<section name="Races">
+		<section name="1">
+			<attstr name="name" val="Qualifying"/>
+		</section>
+
+		<section name="2">
+			<attstr name="name" val="Race"/>
+		</section>
+	</section>
+
+	<section name="All Sessions">
+		<attstr name="timeofday" val="afternoon"/>
+		<attstr name="rain" val="random"/>
+		<attstr name="clouds" val="random"/>
+		<attstr name="weather" val="config"/>
+		<attstr name="season" val="summer"/>
+	</section>
+
+	<section name="Qualifying">
+		<attnum name="laps" val="3"/>
+		<attstr name="type" val="qualifications"/>
+		<attstr name="starting order" val="drivers list"/>
+		<attstr name="display mode" val="results only"/>
+		<attstr name="restart" val="no"/>
+		<attstr name="display results" val="yes"/>
+		<attstr name="must complete" val="yes"/>
+
+		<section name="Starting Grid">
+			<attnum name="rows" val="1"/>
+			<attnum name="distance to start" val="100"/>
+			<attnum name="distance between columns" val="100"/>
+			<attnum name="offset within a column" val="10"/>
+			<attnum name="initial speed" val="0"/>
+			<attnum name="initial height" val="0.2"/>
+		</section>
+
+		<section name="Points">
+			<section name="1">
+				<attnum name="points" val="10"/>
+				<attnum name="gains" val="500"/>
+			</section>
+
+			<section name="2">
+				<attnum name="points" val="8"/>
+				<attnum name="gains" val="250"/>
+			</section>
+
+			<section name="3">
+				<attnum name="points" val="4"/>
+				<attnum name="gains" val="100"/>
+			</section>
+
+			<section name="4">
+				<attnum name="points" val="3"/>
+			</section>
+
+			<section name="5">
+				<attnum name="points" val="2"/>
+			</section>
+
+			<section name="6">
+				<attnum name="points" val="1"/>
+			</section>
+		</section>
+	</section>
+    
+	<section name="Race">
+		<attnum name="laps" val="10"/>
+		<attstr name="type" val="race"/>
+		<attstr name="starting order" val="Qualifying"/>
+		<attstr name="restart" val="no"/>
+		<attstr name="must complete" val="yes"/>
+		<attnum name="maximum drivers" val="13"/>
+		<attstr name="splash menu" val="yes"/>
+
+		<section name="Starting Grid">
+			<attnum name="rows" val="3"/>
+			<attnum name="distance to start" val="1"/>
+			<attnum name="distance between columns" val="16"/>
+			<attnum name="offset within a column" val="8"/>
+			<attnum name="initial speed" val="0"/>
+			<attnum name="initial height" val="0.2"/>
+		</section>
+
+		<section name="Points">
+			<section name="1">
+				<attnum name="points" val="25"/>
+				<attnum name="gains" val="700"/>
+			</section>
+
+			<section name="2">
+				<attnum name="points" val="18"/>
+				<attnum name="gains" val="500"/>
+			</section>
+
+			<section name="3">
+				<attnum name="points" val="12"/>
+				<attnum name="gains" val="400"/>
+			</section>
+
+			<section name="4">
+				<attnum name="points" val="6"/>
+				<attnum name="gains" val="300"/>
+			</section>
+
+			<section name="5">
+				<attnum name="points" val="2"/>
+				<attnum name="gains" val="200"/>
+			</section>
+
+			<section name="6">
+				<attnum name="points" val="1"/>
+				<attnum name="gains" val="100"/>
+			</section>
+		</section>
+	</section>
+
+	<section name="Drivers">
+		<attnum name="maximum number" val="19"/>
+		<attstr name="focused module" val="human"/>
+		<attnum name="focused idx" val="1"/>
+		<attstr name="rejected types" val="networkhuman"/>
+		<attstr name="accepted categories" val="Supercars-C"/>
+
+		<section name="1">
+		  	<attnum name="idx" val="0"/>
+		  	<attstr name="module" val="axiom_scc"/>
+		  	<attnum name="extended" val="0"/>
+		  	<attnum name="skin targets" val="0"/>
+		</section>
+
+		<section name="2">
+		  	<attnum name="idx" val="1"/>
+		  	<attstr name="module" val="axiom_scc"/>
+		  	<attnum name="extended" val="0"/>
+		  	<attnum name="skin targets" val="0"/>
+		</section>
+
+		<section name="3">
+		  	<attnum name="idx" val="2"/>
+		  	<attstr name="module" val="axiom_scc"/>
+		  	<attnum name="extended" val="0"/>
+		  	<attnum name="skin targets" val="0"/>
+		</section>
+
+		<section name="4">
+		  	<attnum name="idx" val="3"/>
+		  	<attstr name="module" val="axiom_scc"/>
+		  	<attnum name="extended" val="0"/>
+		  	<attnum name="skin targets" val="0"/>
+		</section>
+
+		<section name="5">
+		  	<attnum name="idx" val="4"/>
+		  	<attstr name="module" val="axiom_scc"/>
+		  	<attnum name="extended" val="0"/>
+		  	<attnum name="skin targets" val="0"/>
+		</section>
+
+		<section name="6">
+		  	<attnum name="idx" val="5"/>
+		  	<attstr name="module" val="axiom_scc"/>
+		  	<attnum name="extended" val="0"/>
+		  	<attnum name="skin targets" val="0"/>
+		</section>
+
+		<section name="7">
+		  	<attnum name="idx" val="6"/>
+		  	<attstr name="module" val="axiom_scc"/>
+		  	<attnum name="extended" val="0"/>
+		  	<attnum name="skin targets" val="0"/>
+		</section>
+
+		<section name="8">
+		  	<attnum name="idx" val="7"/>
+		  	<attstr name="module" val="axiom_scc"/>
+		  	<attnum name="extended" val="0"/>
+		  	<attnum name="skin targets" val="0"/>
+		</section>
+
+		<section name="9">
+		  	<attnum name="idx" val="8"/>
+		  	<attstr name="module" val="axiom_scc"/>
+		  	<attnum name="extended" val="0"/>
+		  	<attnum name="skin targets" val="0"/>
+		</section>
+
+		<section name="10">
+		  	<attnum name="idx" val="9"/>
+		  	<attstr name="module" val="axiom_scc"/>
+		  	<attnum name="extended" val="0"/>
+		  	<attnum name="skin targets" val="0"/>
+		</section>
+
+		<section name="11">
+		  	<attnum name="idx" val="10"/>
+		  	<attstr name="module" val="axiom_scc"/>
+		  	<attnum name="extended" val="0"/>
+		  	<attnum name="skin targets" val="0"/>
+		</section>
+
+		<section name="12">
+		  	<attnum name="idx" val="11"/>
+		  	<attstr name="module" val="axiom_scc"/>
+		  	<attnum name="extended" val="0"/>
+		  	<attnum name="skin targets" val="0"/>
+		</section>
+
+		<section name="13">
+		  	<attnum name="idx" val="12"/>
+		  	<attstr name="module" val="axiom_scc"/>
+		  	<attnum name="extended" val="0"/>
+		  	<attnum name="skin targets" val="0"/>
+		</section>
+
+    	<section name="14">
+      		<attnum name="idx" val="13"/>
+      		<attstr name="module" val="axiom_scc"/>
+      		<attnum name="extended" val="0"/>
+      		<attnum name="skin targets" val="0"/>
+    	</section>
+
+    	<section name="15">
+      		<attnum name="idx" val="14"/>
+      		<attstr name="module" val="axiom_scc"/>
+      		<attnum name="extended" val="0"/>
+      		<attnum name="skin targets" val="0"/>
+    	</section>
+
+    	<section name="16">
+      		<attnum name="idx" val="15"/>
+      		<attstr name="module" val="axiom_scc"/>
+      		<attnum name="extended" val="0"/>
+      		<attnum name="skin targets" val="0"/>
+    	</section>
+
+    	<section name="17">
+      		<attnum name="idx" val="16"/>
+      		<attstr name="module" val="axiom_scc"/>
+      		<attnum name="extended" val="0"/>
+      		<attnum name="skin targets" val="0"/>
+    	</section>
+
+    	<section name="18">
+      		<attnum name="idx" val="17"/>
+      		<attstr name="module" val="axiom_scc"/>
+      		<attnum name="extended" val="0"/>
+      		<attnum name="skin targets" val="0"/>
+    	</section>
+
+    	<section name="19">
+      		<attnum name="idx" val="1"/>
+      		<attstr name="module" val="human"/>
+      		<attnum name="extended" val="1"/>
+      		<attnum name="skin targets" val="3"/>
+    	</section>  
+	</section>
+
+	<section name="Configuration">
+		<attnum name="current configuration" val="2"/>
+
+		<section name="1">
+			<attstr name="type" val="drivers select"/>
+		</section>
+
+		<section name="2">
+			<attstr name="type" val="race config"/>
+			<attstr name="race" val="All Sessions"/>
+			<section name="Options">
+				<section name="1">
+					<attstr name="type" val="cloud cover"/>
+				</section>
+				<section name="2">
+					<attstr name="type" val="rain fall"/>
+				</section>
+				<section name="3">
+					<attstr name="type" val="season"/>
+				</section>
+				<section name="4">
+					<attstr name="type" val="weather"/>
+				</section>
+			</section>
+		</section>
+	</section>
+</params>

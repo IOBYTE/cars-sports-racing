@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE params SYSTEM "../../libs/tgf/params.dtd">
+
+<params name="human" type="param" mode="mw" version="1.5">
+	<section name="Robots">
+		<section name="index">
+			<section name="1">
+        		<attstr name="name" val="Player"/>
+        		<attstr name="short name" val="Player"/>
+        		<attstr name="code name" val="PLA"/>
+        		<attstr name="nation" val="FR"/>
+        		<attstr name="car name" val="sc-deckard-conejo"/>
+				<attstr name="car race" val="sc-deckard-conejo"/>
+				<attstr name="car career" val="none"/>
+        		<attstr name="championship" val="none"/>
+        		<attnum name="race number" val="99"/>
+        		<attnum name="red" val="1"/>
+        		<attnum name="green" val="1"/>
+        		<attnum name="blue" val="0.5"/>
+        		<attstr name="type" val="human"/>
+        		<attstr name="skill level" val="pro"/>
+        		<attnum name="ranking0" val="0"/>
+        		<attnum name="ranking1" val="0"/>
+        		<attnum name="ranking2" val="-1"/>
+        		<attnum name="ranking3" val="-1"/>
+        		<attnum name="ranking4" val="-1"/>
+        		<attnum name="ranking5" val="-1"/>
+        		<attnum name="ranking6" val="-1"/>
+        		<attnum name="ranking7" val="-1"/>
+       		 	<attnum name="ranking8" val="-1"/>
+        		<attnum name="ranking9" val="-1"/>
+        		<attnum name="ranking10" val="-1"/>
+        		<attnum name="ranking11" val="-1"/>
+        		<attnum name="ranking12" val="-1"/>
+        		<attnum name="ranking13" val="-1"/>
+        		<attnum name="ranking14" val="-1"/>
+        		<attnum name="ranking15" val="-1"/>
+        		<attnum name="ranking16" val="-1"/>
+       			<attnum name="ranking17" val="-1"/>
+        		<attnum name="ranking18" val="-1"/>
+        		<attnum name="ranking19" val="-1"/>
+        		<attnum name="ranking20" val="-1"/>
+        		<attnum name="ranking21" val="-1"/>
+        		<attnum name="ranking22" val="-1"/>
+        		<attnum name="ranking23" val="-1"/>
+        		<attnum name="ranking24" val="-1"/>
+        		<attnum name="ranking25" val="-1"/>
+        		<attnum name="ranking26" val="-1"/>
+        		<attnum name="ranking27" val="-1"/>
+        		<attnum name="ranking28" val="-1"/>
+        		<attnum name="ranking29" val="-1"/>
+        		<attnum name="level0" val="0"/>
+        		<attnum name="level1" val="0"/>
+        		<attnum name="level2" val="0"/>
+        		<attnum name="level3" val="0"/>
+        		<attnum name="level4" val="0"/>
+        		<attnum name="level5" val="0"/>
+        		<attnum name="level6" val="0"/>
+        		<attnum name="level7" val="0"/>
+       		 	<attnum name="level8" val="0"/>
+        		<attnum name="level9" val="0"/>
+        		<attnum name="level10" val="0"/>
+        		<attnum name="level11" val="0"/>
+        		<attnum name="level12" val="0"/>
+        		<attnum name="level13" val="0"/>
+        		<attnum name="level14" val="0"/>
+        		<attnum name="level15" val="0"/>
+        		<attnum name="level16" val="0"/>
+       			<attnum name="level17" val="0"/>
+        		<attnum name="special0" val="0"/>
+        		<attnum name="special1" val="0"/>
+        		<attnum name="special2" val="0"/>
+        		<attnum name="special3" val="0"/>
+        		<attnum name="special4" val="0"/>
+        		<attnum name="special5" val="0"/>
+        		<attnum name="special6" val="0"/>
+        		<attnum name="special7" val="0"/>
+       		 	<attnum name="special8" val="0"/>
+        		<attnum name="special9" val="0"/>
+        		<attnum name="special10" val="0"/>
+        		<attnum name="special11" val="0"/>
+        		<attnum name="special12" val="0"/>
+        		<attnum name="special13" val="0"/>
+        		<attnum name="special14" val="0"/>
+        		<attnum name="special15" val="0"/>
+        		<attnum name="special16" val="0"/>
+       			<attnum name="special17" val="0"/>
+        		<attnum name="contract0" val="0"/>
+        		<attnum name="contract1" val="0"/>
+        		<attnum name="contract2" val="0"/>
+        		<attnum name="contract3" val="0"/>
+        		<attnum name="contract4" val="0"/>
+        		<attnum name="contract5" val="0"/>
+        		<attnum name="contract6" val="0"/>
+        		<attnum name="contract7" val="0"/>
+       		 	<attnum name="contract8" val="0"/>
+        		<attnum name="contract9" val="0"/>
+        		<attnum name="contract10" val="0"/>
+        		<attnum name="contract11" val="0"/>
+        		<attnum name="contract12" val="0"/>
+        		<attnum name="contract13" val="0"/>
+        		<attnum name="contract14" val="0"/>
+        		<attnum name="contract15" val="0"/>
+        		<attnum name="contract16" val="0"/>
+       			<attnum name="contract17" val="0"/>
+        		<attnum name="credit" val="10000"/>
+        		<attnum name="licence" val="0"/>
+				<attstr name="dammages" val="0"/>
+			</section>
+		</section>
+	</section>
+</params>

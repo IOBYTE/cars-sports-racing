@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE params SYSTEM "../../libs/tgf/params.dtd">
+
+<params name="garage" type="param" mode="mw" version="1.1">
+	<section name="cars">
+		<section name="index">
+			<section name="1">
+        		<attstr name="car name 1" val=""/>
+				<attnum name="option1" val="0"/>
+				<attnum name="option2" val="0"/>
+				<attnum name="option3" val="0"/>
+				<attnum name="option4" val="0"/>
+				<attnum name="option5" val="0"/>
+				<attnum name="option6" val="0"/>
+				<attnum name="option7" val="0"/>
+			</section>
+		</section>
+	</section>
+
+</params>

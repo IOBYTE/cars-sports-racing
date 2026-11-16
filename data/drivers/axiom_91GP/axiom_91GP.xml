@@ -1,0 +1,346 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+    file                 : dandroid_36GP.xml
+    created              : Wed Jan 8 18:31:16 CET 2014
+    copyright            : (C) 2014 Xavier Bertaux
+-->
+<!--    This program is free software; you can redistribute it and/or modify  -->
+<!--    it under the terms of the GNU General Public License as published by  -->
+<!--    the Free Software Foundation; either version 2 of the License, or     -->
+<!--    (at your option) any later version.                                   -->
+<!DOCTYPE params SYSTEM "../../libs/tgf/params.dtd">
+<params name="axiom_91GP" type="robotdef">
+  	<section name="Robots">
+    	<section name="index">
+			<section name="0">
+				<attstr name="name" val="Nico Watt"/>
+				<attstr name="short name" val="N. Watt"/>
+				<attstr name="code name" val="WAT"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="36 Century"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="91gp-boxer-amani"/>
+				<attnum name="team efficiency" val="0.99"/>
+				<attnum name="race number" val="9"/>
+				<attnum name="red" val="0.9"/>
+				<attnum name="green" val="0.9"/>
+				<attnum name="blue" val="0.9"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="BR"/>
+			</section>
+
+			<section name="1">
+				<attstr name="name" val="Peter Fleming"/>
+				<attstr name="short name" val="P. Fleming"/>
+				<attstr name="code name" val="FLE"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="36 Century"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="91gp-boxer-amani"/>
+				<attnum name="team efficiency" val="0.99"/>
+				<attnum name="race number" val="10"/>
+				<attnum name="red" val="0.9"/>
+				<attnum name="green" val="0.9"/>
+				<attnum name="blue" val="0.9"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="CH"/>
+			</section>
+
+		  	<section name="2">
+				<attstr name="name" val="Julien Bussiere"/>
+				<attstr name="short name" val="J. Bussiere"/>
+				<attstr name="code name" val="BUS"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="36 Century"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="91gp-deckard-ags01"/>
+				<attnum name="team efficiency" val="0.99"/>
+				<attnum name="race number" val="18"/>
+				<attnum name="red" val="0.9"/>
+				<attnum name="green" val="0.9"/>
+				<attnum name="blue" val="0.9"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="CA"/>
+		  	</section>
+
+			<section name="3">
+				<attstr name="name" val="Laurent Grenier"/>
+				<attstr name="short name" val="L. Grenier"/>
+				<attstr name="code name" val="GRE"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="36 Ettore"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="91gp-deckard-ags01"/>
+				<attnum name="team efficiency" val="0.98"/>
+				<attnum name="race number" val="17"/>
+				<attnum name="red" val="0.9"/>
+				<attnum name="green" val="0.9"/>
+				<attnum name="blue" val="0.9"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="FR"/>
+			</section>
+
+			<section name="4">
+				<attstr name="name" val="Curtis Goddu"/>
+				<attstr name="short name" val="C. Goddu"/>
+				<attstr name="code name" val="PAS"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="36 Ettore"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="91gp-deckard-b190"/>
+				<attnum name="team efficiency" val="0.98"/>
+				<attnum name="race number" val="39"/>
+				<attnum name="red" val="1.0"/>
+				<attnum name="green" val="0.2"/>
+				<attnum name="blue" val="0.2"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="US"/>
+			</section>
+
+		  	<section name="5">
+				<attstr name="name" val="Algiso Trevisani"/>
+				<attstr name="short name" val="A. Trevisani"/>
+				<attstr name="code name" val="TRE"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="36 Ettore"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="91gp-deckard-b190"/>
+				<attnum name="team efficiency" val="0.98"/>
+				<attnum name="race number" val="20"/>
+				<attnum name="red" val="0.8"/>
+				<attnum name="green" val="0.7"/>
+				<attnum name="blue" val="0.2"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="IT"/>
+		  	</section>
+
+			<section name="6">
+				<attstr name="name" val="Eliano Lombardi"/>
+				<attstr name="short name" val="E. Lombardi"/>
+				<attstr name="code name" val="LOM"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="36 Scuderia Milano"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="91gp-cavallo-642"/>
+				<attnum name="race number" val="28"/>
+				<attnum name="red" val="1.0"/>
+				<attnum name="green" val="0.5"/>
+				<attnum name="blue" val="0.0"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="IT"/>
+		  	</section>
+
+		  	<section name="7">
+				<attstr name="name" val="Severino Sabbatini"/>
+				<attstr name="short name" val="S. Sabbatini"/>
+				<attstr name="code name" val="SAB"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="36 Scuderia Milano"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="91gp-cavallo-642"/>
+				<attnum name="race number" val="3"/>
+				<attnum name="red" val="1.0"/>
+				<attnum name="green" val="0.5"/>
+				<attnum name="blue" val="0.0"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="IT"/>
+		  	</section>
+
+		  	<section name="8">
+				<attstr name="name" val="Torsten Ebersbacher"/>
+				<attstr name="short name" val="T. Ebersbacher"/>
+				<attstr name="code name" val="EBE"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Milano Team"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="91gp-diamond-fw14"/>
+				<attnum name="race number" val="5"/>
+				<attnum name="red" val="0.8"/>
+				<attnum name="green" val="0.7"/>
+				<attnum name="blue" val="0.2"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="DE"/>
+		  	</section>
+
+      		<section name="9">
+				<attstr name="name" val="Souichi Ishihara"/>
+				<attstr name="short name" val="S. Ishihara"/>
+				<attstr name="code name" val="ISH"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Milano Team"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="91gp-diamond-fw14"/>
+				<attnum name="race number" val="6"/>
+				<attnum name="red" val="0.8"/>
+				<attnum name="green" val="0.7"/>
+				<attnum name="blue" val="0.2"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="JP"/>
+      		</section>
+
+		  	<section name="10">
+				<attstr name="name" val="Alfonsino Calabrese"/>
+				<attstr name="short name" val="A. Calabrese"/>
+				<attstr name="code name" val="CAL"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Milano Team"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="91gp-lolita-cg911"/>
+				<attnum name="race number" val="31"/>
+				<attnum name="red" val="1.0"/>
+				<attnum name="green" val="0.5"/>
+				<attnum name="blue" val="0.5"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="JP"/>
+		  	</section>
+
+      		<section name="11">
+        		<attstr name="name" val="Achille Varzi"/>
+				<attstr name="short name" val="A. Varzi"/>
+				<attstr name="code name" val="VAR"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Auto Union"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="91gp-lolita-cg911"/>
+				<attnum name="team efficiency" val="1.02"/>
+				<attnum name="race number" val="13"/>
+				<attnum name="red" val="0.8"/>
+				<attnum name="green" val="0.7"/>
+				<attnum name="blue" val="0.2"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="IT"/>
+      		</section>
+
+      		<!--section name="12">
+				<attstr name="name" val="Hans Stuck"/>
+				<attstr name="short name" val="H. Stuck"/>
+				<attstr name="code name" val="STU"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Auto Union"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="91gp-fmc-fa1"/>
+				<attnum name="team efficiency" val="1.02"/>
+				<attnum name="race number" val="14"/>
+				<attnum name="red" val="0.8"/>
+				<attnum name="green" val="0.7"/>
+				<attnum name="blue" val="0.2"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="DK"/>
+      		</section>
+
+			<section name="13">
+				<attstr name="name" val="Koudo Inoue"/>
+				<attstr name="short name" val="K. Inoue"/>
+				<attstr name="code name" val="INO"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Silber Team"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="91gp-fmc-fa1"/>
+				<attnum name="race number" val="8"/>
+				<attnum name="red" val="0.8"/>
+				<attnum name="green" val="0.7"/>
+				<attnum name="blue" val="0.2"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="JP"/>
+			</section>
+
+			<section name="14">
+				<attstr name="name" val="Tatsuhi Hagi"/>
+				<attstr name="short name" val="T. Hagi"/>
+				<attstr name="code name" val="HAG"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Silber Team"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="36gp-silber-w25b"/>
+				<attnum name="race number" val="9"/>
+				<attnum name="red" val="0.8"/>
+				<attnum name="green" val="0.7"/>
+				<attnum name="blue" val="0.2"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="JP"/>
+			</section>
+
+      		<section name="15">
+				<attstr name="name" val="Philippe Etancelin"/>
+				<attstr name="short name" val="P. Etancelin"/>
+				<attstr name="code name" val="ETA"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Silber Team"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="36gp-silber-w25b"/>
+				<attnum name="race number" val="40"/>
+				<attnum name="red" val="0.7"/>
+				<attnum name="green" val="0.7"/>
+				<attnum name="blue" val="0.7"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="BE"/>
+      		</section>
+
+      		<section name="16">
+				<attstr name="name" val="Bernd Rosemeyer"/>
+				<attstr name="short name" val="B. Rosemeyer"/>
+				<attstr name="code name" val="ROS"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Tridenti Sport"/>
+				<attstr name="author" val="Tridenti Sport"/>
+				<attstr name="car name" val="36gp-tridenti-6c34"/>
+				<attnum name="race number" val="58"/>
+				<attnum name="red" val="0.8"/>
+				<attnum name="green" val="0.7"/>
+				<attnum name="blue" val="0.2"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="DE"/>
+      		</section>
+
+      		<section name="17">
+				<attstr name="name" val="Richard Seaman"/>
+				<attstr name="short name" val="R. Seaman"/>
+				<attstr name="code name" val="SEA"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Tridenti Sport"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="36gp-tridenti-6c34"/>
+				<attnum name="race number" val="57"/>
+				<attnum name="red" val="1.0"/>
+				<attnum name="green" val="0.5"/>
+				<attnum name="blue" val="0.0"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="US"/>
+      		</section>
+
+      		<section name="18">
+				<attstr name="name" val="James Ingram"/>
+				<attstr name="short name" val="J. Ingram"/>
+				<attstr name="code name" val="ING"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Ingram Sport"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="36gp-tridenti-v8ri"/>
+				<attnum name="team efficiency" val="1.02"/>
+				<attnum name="race number" val="33"/>
+				<attnum name="red" val="0.8"/>
+				<attnum name="green" val="0.7"/>
+				<attnum name="blue" val="0.2"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="UK"/>
+      		</section>
+
+      		<section name="19">
+				<attstr name="name" val="Tobias Lange"/>
+				<attstr name="short name" val="T. Lange"/>
+				<attstr name="code name" val="LAN"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Ingram Sport"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="36gp-tridenti-v8ri"/>
+				<attnum name="team efficiency" val="1.02"/>
+				<attnum name="race number" val="34"/>
+				<attnum name="red" val="0.8"/>
+				<attnum name="green" val="0.7"/>
+				<attnum name="blue" val="0.2"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="FR"/>
+      		</section-->
+    	</section>
+  	</section>
+</params>

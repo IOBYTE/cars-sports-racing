@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    file                 : csraceselectmenu.xml
+    created              : 2009
+    copyright            : (C) 2009 by Brian Gavin, Eckhard M. Jaeger
+    web                  : speed-dreams.sourceforge.net
+    version              : $Id$
+-->
+
+<!--    This program is free software; you can redistribute it and/or modify  -->
+<!--    it under the terms of the GNU General Public License as published by  -->
+<!--    the Free Software Foundation; either version 2 of the License, or     -->
+<!--    (at your option) any later version.                                   -->
+
+<!-- 
+
+	Race mode/type selection menu
+
+-->
+
+<!DOCTYPE params SYSTEM "../tgf/params.dtd">
+
+<params name="optionsmenu">
+	<section name="dynamic controls">
+		<!--
+		Beware with the control names :
+		* "(race manager type)Button"
+		* "(race manager type)Combo"
+		where (race manager type) comes from (racemanager).xml, "type" field in the "Header".
+		-->
+		
+		<!-- second button for STANDARDGAME only -->
+		<section name="ChampionshipDevButton">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="200"/>
+			<attnum name="height" val="150"/>	  	  	  	  
+			<attstr name="tip" val="Championship for Devs"/>
+			<attnum name="x" val="10"/>
+			<attnum name="y" val="240"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-champ3-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-champ3.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-champ3-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-champ3-pushed.png"/>
+		</section>
+
+		<section name="GarageDevButton">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="200"/>
+			<attnum name="height" val="150"/>	  	  	  	  
+			<attstr name="tip" val="Championship for Devs"/>
+			<attnum name="x" val="10"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/arrow-left-top-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-testdrive.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-testdrive-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-testdrive-pushed.png"/>
+		</section>
+
+		<section name="OnlineServerButton">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="200"/>
+			<attnum name="height" val="150"/>	  	  	  	  
+			<attstr name="tip" val="Online Race Server"/>
+			<attnum name="x" val="220"/>
+			<attnum name="y" val="240"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-online-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-online.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-online-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-online-pushed.png"/>
+		</section>
+
+		<section name="OnlineClientButton">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="200"/>
+			<attnum name="height" val="150"/>	  	  	  	  
+			<attstr name="tip" val="Online Client race"/>
+			<attnum name="x" val="430"/>
+			<attnum name="y" val="240"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-online2-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-online2.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-online2-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-online2-pushed.png"/>
+		</section>
+
+		<section name="OnlineWatcherButton">
+			<attstr name="type" val="image button"/>
+			<attnum name="width" val="200"/>
+			<attnum name="height" val="150"/>	  	  	  	  
+			<attstr name="tip" val="Spectator Local Network Race"/>
+			<attnum name="x" val="430"/>
+			<attnum name="y" val="80"/>
+			<attstr name="disabled image" val="data/img/bg-button-big-online3-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-button-big-online3.png"/>
+			<attstr name="focused image" val="data/img/bg-button-big-online3-focused.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-online3-pushed.png"/>
+		</section>
+
+		<section name="BackButton">
+			<attstr name="type" val="text button"/>
+			<attstr name="show box" val="no"/>	  	  	  
+			<attstr name="text" val="Back"/>
+			<attstr name="tip" val="Back to main menu"/>
+			<attstr name="h align" val="left"/>
+			<attnum name="x" val="150"/>
+			<attnum name="y" val="40"/>
+			<attnum name="width" val="100"/>
+			<attstr name="font" val="big"/>
+			<attstr name="color" val="0xFFFFFF"/>
+			<attstr name="focused color" val="0xFFFFFF"/>
+			<attstr name="pushed color" val="0xFF0000"/>
+			<attnum name="image x" val="-48"/>
+			<attnum name="image y" val="0"/>
+			<attnum name="image width" val="320"/>
+			<attnum name="image height" val="33"/>
+			<attstr name="focused image" val="data/img/bg-button-big-focused-last.png"/>
+			<attstr name="pushed image" val="data/img/bg-button-big-pushed-last.png"/>
+		</section>
+  	</section>
+
+	<section name="static controls">
+		<section name="1">
+			<attstr name="type" val="background image"/>
+			<attstr name="image" val="data/img/splash-raceselect.jpg"/>
+		</section>	
+	</section>
+</params>

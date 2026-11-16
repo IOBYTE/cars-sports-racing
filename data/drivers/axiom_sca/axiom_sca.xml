@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--    This program is free software; you can redistribute it and/or modify  -->
+<!--    it under the terms of the GNU General Public License as published by  -->
+<!--    the Free Software Foundation; either version 2 of the License, or     -->
+<!--    (at your option) any later version.                                   -->
+<!DOCTYPE params SYSTEM "../../libs/tgf/params.dtd">
+<params name="axiom_sca" type="robotdef">
+  <section name="Robots">
+    <section name="index">     
+      <section name="0">
+        <attstr name="name" val="David McLean"/>
+        <attstr name="short name" val="D. McLean"/>
+        <attstr name="code name" val="MCL"/>
+        <attstr name="desc" val=""/>
+        <attstr name="team" val="dandroid-sclynx-220"/>
+        <attstr name="author" val="Xavier Bertaux"/>
+        <attstr name="car name" val="sc-lynx-220"/>
+        <attnum name="race number" val="217"/>
+		<attnum name="team efficiency" val="1.02"/>
+        <attnum name="red" val="1.0"/>
+        <attnum name="green" val="0.3"/>
+        <attnum name="blue" val="0.3"/>
+        <attstr name="features" val="wet track"/>
+        <attstr name="nation" val="US"/>
+      </section>
+
+      <section name="1">
+        <attstr name="name" val="Alessandro Zacchiroli"/>
+        <attstr name="short name" val="A. Zacchiroli"/>
+        <attstr name="code name" val="ZAC"/>
+        <attstr name="desc" val=""/>
+        <attstr name="team" val="dandroid-sclynx-220"/>
+        <attstr name="author" val="Xavier Bertaux"/>
+        <attstr name="car name" val="sc-lynx-220"/>
+        <attnum name="race number" val="220"/>
+		<attnum name="team efficiency" val="1.02"/>
+        <attnum name="red" val="1.0"/>
+        <attnum name="green" val="0.3"/>
+        <attnum name="blue" val="0.3"/>
+        <attstr name="features" val="wet track"/>
+        <attstr name="nation" val="IT"/>
+      </section>
+      
+      <section name="2">
+        <attstr name="name" val="Mehdi Dogguy"/>
+        <attstr name="short name" val="M. Dogguy"/>
+        <attstr name="code name" val="MDO"/>
+        <attstr name="desc" val=""/>
+        <attstr name="team" val="dandroid-scspirit"/>
+        <attstr name="author" val="Xavier Bertaux"/>
+        <attstr name="car name" val="sc-spirit-300"/>
+        <attnum name="race number" val="110"/>
+		<attnum name="team efficiency" val="0.98"/>
+        <attnum name="red" val="1.0"/>
+        <attnum name="green" val="0.2"/>
+        <attnum name="blue" val="0.2"/>
+        <attstr name="features" val="wet track"/>
+        <attstr name="nation" val="US"/>
+      </section>
+
+      <section name="3">
+        <attstr name="name" val="Gergely Nagy"/>
+        <attstr name="short name" val="G. Nagy"/>
+        <attstr name="code name" val="NAG"/>
+        <attstr name="desc" val=""/>
+        <attstr name="team" val="dandroid-scspirit"/>
+        <attstr name="author" val="Xavier Bertaux"/>
+        <attstr name="car name" val="sc-spirit-300"/>
+        <attnum name="race number" val="111"/>
+		<attnum name="team efficiency" val="0.98"/>
+        <attnum name="red" val="1.0"/>
+        <attnum name="green" val="0.2"/>
+        <attnum name="blue" val="0.2"/>
+        <attstr name="features" val="wet track"/>
+        <attstr name="nation" val="HU"/>
+      </section>
+
+      <section name="4">
+         <attstr name="name" val="Peter Towns"/>
+        <attstr name="short name" val="P. Towns"/>
+        <attstr name="code name" val="TOW"/>
+        <attstr name="desc" val=""/>
+        <attstr name="team" val="dandroid-sckon"/>
+        <attstr name="author" val="Xavier Bertaux"/>
+        <attstr name="car name" val="sc-vieringe-4s"/>
+        <attnum name="race number" val="131"/>
+		<attnum name="team efficiency" val="1.0"/>
+        <attnum name="red" val="0.0"/>
+        <attnum name="green" val="0.0"/>
+        <attnum name="blue" val="1.0"/>
+        <attstr name="features" val="wet track"/>
+        <attstr name="nation" val="DE"/>
+      </section>
+
+      <section name="5">
+        <attstr name="name" val="Teo Hocevar"/>
+        <attstr name="short name" val="T. Hocevar"/>
+        <attstr name="code name" val="HOC"/>
+        <attstr name="desc" val=""/>
+        <attstr name="team" val="dandroid-sckon"/>
+        <attstr name="author" val="Xavier Bertaux"/>
+        <attstr name="car name" val="sc-vieringe-4s"/>
+        <attnum name="race number" val="132"/>
+		<attnum name="team efficiency" val="1.0"/>
+        <attnum name="red" val="0.0"/>
+        <attnum name="green" val="0.0"/>
+        <attnum name="blue" val="1.0"/>
+        <attstr name="features" val="wet track"/>
+        <attstr name="nation" val="WS"/>
+      </section>
+
+      <section name="6">
+        <attstr name="name" val="Stefan Friedmann"/>
+        <attstr name="short name" val="S. Friedmann"/>
+        <attstr name="code name" val="FRI"/>
+        <attstr name="desc" val=""/>
+        <attstr name="team" val="dandroid-sclynx-220"/>
+        <attstr name="author" val="Xavier Bertaux"/>
+        <attstr name="car name" val="sc-spirit-300"/>
+        <attnum name="race number" val="5"/>
+		<attnum name="team efficiency" val="1.01"/>
+        <attnum name="red" val="1.0"/>
+        <attnum name="green" val="0.8"/>
+        <attnum name="blue" val="0.1"/>
+        <attstr name="features" val="wet track"/>
+        <attstr name="nation" val="DE"/>
+      </section>
+
+      <section name="7">
+        <attstr name="name" val="Anton Frederiksen"/>
+        <attstr name="short name" val="A. Frederiksen"/>
+        <attstr name="code name" val="FRE"/>
+        <attstr name="desc" val=""/>
+        <attstr name="team" val="dandroid-sclynx-220"/>
+        <attstr name="author" val="Xavier Bertaux"/>
+        <attstr name="car name" val="sc-spirit-300"/>
+        <attnum name="race number" val="6"/>
+		<attnum name="team efficiency" val="1.01"/>
+        <attnum name="red" val="1.0"/>
+        <attnum name="green" val="1.0"/>
+        <attnum name="blue" val="0.1"/>
+        <attstr name="features" val="wet track"/>
+        <attstr name="nation" val="DK"/>
+      </section>
+      
+      <section name="8">
+        <attstr name="name" val="Bobby Estrada"/>
+        <attstr name="short name" val="B. Estraday"/>
+        <attstr name="code name" val="EST"/>
+        <attstr name="desc" val=""/>
+        <attstr name="team" val="dandroid-scspirit"/>
+        <attstr name="author" val="Xavier Bertaux"/>
+        <attstr name="car name" val="sc-lynx-220"/>
+        <attnum name="race number" val="76"/>
+		<attnum name="team efficiency" val="1.0"/>
+        <attnum name="red" val="1.0"/>
+        <attnum name="green" val="0.2"/>
+        <attnum name="blue" val="0.2"/>
+        <attstr name="features" val="wet track"/>
+        <attstr name="nation" val="US"/>
+      </section>
+
+      <section name="9">
+        <attstr name="name" val="Ryan Macdonald"/>
+        <attstr name="short name" val="R. Macdonald"/>
+        <attstr name="code name" val="MAC"/>
+        <attstr name="desc" val=""/>
+        <attstr name="team" val="dandroid-scspirit"/>
+        <attstr name="author" val="Xavier Bertaux"/>
+        <attstr name="car name" val="sc-lynx-220"/>
+        <attnum name="race number" val="78"/>
+		<attnum name="team efficiency" val="1.0"/>
+        <attnum name="red" val="1.0"/>
+        <attnum name="green" val="0.2"/>
+        <attnum name="blue" val="0.2"/>
+        <attstr name="features" val="wet track"/>
+        <attstr name="nation" val="UK"/>
+      </section>
+
+      <section name="10">
+         <attstr name="name" val="Romain Rene"/>
+        <attstr name="short name" val="R. Rene"/>
+        <attstr name="code name" val="REN"/>
+        <attstr name="desc" val=""/>
+        <attstr name="team" val="dandroid-sckon"/>
+        <attstr name="author" val="Xavier Bertaux"/>
+        <attstr name="car name" val="sc-vieringe-4s"/>
+        <attnum name="race number" val="151"/>
+		<attnum name="team efficiency" val="1.0"/>
+        <attnum name="red" val="0.0"/>
+        <attnum name="green" val="0.0"/>
+        <attnum name="blue" val="1.0"/>
+        <attstr name="features" val="wet track"/>
+        <attstr name="nation" val="FR"/>
+      </section>
+
+      <section name="11">
+        <attstr name="name" val="Alice Jodoin"/>
+        <attstr name="short name" val="A. Jodoin"/>
+        <attstr name="code name" val="JOD"/>
+        <attstr name="desc" val=""/>
+        <attstr name="team" val="dandroid-sckon"/>
+        <attstr name="author" val="Xavier Bertaux"/>
+        <attstr name="car name" val="sc-vieringe-4s"/>
+        <attnum name="race number" val="113"/>
+		<attnum name="team efficiency" val="1.0"/>
+        <attnum name="red" val="0.0"/>
+        <attnum name="green" val="0.0"/>
+        <attnum name="blue" val="1.0"/>
+        <attstr name="features" val="wet track"/>
+        <attstr name="nation" val="FR"/>
+      </section>
+    </section>
+  </section>
+</params>

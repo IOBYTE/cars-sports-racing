@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+    file                 : axiom_ls1.xml
+    created              : Sun Aug 11 18:31:16 CET 2024
+    copyright            : (C) 2024 Xavier Bertaux
+    email                : bertauxx@gmail.com
+    version              : $Id: axiom_ls1.xml 3259 2024-08-11 00:19:20Z shadow72 $
+-->
+<!--    This program is free software; you can redistribute it and/or modify  -->
+<!--    it under the terms of the GNU General Public License as published by  -->
+<!--    the Free Software Foundation; either version 2 of the License, or     -->
+<!--    (at your option) any later version.                                   -->
+<!DOCTYPE params SYSTEM "../../libs/tgf/params.dtd">
+<params name="usr_ls1" type="robotdef">
+  	<section name="Robots">
+    	<section name="index">
+      		<section name="0">
+				<attstr name="name" val="Marshall Gervasi"/>
+				<attstr name="short name" val="M. Gervasi"/>
+				<attstr name="code name" val="GVS"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Scuderia Pergusa"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="ls1-cavallo-570s1"/>
+				<attnum name="race number" val="52"/>
+				<attnum name="red" val="0.9"/>
+				<attnum name="green" val="0.9"/>
+				<attnum name="blue" val="0.9"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="IT"/>
+      		</section>
+
+      		<section name="1">
+				<attstr name="name" val="Alexis Gaudreau"/>
+				<attstr name="short name" val="A. Gaudreau"/>
+				<attstr name="code name" val="GAU"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Scuderia Pergusa"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="ls1-cavallo-570s1"/>
+				<attnum name="race number" val="53"/>
+				<attnum name="red" val="0.9"/>
+				<attnum name="green" val="0.9"/>
+				<attnum name="blue" val="0.9"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="FR"/>
+      		</section>
+
+      		<section name="2">
+				<attstr name="name" val="Roscoe Lezama"/>
+				<attstr name="short name" val="R. Lezama"/>
+				<attstr name="code name" val="LEZ"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Furia Racing"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="ls1-marisatech-gt4r"/>
+				<attnum name="race number" val="69"/>
+				<attnum name="red" val="1.0"/>
+				<attnum name="green" val="0.2"/>
+				<attnum name="blue" val="0.2"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="PR"/>
+      		</section>
+
+      		<section name="3">
+				<attstr name="name" val="Paul Anwar"/>
+				<attstr name="short name" val="P. Anwar"/>
+				<attstr name="code name" val="ANW"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Furia Racing"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="ls1-marisatech-gt4r"/>
+				<attnum name="race number" val="70"/>
+				<attnum name="red" val="1.0"/>
+				<attnum name="green" val="0.2"/>
+				<attnum name="blue" val="0.2"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="US"/>
+      		</section>
+
+      		<section name="4">
+				<attstr name="name" val="Ryuuya Tabata"/>
+				<attstr name="short name" val="R. Tabata"/>
+				<attstr name="code name" val="TAB"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Ritsuko Tech"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="ls1-taipan-ltsr"/>
+				<attnum name="race number" val="70"/>
+				<attnum name="red" val="0.8"/>
+				<attnum name="green" val="0.7"/>
+				<attnum name="blue" val="0.2"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="JP"/>
+      		</section>
+
+      		<section name="5">
+				<attstr name="name" val="Masaharu Miyamoto"/>
+				<attstr name="short name" val="M. Miyamoto"/>
+				<attstr name="code name" val="MIY"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Ritsuko Tech"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="ls1-taipan-ltsr"/>
+				<attnum name="race number" val="55"/>
+				<attnum name="red" val="1.0"/>
+				<attnum name="green" val="0.5"/>
+				<attnum name="blue" val="0.0"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="JP"/>
+      		</section>
+
+      		<section name="6">
+				<attstr name="name" val="Akiyoshi Ideguchi"/>
+				<attstr name="short name" val="A. Ideguchi"/>
+				<attstr name="code name" val="IDE"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="JTD Club"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="ls1-toro-rgt"/>
+				<attnum name="race number" val="50"/>
+				<attnum name="red" val="1.0"/>
+				<attnum name="green" val="0.5"/>
+				<attnum name="blue" val="0.0"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="JP"/>
+      		</section>
+
+      		<section name="7">
+				<attstr name="name" val="Asao Endo"/>
+				<attstr name="short name" val="A. Endo"/>
+				<attstr name="code name" val="END"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="JTD Club"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="ls1-toro-rgt"/>
+				<attnum name="race number" val="51"/>
+				<attnum name="red" val="1.0"/>
+				<attnum name="green" val="0.5"/>
+				<attnum name="blue" val="0.0"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="JP"/>
+      		</section>
+
+      		<section name="8">
+				<attstr name="name" val="Morgan Davies"/>
+				<attstr name="short name" val="M. Davies"/>
+				<attstr name="code name" val="DAV"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Telemachi Racing"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="ls1-zentek-z7r"/>
+				<attnum name="race number" val="41"/>
+				<attnum name="red" val="1.0"/>
+				<attnum name="green" val="0.5"/>
+				<attnum name="blue" val="0.0"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="UK"/>
+      		</section>
+
+      		<section name="9">
+				<attstr name="name" val="Kensou Nishimoto"/>
+				<attstr name="short name" val="K. Nishimoto"/>
+				<attstr name="code name" val="NIS"/>
+				<attstr name="desc" val=""/>
+				<attstr name="team" val="Telemachi Racing"/>
+				<attstr name="author" val="Xavier Bertaux"/>
+				<attstr name="car name" val="ls1-zentek-z7r"/>
+				<attnum name="race number" val="42"/>
+				<attnum name="red" val="1.0"/>
+				<attnum name="green" val="0.5"/>
+				<attnum name="blue" val="0.0"/>
+				<attstr name="features" val="wet track"/>
+				<attstr name="nation" val="JP"/>
+      		</section>
+    	</section>
+	</section>
+</params>

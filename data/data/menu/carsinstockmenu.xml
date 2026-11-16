@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+   file				  : carsinstockmenu.xml
+   created			  : 2024
+   copyright		  : (C) 2024 Xavier Bertaux
+   web				  : www.cars-sports-racing.net
+   version			  : $Id: $
+  -->
+
+<!--	This program is free software; you can redistribute it and/or modify  -->
+<!--	it under the terms of the GNU General Public License as published by  -->
+<!--	the Free Software Foundation; either version 2 of the License, or	 -->
+<!--	(at your option) any later version.								   -->
+
+<!DOCTYPE params SYSTEM "../tgf/params.dtd">
+
+<params name="carsinstockmenu">	
+	<section name="dynamic controls">
+		<section name="car1button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="20"/>
+		  	<attnum name="y" val="340"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="cdata/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car2button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="106"/>
+		  	<attnum name="y" val="340"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car3button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="192"/>
+		  	<attnum name="y" val="340"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>	
+
+		<section name="car4button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="278"/>
+		  	<attnum name="y" val="340"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car5button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="364"/>
+		  	<attnum name="y" val="340"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car6button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="450"/>
+		  	<attnum name="y" val="340"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car7button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="536"/>
+		  	<attnum name="y" val="340"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car8button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="20"/>
+		  	<attnum name="y" val="273"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car9button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="106"/>
+		  	<attnum name="y" val="273"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car10button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="192"/>
+		  	<attnum name="y" val="273"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>	
+
+		<section name="car11button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="278"/>
+		  	<attnum name="y" val="273"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car12button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="364"/>
+		  	<attnum name="y" val="273"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car13button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="450"/>
+		  	<attnum name="y" val="273"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car14button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="536"/>
+		  	<attnum name="y" val="273"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car15button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="20"/>
+		  	<attnum name="y" val="206"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car16button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="106"/>
+		  	<attnum name="y" val="206"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car17button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="192"/>
+		  	<attnum name="y" val="206"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>	
+
+		<section name="car18button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="278"/>
+		  	<attnum name="y" val="206"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car19button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="364"/>
+		  	<attnum name="y" val="206"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car20button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="450"/>
+		  	<attnum name="y" val="206"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car21button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="536"/>
+		  	<attnum name="y" val="206"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car22button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="20"/>
+		  	<attnum name="y" val="140"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car23button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="106"/>
+		  	<attnum name="y" val="140"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car24button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="192"/>
+		  	<attnum name="y" val="140"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>	
+
+		<section name="car25button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="278"/>
+		  	<attnum name="y" val="140"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car26button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="364"/>
+		  	<attnum name="y" val="140"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car27button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="450"/>
+		  	<attnum name="y" val="140"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car28button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="536"/>
+		  	<attnum name="y" val="140"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car29button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="20"/>
+		  	<attnum name="y" val="74"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car30button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="106"/>
+		  	<attnum name="y" val="74"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car31button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="192"/>
+		  	<attnum name="y" val="74"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>	
+
+		<section name="car32button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="278"/>
+		  	<attnum name="y" val="74"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car33button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="364"/>
+		  	<attnum name="y" val="74"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car34button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="450"/>
+		  	<attnum name="y" val="74"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<section name="car35button">
+		  	<attstr name="type" val="image button"/>
+		  	<attnum name="x" val="536"/>
+		  	<attnum name="y" val="74"/>
+		  	<attnum name="width" val="85"/>
+		  	<attnum name="height" val="65"/>
+		  	<attstr name="tip" val="No car"/>
+			<attstr name="disabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="enabled image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="focused image" val="data/img/bg-nocar-disabled.png"/>
+			<attstr name="pushed image" val="data/img/bg-nocar-disabled.png"/>
+		</section>
+
+		<!-- Cancel button -->
+		<section name="BackButton">
+			<attstr name="type" val="text button"/>
+			<attstr name="show box" val="no"/>
+			<attstr name="text" val="Back"/>
+			<attstr name="tip" val="Cancel and back to career"/>
+			<attstr name="h align" val="left"/>
+			<attnum name="x" val="300"/>
+			<attnum name="y" val="34"/>
+			<attnum name="width" val="120"/>
+			<attstr name="font" val="medium"/>
+			<attstr name="color" val="0xFFFFFF"/>
+			<attstr name="focused color" val="0xFFFFFF"/>
+			<attstr name="pushed color" val="0xFF0000"/>
+			<attnum name="image x" val="-10"/>
+			<attnum name="image y" val="4"/>
+			<attnum name="image width" val="60"/>
+			<attnum name="image height" val="16"/>
+			<attstr name="focused image" val="data/img/button-left-focused.png"/>
+			<attstr name="enabled image" val="data/img/button-left.png"/>
+			<attstr name="pushed image" val="data/img/button-left-pushed.png"/>    
+		</section>
+  	</section>
+
+  	<section name="static controls">
+		<section name="1">
+			<attstr name="type" val="background image"/>
+			<attstr name="image" val="data/img/splash-garage.jpg"/>
+		</section>
+  	</section>
+
+   <section name="music">
+      <attstr name="music file" val="data/music/main.ogg"/>
+   </section>
+</params>
