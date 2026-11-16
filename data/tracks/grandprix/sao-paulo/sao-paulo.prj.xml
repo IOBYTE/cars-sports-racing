@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_271" class="java.beans.XMLDecoder">
+ <object class="utils.Properties" id="Properties0">
+  <void property="author">
+   <string>Xavier BERTAUX</string>
+  </void>
+  <void property="category">
+   <string>road</string>
+  </void>
+  <void property="currentA">
+   <double>6.283184050542771</double>
+  </void>
+  <void property="currentX">
+   <double>0.009853629159167099</double>
+  </void>
+  <void property="currentY">
+   <double>0.015392109977495355</double>
+  </void>
+  <void property="curveNameCount">
+   <int>64</int>
+  </void>
+  <void property="description">
+   <string>Track Brazil</string>
+  </void>
+  <void property="image">
+   <string>D:\JEUX\torcs\tracks\road\intralagos\outline.png</string>
+  </void>
+  <void property="imageScale">
+   <double>2.6</double>
+  </void>
+  <void property="imgOffset">
+   <void property="x">
+    <double>-989.0</double>
+   </void>
+   <void property="y">
+    <double>1366.0</double>
+   </void>
+  </void>
+  <void property="path">
+   <string>D:\JEUX\torcs\tracks\road\Intralagos</string>
+  </void>
+  <void property="pitEnd">
+   <string>straight 25</string>
+  </void>
+  <void property="pitEntry">
+   <string>curve 64</string>
+  </void>
+  <void property="pitExit">
+   <string>straight 26</string>
+  </void>
+  <void property="pitLength">
+   <double>11.25</double>
+  </void>
+  <void property="pitSide">
+   <string>left</string>
+  </void>
+  <void property="pitStart">
+   <string>straight 56</string>
+  </void>
+  <void property="pitWidth">
+   <double>5.0</double>
+  </void>
+  <void property="straightNameCount">
+   <int>56</int>
+  </void>
+  <void property="trackName">
+   <string>Intralagos</string>
+  </void>
+  <void property="trackWidth">
+   <double>13.0</double>
+  </void>
+ </object>
+</java>

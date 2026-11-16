@@ -1,0 +1,54 @@
+Version 0.9.1
+
+Fixed the tribune floor, which was transparent when viewed from behind. Now it is double-sided
+Added gravel on the right side of the track just after the next left turn after "Bruxelles".
+Now the graphic file indicated in the track XML is ardennen-spa.ac instead of ardennen-spa.acc, because the second one has worse performance and shows errors with flickering and shadows in OSG. The .acc file is still provided for those who want to use it in SSG, because it includes the raceline prints. To use .acc edit the file ardennen-spa.xml by replacing
+    <attstr name="3d description" val="ardennen-spa.ac" />
+by
+    <attstr name="3d description" val="ardennen-spa.acc" />
+
+
+
+Version 0.9
+
+Changed Trucks and Added safety trucks
+Deleted hundreds of trees to improve performance
+Optimized objects to better shadows and performance
+Fixed billboards and TV Screens to avoid flickering
+Changed position and/or orientation of some spectators, and improve his quality.
+Reworked Main Pitlane
+Added second pitlane building
+
+
+Version 0.8
+
+Added Pitlane building and arcs
+Added billboads (foda-phone, crispo.cow)
+Changed friction on side asphalt to avoid bot use it to take advantage
+Added a lot of spectators, marshalls, street lights, speakers poles...
+Doubled some textures quality with AI (Upscayl: https://www.upscayl.org/  )
+Changed the textures of fences for others of better quality (thanks @Madbad).
+Changed "Another Lover" arc for "Manneken Pils"
+Added customised Marshall booths for Spa
+Added lots of trucks and cranes with customised orientation and position.
+Changed inclination between "Les Combes" and "Bruxelles".
+Changed banking on "Eau Rouge", "Radillion", "Bruxelles", "Speaker's Corner", "Double Gauche", "Campus" and "Paul Frére" to make it more real.
+Fixed Speed Limit on pits. Units are on m/s, not km/h
+The pit entrance is now at the end of the Chicane, just like in real life. 
+
+
+Version 0.3:
+
+Move the goal forward
+Modify enter and exit pit segments to get better functioning of the robots
+Added all kinds of objects and buildings, such as arcs, big tv screens, tents, houses, stadiums or towers.
+Added vegetation, putting in piles and piles of trees
+
+
+Version 0.1:
+
+Creation of the basic layout of the circuit and its properties.
+Adding the different elevations in the different parts of the layout.
+Smoothing of elevation changes by applying tangents.
+Creation, modification and application of different surfaces to customize the layout.
+Adding mountains around the left side of the track.

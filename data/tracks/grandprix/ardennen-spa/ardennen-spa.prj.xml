@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="21.0.3" class="java.beans.XMLDecoder">
+ <object class="utils.Properties" id="Properties0">
+  <void property="currentA">
+   <double>-6.283747815131809</double>
+  </void>
+  <void property="currentX">
+   <double>0.005282242834382167</double>
+  </void>
+  <void property="currentY">
+   <double>3.591469396406295E-4</double>
+  </void>
+  <void property="curveNameCount">
+   <int>32</int>
+  </void>
+  <void property="image">
+   <string>SpaSat.png</string>
+  </void>
+  <void property="imageScale">
+   <double>2.23</double>
+  </void>
+  <void property="imgOffset">
+   <void property="x">
+    <double>-2184.0</double>
+   </void>
+   <void property="y">
+    <double>1262.0</double>
+   </void>
+  </void>
+  <void property="path">
+   <string>/home/leo/Escritorio/SD/speed-dreams-code/data/tracks/circuit/ardennen-spa</string>
+  </void>
+  <void property="straightNameCount">
+   <int>46</int>
+  </void>
+ </object>
+</java>
