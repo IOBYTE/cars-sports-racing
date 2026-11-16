@@ -1,0 +1,107 @@
+﻿CARS SPORTS RACING
+==================
+
+* Choice of cars categories:
+	- in the player config menu choose the desired category (for the moment 2011 GP American or Supercars C)
+	- In the race configuration, go to garage and choose the car and skin (if available)
+	- In the garage you can also have access to the complete setup of the car (I intend to do a simplified setup via the pit stop menu also which will allow legitimate test sessions since these are used to that)
+
+* Player skill level
+	- ARCADE: all Simulator options are disabled (ideal weather/no damage to the car/ideal tire temperature and no degradation/ideal engine temperature/soft tires - maximum grip/aerodynamic factor x 4.0)
+	- SEMI ROOKIE: damage option on the fins activated, the rest being deactivated, aerodynamic factor x 2.0
+	- ROOKIE: damage option on ailerons activated, damage on suspension activated, the rest being deactivated, aerodynamic factor x 1.75
+	- AMATEUR: option for damage to the ailerons activated, damage to the suspension activated, engine temperature management activated, weather activated, the rest being deactivated. Aerosynamism factor x 1.5
+	- SEMI-PRO: all options are activated, damage to the fins, wheels, engine, suspension. Real or simulated weather. Tire temperature and degradation managed. Management of different types of tires for the activated 		manager categories (SOFT/MEDIUM/HARD/RAIN/EXTREME RAIN). Engine temperature managed. Aerodynamic factor x 1.0
+	- PRO: Same, but also tire puncture activated.
+
+* webserver
+	- when the player's level is below SEMI-PRO, race information is not sent to the masterserver. Indeed, it would be unfair to validate times on the server with tire grip that is constantly at the top, whereas from SEMI-PRO the grip is a function of the weather and the wear of the tire.
+	- For the moment only lap times are recorded, but I intend to add the best classifications by races.
+	- you must register on the masterserver at the following address: https://www.cars-sports-racing.net/masterserver//register and then put your username and the password that you registered on the masterserver in ' player and config' also check the 'enable webserver' box.
+  	- users registered on the masterserver and never connected are automatically deleted after two months.
+
+* Add players
+	- Each player has their own configuration and evolution (I am working so that each player has their own car setups)
+
+* Cars available from the start:
+	- 11gpa-murasama (indycar 2011)
+	- sc-deckard (mustang Supercars category C)
+	- sc-kanagawa-z35gts (nissan 350z Supercars category C)
+	- sc-murasama-nsx (honda nsx Supercars category C)
+
+* Races available from the player's start:
+	- Test Drive (unlocks Challenge 1)
+	- Local network races
+
+* Unlocking the different races:
+	- Challenge 1 if the player's best time is below the track's recorded time
+	- Challenge 2 if ranking is lower than 7 on Challenge 1
+	- Endurance 1 if ranking is lower than 7 on Challenge 2
+	- Championship 1: if ranking is lower than 7 on Endurance 1
+	- Endurance 2 if ranking is lower than 7 in Championship 1
+	- Championship 2: if ranking is lower than 7 on Endurance 2
+	- Championship 3: if ranking is lower than 7 in Championship 2
+
+* Unlocking special races:
+	- Endurance 3 (4 hours of racing or 500 miles) depending on the car chosen - unlocked if ranking is lower than 7 on Endurance 2. Not obligatory. Visible only on certain categories of cars.
+	- Endurance 4 (real 24H special - to be played as a team). Unlocked on ranking below 7 on Endurance 3. Only accessible on certain cars. Not mandatory. Visible only on certain categories of cars.
+	- Quickrace (fully configurable) will be unlocked when all car categories have been unlocked.
+
+* Unlocking additional cars:
+	- When the player finishes championship 3 and is at a level higher than amateur, this unlocks two additional categories of cars
+	- It is not possible to add the levels of two categories to unlock other categories.
+
+* Skill level increase
+	- The player can define it in player config. If it is set below PRO, the skill is increased after successful completion of championship 3
+
+WEATHER :
+=========
+
+* In Config Mode you can force the game for cloud types, and rain (on OVALS with categories 11GPA, 12 GPA and 01GPA rain is disabled).
+    - you can choose the season (spring/summer/autumn/winter or based on the actual season)
+	- The seasons are based on the northern hemisphere so if you put SUMMER and you race in Australia for example the actual season will be winter)
+	- If you switch the weather to real mode, it will be retrieved according to the position of the track, so the clouds, rain, air temperature will be those actually recorded on this track
+	- Simulation (from SEMI-PRO mode) supports air temperature, rain, air pressure and air density. The air temperature is updated by the simulation module during the race depending on the time and the season. All of these elements will affect the grip of your car, the aedynamics (the density of the air affecting the support of the fins) and your engine. The damage will also affect your entire car.
+
+DRIVING :
+=========
+
+* ABS: Anti-locking wheels when braking
+* TCL: Anti-slip of the drive wheels when accelerating. You can deactivate this mode to go faster in corners, but the car will be more difficult to control.
+
+SETUPS :
+========
+
+* Wings: Lower wings will give you more speed, because of less drag, but you will have less downforce for cornering, so you will have less cornering speed. A large difference between the angle of the front wing and the angle of the rear wing will create either understeer (greater rear angle) or oversteer (greater front angle)
+* Gear ratios: Smaller ratios will give you access to top speeds more quickly in corners, but on long straights you will be stuck at a lower top speed. A gearbox with high ratios will allow you to reach your maximum top speed in a straight line, but you will be disadvantaged in corners since the car will take longer to reach the higher gear.
+* Tire pressures and wheel camber: now the lower the pressure, the more the tires will heat up, the less camber you put and the more your tires will heat up as well. On the contrary, the more pressure and/or camber you put, the less your tire will heat up. You must therefore adjust the pressure and camber to get the right temperature, since the air temperature affects the temperature of your tires. Knowing that your tires have an ideal operating temperature (80°C for Supercars for example), your goal is to get an ideal operating temperature on all four tires for as long as possible.
+* Suspensions: Generally, the harder your suspension, the better your car will hold the track. But the harder it is, the more force it will create on your wheel and this will reduce the life of your tire as well as the topography of the track (more banking - lateral angle will create more wear on the tire concerned). Different settings on the flexibility of the shock absorbers depending on the wheels, will create a certain instability, more understeer or more oversteer. Generally, except in specific cases (e.g. speedways), asymmetrical right/left settings can make the car very unstable.
+* Front/rear brake distribution: the higher the number, the more braking is at the front compared to the rear. The more braking is at the front, the more you will have to brake before the ideal braking point, but this depends on the weight distribution of your car and the topology of the track. This setting also influences the wear of your tires. * type of tires: you have the choice between SOFT, MEDIUM, HARD, WET and EXTREM WET. The last two are reserved for rain - WET for light or moderate rain, the last one for weather with heavy rain. The SOFT is a tire that heats up very quickly but has a very fast wear rate, the HARD is a tire that has a long life (in terms of racing of course) but takes longer to reach temperature. The MEDIUM is an intermediate tire. These tires are not available for the 09GP5 (Formula Ford), the 36GP, the 67GP and all Supercars.
+
+KEYS DURING RACING :
+====================
+
+* F1 - help
+* F2 - the different driver views
+* F3 - Front or rear views of the car
+* F4 - Side views of the car
+* F5 - Sky Views
+* F6 - Overhead views
+* F7 - Overhead views of the track
+* F8 - Front left or right wheel views
+* F9 - Views from track cameras
+* F10 - Height follower views
+* F11 - Director cameras
+* F12 - Screenshot
+
+* p	  - Pause
+
+The number keys:
+* 1 - Activates race information on the driver (bottom left)
+* 2 - Activates both speed counter and RPM counter
+* 3 - Activates the driver's ranking in the race
+* 4 - Enables tire information
+* 5 - displays information on the number of images per second
+* 6 - displays various information about settings
+* 9 - Activates/deactivates the rearview mirror
+* m - displays the track map (top right)

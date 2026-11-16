@@ -1,0 +1,36 @@
+Version 1.0
+===========
+
+1.0.0 base with 11GPA & Supercars Class C (does)
+1.0.1 Season2 with 12GPA & Supercars Class B (does)
+1.0.2 Season3 with 01GPA & Supercars Class A (does)
+1.0.3 Season4 with LS2 & RS (working -> 60%)
+1.0.4 Season5 with LS1 & Hypercars (to do)
+1.0.5 Season6 with LP2 & 36GP (to do)
+1.0.6 Season7 with LP1 & 67GP (to do)
+1.0.7 Season8 with 91GP & Nascar (to do)
+1.0.8 Season9 with 01GP & Prototypes (to do)
+
+Version 2.0
+===========
+
+2.0.0 base with 09GP5 & Supercars Class C (does)
+2.0.0 Season2 with 10GP4 & Supercars Class B (does)
+2.0.0 integrate Mode career (does)
+2.0.1 Season3 with 91GP & Supercars Class A (working -> 75%)
+2.0.2 Season4 with 01GP & LS2 (working -> 60%)
+2.0.3 Season5 with 11GPA & LS1 (working -> 60%)
+2.0.4 Season6 with 12GPA & LP2 (working -> 60%)
+2.0.5 Season7 with 01GPA & LP1 (working -> 60%)
+2.0.6 Season8 with 36GP & 67GP (working -> 60%)
+2.0.7 Season9 with Nascar & RS (rally Series) (to do)
+2.1.0 Added OpenGL3 engine with env texture on somes objects tracks (building & water), shaders, file 3D in bin (2%)
+2.1.0 Added contracts management in career mode (to do)
+2.2.0 Added Vulkan engine (to do)
+
+Version 3.0
+===========
+
+Dynamic weather (physic/graphic/drivers) (to do)
+local weather on track (rain only track's part by exemple) and managed by physic and drivers (to do)
+loaded weather before race config

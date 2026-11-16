@@ -1,0 +1,353 @@
+Cars Sports Racing 2.1.0
+===============================
+Fix Bugs
+	* button challenge is not displayed on race 7
+	* fix bug with level player and championship mode
+	* In race mode, all races on current carset is allowed now
+
+Cars
+	* Added 91GP (Formula one 1991)
+	* Added Supercars Class A
+	* All cars have 3D instruments (activate or desactivate in advanced graphics options)
+
+Simu
+	* now setting camber & pressure for adjust tyre temperature
+
+Racing
+	* added contracts management in career mode
+	* added speciale race in career mode (managed by fame level player)
+	* added penalty on SEMI-PRO & PRO mode
+	* penalty if a car collides with another in front (the penalty applied depends 
+	  on the number of positions lost by the car in front), it will be checked by the race manager.
+	* penalty if you too often hit the cars in front of you
+	* added tuning cars in Career mode (if car is tuned by career these car is usuable in race mode)
+
+Robots
+	* added unit in strategy setup for axiom
+	* Fix bug with strategy and compound for axiom
+
+Graphics
+	* Reintegrate OpenGL3 (OpenSceneGraph - WIP)
+	* Added option shaders or not shader for Shadowmap (in OpenGL3)
+
+Tracks:
+	* Now possible section penalty cut curve (penalty drivethrough pitlane) otherwise this penalty is disabled.
+
+Cars Sports Racing 2.0.0
+===============================
+Fix bugs
+	* Restart game if engine OpenGL has changed
+
+Graphic
+	* Added option for enable/disable 3D instruments
+
+Racing
+	* Added Career mode (activate only if player skill is SEMI-PRO or PRO mode (not with contracts for the moment).
+
+Cars
+	* Added 09GP5-fmc (based on Formula Ford 1600cc)
+	* Added 10GP4-diamond (based on Formule 4 Renault)
+	* Reworking sc-deckard-conejo interior with 3D instruments
+
+Robots:
+	* Removed Shadow & USR drivers (Just Axiom's drivers)
+
+SimuV5:
+	* Added brake disk temperature & degradation (WIP)
+
+Gameplay:
+	* Added Licence variable
+	* Added Fame (for future contracts)
+
+Masterserver:
+	* Fixed some bugs
+	* Added bestlaps for each car
+	* Added bestlaps for each track
+	* Started Championship page
+
+
+Cars Sports Racing Season 1.0.6
+===============================
+Fix bugs
+	* Fix bug with air temperature if the race ends the day after the start
+
+Racing
+	* Add LP2 & 67GP for raceman
+
+Graphic
+	* Update Board1
+	* Added compounds graphic for LP2
+
+Robots
+	* Axiom
+		- Add lp2 and 67GP
+	
+	* Shadow
+
+	* USR
+
+SimuV5
+	* Added pressure & camber for calcul tire temperature & degradation
+
+Cars
+	* Add lp2-bravery-brc6 (reworking physic and graphic)
+	* Add lp2-lolita-exr57
+	* Add lp2-lolita-exr57
+
+	* Add 67gp-cavallo-123
+	* Add 67gp-guthrie-eagle
+	* Add 67gp-kuiper-t81
+	* Add 67gp-mango-ms7
+	* Add 67gp-murasama-37a
+	* Add 67gp-upping-ut19
+
+Tracks
+	* Add road/spring (reworked ?)
+
+Cars Sports Racing Season 1.0.5
+===============================
+Fix bugs
+	* Fix #4 Axiom bug with skilling not used (r570)
+	* Fix #5 Bug in raceresult with challenge & endurance races (r574)
+	* Fix #6 Bug with penalties not cleared after pit stop (r577)
+
+Racing
+	* Add LS1 and 36GP for raceman
+	* Added efficiency team time in pitstop
+
+Graphic
+	* Add delta time for previous car and behind car in Board1 (Lino's patch)
+	* Add delta time bestlap (called by touch '7') (base Lino's patch)
+
+Interface
+	* Added 'activate profil' in player config
+
+Robots
+	* Axiom
+		- Add ls1 and 36GP
+		- fix drive with sc-murasama-nsx
+		- added brakemufactor 
+
+	* Shadow
+		- Add ls1
+
+	* USR
+		- Add ls1
+
+Cars
+	* Added ls1-archer-r9
+	* Added ls1-cavallo-570s1
+	* Added ls1-marisatech-gt4r
+	* Added ls1-newcastle-fury
+	* Added ls1-taipan-ltsr
+	* Added ls1-toro-rgt
+	* Added ls1-vulture-v5r
+	* Added ls1-vulture-v6r
+	* Added ls1-zentek-z7r
+	* Added 36gp-century-r11b
+	* Added 36gp-ettore-t59
+	* Added 36gp-milano-12c36
+	* Added 36gp-milano-tipop3
+	* Added 36gp-motorunion-typec
+	* Added 36gp-silber-w25b
+	* Added 36gp-tridenti-6c34
+	* Added 36gp-tridenti-v8ri
+
+Tracks
+	* circuit/Bueno
+	* grandprix/ardennen-spa
+	* road/lombaro
+	* road/pinabashi
+	* road/street-1
+
+Packaging
+	* Manage Season5 for source package
+	* manage Season5 for windows package
+
+
+Cars Sports Racing Season 1.0.4
+===============================
+Racing
+	* Add LS2 and RS for raceman
+	* Fix bug with dirt tracks & racerules cutting corner
+
+Robots
+	* Axiom
+		- start work on better overtake
+		- Add ls2 and rs
+
+	* Shadow
+		- Add ls2 and rs
+
+	* USR
+		- Add ls2 and rs
+
+Cars
+	* Added ls2-bavaria-g3gtr
+	* Added ls2-bavaria-nb
+	* Added ls2-boxer-96rsr
+	* Added ls2-cavallo-360r
+	* Added ls2-condor-c400r
+	* Added ls2-lynx-xkr
+	* Added ls2-morley-r900
+	* Added ls2-sprite-gts
+	* Added ls2-vortex-gt
+	* Added ls2-vulture-v6rs2
+	* Added rs1-citrus-cs4
+	* Added rs1-fmc-centre
+	* Added rs1-kenji-08
+	* Added rs2-fai-dot
+	* Added rs2-lion-2m
+
+Tracks
+	* Added circuit/braga
+	* Added circuit/dijon
+	* Added circuit/jarama
+	* Added circuit/migrants
+	* Added dirt/edimbourg
+	* Added dirt/garguree
+	* Added dirt/ole-road-1
+	* Added road/atlanta
+	* Added road/lombaro
+	* Added road/longday
+	* Added road/salty
+
+Packaging
+	* Manage Season4 for source package
+	* manage Season4 for windows package
+
+
+Cars Sports Racing Season 1.0.2
+===============================
+Racing
+	* Add 01GPA and Supercars class A for raceman
+
+Robots
+	* Axiom
+		- Fix skilling driver on Axiom (not used on r1.0.0)
+		- Rework strategy compound
+		- Add 01GPA and Supercars Class A
+
+	* Shadow
+		- Add 01GPA and Supercars class A
+
+	* USR
+		- Add 01GPA and Supercars class A
+
+Cars
+	* Added 01gpa-ffr
+	* Added 01gpa-furia
+	* Added 01gpa-hartbill-2002
+	* Added 01gpa-murasama
+	* Added 01gpa-team-lynx
+	* Added sc-lynx-220
+	* Added sc-spirit-300
+	* Added sc-viering-4s
+
+Tracks
+	* Added circuit/aalborg
+	* Added circuit/hidden-valley
+	* Added circuit/ruudskogen
+	* Added road/pinabashi
+	* Added road/prenzlau
+	* Added road/street-1
+	* Added speedway/milky-five
+
+Packaging
+	* Manage Season3 for source package
+	* manage Season3 for windows package
+
+Cars Sports Racing Season 1.0.1
+===============================
+Racing
+	* Add 12GPA and Supercars class B for raceman
+	* Manage category cars in players preference (display only category deblocked)
+
+Robots
+	* Axiom
+		- Fix skilling driver on Axiom (not used on r1.0.0)
+		- Add 12GPA and Supercars Class B
+
+	* Shadow
+		- Add 12GPA and Supercars class B
+
+	* USR
+		- Add 12GPA and Supercars class B
+
+Cars
+	* Added 12gpa-deckard
+	* Added 12gpa-murasama
+	* Added 12gpa-spirit
+	* Added sc-boxer-96
+	* Added sc-cavallo-360
+	* Added sc-fmc-gt4
+
+Tracks
+	* Added circuit/chemisay
+	* Added circuit/espie
+	* Added speedway/longpond
+	* Added speedway/mile
+	* Added speedway/tokyo (start work)
+
+Packaging
+	* Manage Season2 for source package
+	* manage Season2 for windows package
+
+Cars Sports Racing Season 1.X
+================================
+Graphics
+	*OpenGL1 :
+		- Renamed ssggraph in OpenGL1 module
+		- Added lensflares effect with Sky activate (start work)
+		- Added water effects (start work)
+		- Fade to white when the sun is in front of the camera (start work)
+		- Fade to black when enter in tunnel (start work)
+
+Physics
+	*SimuV5 :
+		- Migration of features from simuv4 to simuv5.
+		- Creation of simulation options for calls on certain functions depending 
+			on the level of the robot (arcade/semi-rookie/rookie/amateur/semi-pro/pro)
+		- Tyre&degradation moved features->options simulation (activate on semi-pro & pro)
+		- Aero factor added with mode < semi-pro
+		- First work on engine temperature with engine > maxtemperature engine broken.
+		- Added weather in SimuOptions -> disabled below amateur skill
+		- Fixed bug when compounds are disabled in simu options
+
+Racing
+	*Standargame :
+		- Fix bug with pit sharing (before if number runners > pit lasts runners have not pit)
+		now pit sharing is activate if racers > pit
+		- Added Team efficiency in pit stop (these value mult by skilllevel for player)
+
+Robots 
+	*USR
+		- Manage tyre&degradation for all cars now
+		- Rework on mufactor and margins directly in usr/track.xml
+
+	*Shadow
+		- Manage tyre&degradation for all cars now
+
+	*Axiom
+		- Manage tyre&degradation for all cars now
+		- Added Axiom
+		- Removed dandroid
+		- Rework on mufactor and margins directly in usr/track.xml
+
+	* All
+		- Balanced all bots' 11GPA for speedway (Alamo, Arizona, Corn, Manton, Newton)
+		- Balanced all bots' 11GPA for grandprix (Karwada)
+		- Balanced all bots' 11GPA for road (Peters)
+
+Tracks
+	* Added lighttracks on arizona/corn/alicante/auriac
+	* Removed all references speed dreams on all tracks 
+	* Start work on separate track on 3D files (terrain/road/grass/sand/building) better for implemented shaders effects later
+	* Start work on moved acc files format on gltf files format (not pushed on svn)
+
+Interface
+	* Removed all references to Speed Drems in menu
+	* Moved main menu in new config (text button -> image button)
+	* Moved Races menu in new config (text button -> image button)
+	* Re Activate Pit Menu in normal races - désactivate in network race
+	* Call setup menu on pit menu

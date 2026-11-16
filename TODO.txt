@@ -1,0 +1,80 @@
+Top TODO list (some may be included in CSR Season 2.0.x some others not):
+---------------------------------------------------------------
+
+Cars:
+	- Separate supercars in two or three category (actualy some cars can't compte with others cars) (fixed)
+	- Rework some cars 3D (8%)
+	- Added category cars (fixed)
+
+Menus:
+	- Added Carset selector in playerconfig for selected races (fixed)
+	- Added setup menu in PitMenu (fixed)
+	- New buttons format for main page and race page (I think that it will take three pages for the new format of fixed races) (fixed)
+		* main menu working on new interface now (fixed)
+	- disabling some races and carsets when level player is below (fixed)
+	- Added checkcase for running championship online (when recorded on masterserver) (removed)
+	- Sent all points/position/dammages for all championship on masterserver (fixed)
+	- Added Carrer mode (button) (fixed)
+	- Moved UI in OpenGL3 and reworking Menu (todo)
+
+Racing:
+	- Moved Practice on 'TEST DRIVE' fixed for player and track (fixed)
+	- moved All races and added carset name (category) for launch race (fixed)
+	- Unlock Challenge 1 after good time in practice race (TEST DRIVE) (fixed)
+	- Unlock Challenge 2 when player finish at least sixth Challenge 1 race (fixed)
+	- Unlock Endurance 1 when player finish at least third Challenge 2 race (fixed)
+	- Unlock Championship 1 when player finish at least sixth Endurance 1 race (fixed)
+	- Unlock Endurance 2 when player finish at least third Championship 1 (indy500 race for 11GPA) (fixed)
+	- Unlock Championship 2 when player finish at least third Endurance 2 race (same speedway but added karwada & peters tracks) (fixed)
+	- Unlock new carset when player finish at least sixth Championship 2 (category to define) (fixed)
+	- Added endurance3 (4H or 500 miles) (fixed)
+	- Added Endurance4 (24) (fixed)
+	- added setup in pit menu (fixed)
+	- Manage Career mode (fixed)
+
+Robots:
+	- Balanced all robots for each tracks used in championship 1, 2 & 3 (40%)
+	- Better strategy for compounds and fuel (50%)
+	- Working on dynamic weather in race (not before 2.0 or 3.0) (to do)
+	- Added better aids for Human players (for players with pad) (to do)
+
+Graphics:
+	- Added lights for cars (necessary for 24H race) (to do)
+	- Added reflexion (rain) on tracks (to do)
+	- Added reflexion on glass objects (tracks)(to do)
+	- Added dynamic shadow for cars (to do)
+	- Added more env on each tracks (not used for the moment) (to do)
+	- Added deformation 3D with damages (to do)
+	- Separated tracks 3D (terrain/grass/barriers & fences/objects/water) for better visual effects implementation (not sure for that)
+	- Added fade to black in enter tunnel (to do)
+	- Added fade to white leaving the tunnel or Sun in center to camera (todo)
+	- Added lensflare effects for sun (fixed - but not good) (to rework)
+	- Added wave effects for water objects (todo)
+	- moved objects in other format (bin would be good - better for speed loading) (todo)
+	- Reimplemented OsgGraph (for waiting OpenGL3) (fixed)
+
+	- Working on OpenGL3.2 engine (4%)
+	- Working on Vulkan engine (todo)
+		* Added grass 3D on theses engines. (todo)
+		* Added teams and commissioners 3D  (todo)
+		* Added dynamic objects in scenery  (todo)
+
+Network:
+	- Added skins info for players on each clients (todo)
+	- Server manage skills level players for all clients (todo)
+	- Network game must be able to manage all races types. (todo)
+	- Removed car when clients is disconnected. (todo)
+	- manage weather info (fixed with config mode - so now real or config all clients have the same information weather)
+	- Find a solution for personal setup player for others (todo)
+
+Masterserver:
+	- send skill level player on masterserver (fixed)
+	- download championship standings (fixed)
+	- download career progress (todo)
+	- load all players progress in game (todo)
+	- better standings on main page on webserver (fixed)
+	- Fix warnings with deprecated functions CURL (fixed)
+
+Game:
+	- Moved all code in one program (deleted all libs/modules) (todo)
+

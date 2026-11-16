@@ -1,0 +1,113 @@
+﻿CARS SPORTS RACING
+==================
+
+* Choix des categories de voitures:
+	- dans le menu player config choisir la catégorie voulu (pour le moment 2011 GP American ou Supercars C)
+	- Dans la configuration des courses, aller dans garage et choisir la voiture et le skin (si disponible)
+	- Dans le garage vous pouvez également avoir accès au setup complet de la voiture (j'ai l'intention de faire un setup simplifié par le menu pit stop également ce qui permettra d'avoir les séances d'essai légitime puisque ceux ci servent à cela)
+
+* Skill level joueur
+	- ARCADE     : toutes les options du Simulateur sont désactivés (météo idéale/pas de dégats sur la voiture/temperature pneus idéale et pas de dégradation/température moteur idéale/pneus soft - maximum de grip/facteur  aérodynamisme x 4.0)
+	- SEMI ROOKIE: option dégat sur les ailerons activés le reste étant désactivé, facteur aerodynamisme x 2.0
+	- ROOKIE     : option dégat sur les ailerons activés, dégat sur suspension activé, le reste étant désactivé, facteur aérodynamisme x 1.75
+	- AMATEUR    : option dégat sur les ailerons activés, dégat sur la suspension activé, gestion de la temperature moteur activée, météo activée, le reste etant désactivé. Facteur aérosynamisme x 1.5
+	- SEMI-PRO   : toutes les options sont activées, dégats sur les ailerons, les roues, le moteur, la suspension. Météo réelle ou simulée. Température des pneus et dégradation gérés. Gestion des différents types de pneus pour les catégories les gérants activé (TENDRE/MOYEN/DUR/PLUIE/PLUIE EXTREME). Température moteur gérée. Facteur aérodynamisme x 1.0
+	- PRO        : Idem, mais en plus crevaison des pneus activée et gestion des pannes de freinage du à la temperature des disques.
+
+* Skill level AI (accessible dans le menu option->AI Opponents
+	- Même level que pour le joueur (ARCADE à PRO) mais ne fait que varier la vitesse maximum en courbe des robots (ARCADE = plus lent / PRO = vitesse optimale).
+
+* webserver
+	- lorsque le niveau du joueur est en dessous de SEMI-PRO, les informations des courses ne sont pas envoyées sur le masterserver. En effet il serait inéquitable de valider des temps sur le serveur avec un grip de pneu constemment au top alors qu'à partir de SEMI-PRO le grip est en fonction de la météo et de l'usure du pneu.
+	- Pour le moment seul les temps au tour sont enregistré, mais j'ai l'intention d'ajouter les meilleurs classements par championnat.
+	- vous devez vous enregistrez sur le masterserver à l'adresse suivante : https://www.cars-sports-racing.net/masterserver//register et ensuite mettre votre username et le mot de passe que vous avez enregistré sur le masterserver dans 'player and config' cocher également la case 'enable webserver'.
+	- les utilisateurs enregistrés sur le masterserver et jamais connectés sont supprimés automatiquement après deux mois.
+
+* Ajouts de joueurs
+	- Chaque joueur à sa propre configuration et son évolution (je travaille pour que chaque joueur ait ses propre setups de voiture)
+
+* Voitures disponible dès le début:
+	- 11gpa-murasama (indycar 2011)
+	- sc-deckard (mustang catégorie Supercars C)
+	- sc-kanagawa-z35gts (nissan 350z catégorie Supercars C)
+	- sc-murasama-nsx (honda nsx catégorie Supercars C)
+
+* Courses disponible dès le début du joueur:
+	- Test Drive (débloque Challenge 1)
+	- Courses en réseau local
+
+* Déblocage des différentes courses:
+	- Challenge 1 si le meilleur temps du joueur est en dessous du temps enregistrée de la piste
+	- Challenge 2 si classement est inférieur à 7 sur Challenge 1
+	- Endurance 1 si classement est inférieur à 7 sur Challenge 2
+	- Championnat 1 : si classement est inférieur à 7 sur Endurance 1
+	- Endurance 2 si classement est inférieur à 7 sur Championnat 1
+	- Championnat 2 : si classement est inférieur à 7 sur Endurance 2
+	- Championnat 3 : si classement est inférieur à 7 sur Championnat 2
+
+* Déblocage de courses spéciales:
+	- Endurance 3 (4H de course ou 500 miles) suivant la voiture choisie - débloquée si classement est inférieur à 7 sur Endurance 2. Pas obligatoire. Visible seulement sur certains catégories de voitures.
+	- Endurance 4 (speciale 24H réelle - à jouer en équipe). Débloquée si classement est inférieur à 7 sur Endurance 3. N'est accessible que sur certaines voitures. Pas obligatoire. Visible uniquement sur certaines catégories de voitures. rtaines courses sur des catégories supérieures débloquent Endurance3 ou Endurance4 sur des catégories de level inférieur.
+
+	- Quickrace (entièrement paramétrable) sera débloqué lorsque toutes les catégories de voitures auront été débloquées.
+
+* Déblocage des voitures supplémentaires:
+	- Lorsque le joueur à finit le championnat 3 et que celui-ci à un niveau supérieur à amateur ceci débloque deux categories supplémentaires de voitures
+	- Il n'est pas possible d'additionner les levels de deux categories pour débloquer des autres catégories.
+
+* Augmentation du Skill level
+	- Le joueur à la possibilité de le définir dans player config. Si celui-ci est paramétré en dessous de PRO, le skill est augmenté après la réussite du championnat 3
+
+METEO :
+=======
+
+* En Mode config vous pouvez forcer le jeu pour les types de nuages, et la pluie (sur les OVALS avec les categories 11GPA, 12 GPA et 01GPA la pluie est désactivée).
+    - vous pouvez choisir la saison (printemps/été/automne/hiver ou basé sur la saison réelle)
+	- Les saisons sont basés sur l'hemisphère nord donc si vous mettez ETE et que vous faites une course en Australie par exemple la saison réelle sera l'hiver)
+	- Si vous passez la météo (weather) en mode réelle, celle ci sera récupérer d'après la position de la piste, donc les nuages, la pluie, la température de l'air seront ceux réellement enregistrés sur cette piste
+	- La simulation (à partir du mode SEMI-PRO) prend en charge la température de l'air, la pluie, la pression atmosphérique et la densité de l'air. La température de l'air est actualisée par le module simu durant la course suivant l'heure et la saison. L'ensemble de ces éléments affectera le grip de votre voiture, l'aéodynamisme (la densité de l'air affectant l'appuis des ailerons) et votre moteur. Les dommages vont affecter également l'ensemble de votre voiture.
+
+CONDUITE :
+==========
+
+* ABS : Anti-blocage de roues au freinage
+* TCL : Anti-patinage des roues motrices à l'accélération. Vous pouvez désactiver ce mode pour aller plus vite dans les virages, mais la voiture sera plus difficile à controler.
+
+REGLAGES :
+==========
+
+* Ailerons : des ailerons plus bas vous donnerons plus de vitesse, car moins de trainée, mais vous aurez moins d'appui pour les virages, donc vitesse de passage des virages moins important. Une différence importante entre l'angle de l'aileron avant et l'angle de l'aileron arrière créera soit un sous-virage (angle arrière plus important) soit un sur-virage (angle avant plus important)
+* Rapports de boîte : des ratios plus petits donnerons un accès à des vitesses de pointes plus rapidement dans les virages, mais sur les longues lignes droites vous serez bloqués à une vitesse de pointe inférieure. Une boîte avec des rapports longs vous permettra d'atteindre en ligne droite votre vitesse de pointe maximum, mais vous serez désavantagés dans les virages puisque la voiture mettra plus de temps pour atteindre le rapport supérieur.
+* Pressions des pneus et carrossage des roues : maintenant plus la pression est basse et plus le pneus va chauffer, moins vous mettez de carrossage et plus votre pneus va chauffer également. A contrario, plus vous mettez de pressions et/ou de carrossage et moins votre pneu va chauffer. Il faut donc ajuster la pression et le carrossage pour arriver à avoir la bonne température, puisque la température de l'air affecte la température de vos pneus. Sachant que vos pneus ont une température idéale de fonctionnement (80°C pour les Supercars par exemple), votre but est d'arriver à avoir une température de fonctionnement idéale sur les quatres pneus le plus longtemps possible.
+* Suspensions : Généralement, plus votre suspension sera dure et plus votre voiture tiendra la piste. Mais plus elle sera dure, plus elle créera de force sur votre roue et cela réduira la durée de vie de votre pneu ainsi que la topographie de la piste (plus de banking - angle latéral créera une usure plus conséquente sur le pneu concerné). Des réglages différents sur la souplesse des amortisseurs suivant les roues, va créer une certaine instabilité, plus de sous-virage ou plus de sur-virage. Généralement, sauf dans des cas spécifiques (exemple les speedways) des réglages asymétriques droite/gauche peuvent rendre la voiture très instable.
+* Repartition de freinage avant/arrière : plus le chiffre est important, plus le freinage est important à l'avant comparé à l'arrière. Plus le freinage est à l'avant, plus vous devrez freiner avant le point de freinage idéal, mais ceci dépend de la répartition de la masse de votre voiture et de la topologie de la piste. Ce réglage infuence également l'usure de vos pneus et la temperature des disques de freins.
+* type de pneus : vous avez le choix entre SOFT, MEDIUM, HARD, WET et EXTREM WET. Les deux derniers sont réservés pour la pluie - WET pour pluie légère ou modérée, le dernier pour la météo avec forte pluie. Le SOFT est un pneu qui chauffe très vite mais qui a un taux d'usure très rapide, le HARD est un pneu qui a une durée de vie importante (en terme de course bien évidemment) mais met plus longtemps pour arriver à température. Le MEDIUM est un pneu intermédiaire. Ces pneus ne sont pas disponible pour les 09GP5 (Formula Ford), les 36GP, les 67GP et l'intégralité des Supercars.
+
+TOUCHES DURANT LES COURSES:
+===========================
+
+* F1 - aide
+* F2 - les différentes vues du pilote
+* F3 - Vues avant ou arrière de la voiture
+* F4 - Vues de coté de la voiture
+* F5 - Vues du ciel
+* F6 - Vues en hauteur
+* F7 - Vues en hauteur de la piste
+* F8 - Vues des roues avant gauche ou droite
+* F9 - Vues à partir des cameras de la piste
+* F10 - Vues suiveuse en hauteur
+* F11 - Cameras réalisateur
+* F12 - Screenshot
+
+* p	  - Pause
+
+Les touches numériques:
+* 1 - Active les informations en course sur le pilote (en bas à gauche)
+* 2 - Active les deux compteurs vitesse et compteur RPM
+* 3 - Active le classement du pilote dans la course
+* 4 - Active les informations sur les pneus
+* 5 - affiche les information sur le nombre d'image par seconde
+* 6 - affiche diverses informations sur les réglages
+* 7 - affiche delta time bestlap
+* 9 - Active/desactive le retroviseur
+* m - affiche la carte de la piste (en haut à droite)

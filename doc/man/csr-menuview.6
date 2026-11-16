@@ -1,0 +1,77 @@
+.TH "Cars Sports Racing menu viewer" "6" "March 2012" "Cars Sports Racing 1.x" "Games"
+.SH NAME
+csr-menuview \- Menu viewer for Cars Sports Racing
+.SH SYNOPSIS
+\fBcsr-menuview\fP  [-v|--version] [-h|--help]
+              [-l|--localdir <dir path>] [-L|--libdir <dir path>]
+              [-B|--bindir <dir path>] [-D|--datadir <dir path>]
+              [-e|--tracelevel <integer>] [-t|--tracestream stdout|stderr|<file name>]
+              [-m|--hardmouse]
+              menu-file
+
+.SH DESCRIPTION
+Menu viewer for Cars Sports Racing
+.SH OPTIONS
+.TP
+\fB-h\fP, \fB--help\fP
+Show a short manual about options
+.TP
+\fB-v\fP, \fB--version\fP
+Show the actual game version
+.TP
+\fB-l\fP, \fB--localdir\fP local dir
+Set the run-time user settings folder
+(default = ~/.config/cars-sports-racing, unless not using the default CMake configuration for building)
+.TP
+\fB-L\fP, \fB--libdir\fP lib dir
+Set the run-time library folder (default = /usr/local/lib[64]/games/cars-sports-racing,
+unless not using the default CMake configuration for building)
+.TP
+\fB-D\fP, \fB--datadir\fP data dir
+Set the run-time data folder (default = /usr/local/share/games/cars-sports-racing,
+ unless not using the default CMake configuration for building)
+.TP
+\fB-B\fP, \fB--bindir\fP bin dir
+Set the run-time binary data folder
+(default = /usr/local/games, unless not using the default CMake configuration for building)
+.TP
+\fB-m\fP, \fB--hardmouse\fP
+Use hardware mouse cursor
+.TP
+\fB-e\fP, \fB--tracelevel\fP trace level threshold
+Set the trace level threshold to the given integer value
+(0=Fatal, 1=Error, 2=Warning, 3=Info, 4=Trace, 5=Debug, ... ;
+ default = Debug, unless not using the default CMake configuration for building)
+Only traces with lower or equal level will appear in the trace stream
+Note: May be disabled if CMake option 'OPTION_DEBUG' is not true at build time)
+.TP
+\fB-t\fP, \fB--tracestream\fP target trace stream
+Set the target stream for the traces (among 'stdout', 'stderr' or <file name>) ;
+ default = stderr, unless not using the default CMake configuration for building))
+Note: May be disabled if CMake option 'OPTION_DEBUG' is not true at build time)
+.TP
+\fBmenu-file\fP
+Absolute path of the menu XML descriptor file
+.SH EXAMPLES
+csr-menuview /home/sd/trunk/data/data/menu/racemanmenu.xml
+.SH LICENSE
+csr-menuview is licensed under the GNU General Public License, version 2 or later.
+.SH COPYRIGHT
+The Cars Sports Racing Team.
+.SH AUTHOR
+This manual page was written by Jean-Philippe Meuret <pouillot@users.sourceforge.net>,
+based on TORCS 1.2.2 version by Rudy Godoy <rudy@kernel-panik.org>,
+for the Debian project ; of course, it may be used by any other.
+.SH BUG REPORTS
+.br
+In case you discover a bug (sure you won't ;-), please report it here:
+.br
+https://sourceforge.net/p/cars-sports-racing/tickets/
+.br
+of course after checking that it is not already filed.
+.SH SEE ALSO
+Web site: https://www.cars-sports-racing.net/
+.br
+Sourceforge pages: https://sourceforge.net/projects/cars-sports-racing/
+.br
+speed-dreams-2(6), sd2-trackgen(6), sd2-accc(6), sd2-nfs2ac(6), sd2-nfsperf(6)

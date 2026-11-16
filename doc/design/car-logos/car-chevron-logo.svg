@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="car-chevron-logo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="2.1644332"
+     inkscape:cx="158.47105"
+     inkscape:cy="111.34555"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient21374">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop21370" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop21372" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient17675">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop17671" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0"
+         offset="1"
+         id="stop17673" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient16359"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#c21919;stop-opacity:1;"
+         offset="0"
+         id="stop16357" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient17675"
+       id="radialGradient17773"
+       cx="24.927738"
+       cy="9.4419727"
+       fx="24.927738"
+       fy="9.4419727"
+       r="15.365234"
+       gradientTransform="matrix(0.6542912,-0.16317614,0.23558376,0.94462583,7.3496898,5.5973417)"
+       gradientUnits="userSpaceOnUse"
+       spreadMethod="reflect" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient21374"
+       id="radialGradient21376"
+       cx="28.989803"
+       cy="25.314598"
+       fx="28.989803"
+       fy="25.314598"
+       r="17.61088"
+       gradientTransform="matrix(0.23315796,-0.89814068,0.97825659,0.2539561,-4.4933922,42.457576)"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     inkscape:label="Livello 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="color:#000000;fill:url(#radialGradient21376);fill-opacity:1;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.999043"
+       d="m 13.496094,16.599609 -3.6542971,1.626953 c 2.8473861,6.401579 5.5229821,11.24085 8.2480471,14.611329 2.725064,3.370478 5.673389,5.434047 8.955078,5.408203 3.281689,-0.02584 6.18528,-2.137855 8.826172,-5.521485 2.640891,-3.383629 5.191985,-8.203548 7.876953,-14.529297 l -3.681641,-1.564453 c -2.611758,6.153268 -5.083507,10.729381 -7.349609,13.632813 -2.266102,2.903432 -4.154139,3.970223 -5.703125,3.982422 -1.548986,0.0122 -3.469794,-1.026267 -5.8125,-3.923828 -2.342707,-2.897562 -4.934183,-7.493047 -7.705078,-13.722657 z"
+       id="path1854" />
+    <path
+       style="color:#000000;fill:url(#radialGradient17773);fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.3;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 15.083984,6.0175781 -3.654296,1.625 c 2.833172,6.3696229 5.288844,11.1676549 7.677734,14.5156249 2.38889,3.34797 4.886269,5.532697 7.941406,5.503906 3.055137,-0.02879 5.498581,-2.259348 7.802734,-5.61914 2.304154,-3.359793 4.637665,-8.138968 7.308594,-14.4316409 l -3.68164,-1.5625 C 35.852719,12.235171 33.560262,16.853981 31.552734,19.78125 c -2.007528,2.927269 -3.559227,3.871607 -4.541015,3.880859 -0.981789,0.0093 -2.562915,-0.906101 -4.646485,-3.826172 -2.083569,-2.92007 -4.49614,-7.556793 -7.28125,-13.8183589 z"
+       id="path1854-6" />
+    <g
+       aria-label="CHEVRON"
+       id="text3368"
+       style="font-size:10.5833px;line-height:1.25;font-family:Riccione-Serial-ExtraBold;-inkscape-font-specification:Riccione-Serial-ExtraBold;letter-spacing:-1.48696px;stroke-width:0.264583">
+      <path
+         d="m 7.761312,49.097054 c 1.2911625,0 2.360076,-0.465665 3.058574,-1.322912 L 9.7192224,46.758145 c -0.4974151,0.582081 -1.1218298,0.878414 -1.8626608,0.878414 -1.3864122,0 -2.3706591,-0.973664 -2.3706591,-2.370659 0,-1.396996 0.9842469,-2.370659 2.3706591,-2.370659 0.740831,0 1.3652457,0.296332 1.8626608,0.86783 L 10.819886,42.747074 C 10.121388,41.90041 9.0524745,41.434745 7.7718953,41.434745 c -2.3071594,0 -4.0216539,1.598079 -4.0216539,3.831155 0,2.233076 1.7144945,3.831154 4.0110706,3.831154 z"
+         style="font-weight:bold;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold'"
+         id="path839" />
+      <path
+         d="m 15.566487,44.482736 h -3.365489 v -2.920991 h -1.714495 v 7.40831 h 1.714495 v -3.037407 h 3.365489 v 3.037407 h 1.714494 v -7.40831 h -1.714494 z"
+         style="font-weight:bold;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold'"
+         id="path841" />
+      <path
+         d="m 19.254745,45.879731 h 3.439573 V 44.546235 H 19.254745 V 42.937574 H 23.1494 v -1.375829 h -5.598566 v 7.40831 h 5.736149 v -1.375829 h -4.032238 z"
+         style="font-weight:bold;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold'"
+         id="path843" />
+      <path
+         d="m 26.192084,46.853395 -2.254242,-5.29165 h -1.852078 l 3.196157,7.40831 h 1.693328 l 3.206739,-7.40831 h -1.703911 z"
+         style="font-weight:bold;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold'"
+         id="path845" />
+      <path
+         d="m 34.208897,46.588812 c 0.96308,-0.412748 1.523995,-1.227663 1.523995,-2.338909 0,-1.661578 -1.238246,-2.688158 -3.217323,-2.688158 h -3.20674 v 7.40831 h 1.714494 v -2.063744 h 1.492246 0.08467 l 1.428745,2.063744 h 1.841495 z m -0.211666,-2.338909 c 0,0.804331 -0.529165,1.291163 -1.576912,1.291163 H 31.023323 V 42.95874 h 1.396996 c 1.047747,0 1.576912,0.476249 1.576912,1.291163 z"
+         style="font-weight:bold;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold'"
+         id="path847" />
+      <path
+         d="m 39.188319,49.097054 c 2.328326,0 4.053404,-1.619245 4.053404,-3.831154 0,-2.21191 -1.725078,-3.831155 -4.053404,-3.831155 -2.338909,0 -4.053404,1.629828 -4.053404,3.831155 0,2.201326 1.714495,3.831154 4.053404,3.831154 z m 0,-1.460495 c -1.322912,0 -2.317742,-0.96308 -2.317742,-2.370659 0,-1.407579 0.99483,-2.370659 2.317742,-2.370659 1.322913,0 2.317743,0.96308 2.317743,2.370659 0,1.407579 -0.99483,2.370659 -2.317743,2.370659 z"
+         style="font-weight:bold;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold'"
+         id="path849" />
+      <path
+         d="m 48.147074,46.059647 -3.682988,-4.497902 h -1.418162 v 7.40831 h 1.693328 v -4.497903 l 3.693571,4.497903 h 1.407579 v -7.40831 h -1.693328 z"
+         style="font-weight:bold;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold'"
+         id="path851" />
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 75.169637,17.413066 c 11.236574,25.262402 19.644275,24.958058 30.237743,0"
+       id="path1854-7"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 76.757137,6.8297326 c 11.236574,25.2624014 16.469275,24.9580574 27.062733,0"
+       id="path1854-6-5"
+       sodipodi:nodetypes="cc" />
+    <g
+       aria-label="CHEVRON"
+       id="text3368-3"
+       style="font-size:10.5833px;line-height:1.25;font-family:Riccione-Serial-ExtraBold;-inkscape-font-specification:Riccione-Serial-ExtraBold;letter-spacing:-1.48696px;stroke-width:0.264583">
+      <path
+         d="m 71.261313,49.097054 c 1.291163,0 2.360076,-0.465665 3.058574,-1.322912 l -1.100663,-1.015997 c -0.497416,0.582081 -1.12183,0.878414 -1.862661,0.878414 -1.386412,0 -2.370659,-0.973664 -2.370659,-2.370659 0,-1.396996 0.984247,-2.370659 2.370659,-2.370659 0.740831,0 1.365245,0.296332 1.862661,0.86783 l 1.100663,-1.015997 c -0.698498,-0.846664 -1.767411,-1.312329 -3.047991,-1.312329 -2.307159,0 -4.021653,1.598079 -4.021653,3.831155 0,2.233076 1.714494,3.831154 4.01107,3.831154 z"
+         style="font-weight:bold;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold'"
+         id="path891" />
+      <path
+         d="m 79.066488,44.482736 h -3.365489 v -2.920991 h -1.714495 v 7.40831 h 1.714495 v -3.037407 h 3.365489 v 3.037407 h 1.714495 v -7.40831 h -1.714495 z"
+         style="font-weight:bold;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold'"
+         id="path893" />
+      <path
+         d="m 82.754747,45.879731 h 3.439572 v -1.333496 h -3.439572 v -1.608661 h 3.894654 v -1.375829 h -5.598566 v 7.40831 h 5.736149 v -1.375829 h -4.032237 z"
+         style="font-weight:bold;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold'"
+         id="path895" />
+      <path
+         d="m 89.692086,46.853395 -2.254243,-5.29165 h -1.852078 l 3.196157,7.40831 h 1.693328 l 3.20674,-7.40831 h -1.703912 z"
+         style="font-weight:bold;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold'"
+         id="path897" />
+      <path
+         d="m 97.708898,46.588812 c 0.96308,-0.412748 1.523995,-1.227663 1.523995,-2.338909 0,-1.661578 -1.238246,-2.688158 -3.217323,-2.688158 h -3.20674 v 7.40831 h 1.714495 v -2.063744 h 1.492245 0.08467 l 1.428746,2.063744 h 1.841494 z m -0.211666,-2.338909 c 0,0.804331 -0.529165,1.291163 -1.576912,1.291163 H 94.523325 V 42.95874 h 1.396995 c 1.047747,0 1.576912,0.476249 1.576912,1.291163 z"
+         style="font-weight:bold;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold'"
+         id="path899" />
+      <path
+         d="m 102.68832,49.097054 c 2.32833,0 4.0534,-1.619245 4.0534,-3.831154 0,-2.21191 -1.72507,-3.831155 -4.0534,-3.831155 -2.33891,0 -4.053403,1.629828 -4.053403,3.831155 0,2.201326 1.714493,3.831154 4.053403,3.831154 z m 0,-1.460495 c -1.32291,0 -2.31774,-0.96308 -2.31774,-2.370659 0,-1.407579 0.99483,-2.370659 2.31774,-2.370659 1.32291,0 2.31774,0.96308 2.31774,2.370659 0,1.407579 -0.99483,2.370659 -2.31774,2.370659 z"
+         style="font-weight:bold;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold'"
+         id="path901" />
+      <path
+         d="m 111.64708,46.059647 -3.68299,-4.497902 h -1.41817 v 7.40831 h 1.69333 v -4.497903 l 3.69357,4.497903 h 1.40758 v -7.40831 h -1.69332 z"
+         style="font-weight:bold;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold'"
+         id="path903" />
+    </g>
+  </g>
+</svg>

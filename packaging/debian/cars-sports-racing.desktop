@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Cars Sports Racing
+Comment=Simulation
+Exec=/usr/games/cars-sports-racing
+Icon=/usr/share/icons/cars-sports-racing.png
+Terminal=false
+Type=Application
+StartupNotify=false
+Categories=Game;SportsGame;

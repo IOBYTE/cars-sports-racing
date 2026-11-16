@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2024 shadow72 <bertauxx@gmail.com> -->
+<application>
+  <id type="desktop">cars-sports-racing.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0+ and GPL-3.0</project_license>
+  <description>
+    <p>
+     Cars Sports Racing is a 3d cross-platform, open source motorsport simulation and racing game.
+     It is a fork of the open racing car simulator Torcs and Speed Dreams, aiming to implement exciting new features,
+     cars, tracks, AI opponents and challenges to make a more enjoyable game for the player, 
+     as well as constantly improving visual and physics realism.
+    </p>
+    <p>
+     Still being in costant development Cars-Sports-Racing already has some unique feature as:
+     <ul>
+      <li>Accurate driving behaviour, with latest physic engine;</li>
+      <li>Playable with a variety of input devices, including keyboards, mouses, joypads, joysticks, racing wheels and pedals with force feed-back or not;</li>
+      <li>Several different racing modes (from a simple practice session, to a full pilot career);</li>
+      <li>Variety of cars/car classes (1936 Grand Prix, Supercars, Long Day Series GT1, Long Day Series GT2, World Rally Series) and always expanding;</li>
+      <li>Variety of tracks/tracks categories (Road tracks, Speedways, Grand Prix Circuits, Dirt tracks) and always expanding;</li>
+      <li>Customizable daytime and weather conditions;</li>
+      <li>Several AI bots to race with;</li>
+      <li>Up to 4 user local network (16 max) in network race mode in developpement;</li>
+     </ul>
+    </p>
+  </description>
+  <screenshots>
+    <screenshot type="default">https://a.fsdn.com/con/app/proj/cars-sports-racing/screenshots/sd-20240410110645-09068762.png</screenshot>
+    <screenshot>https://a.fsdn.com/con/app/proj/cars-sports-racing/screenshots/sd-20240410110303-cf9177d0.png</screenshot>
+    <screenshot>https://a.fsdn.com/con/app/proj/cars-sports-racing/screenshots/sd-20240410110342-e136bd56.png</screenshot>
+    <screenshot>https://a.fsdn.com/con/app/proj/cars-sports-racing/screenshots/sd-20240410110452-f6ce4ed6.png</screenshot>
+  </screenshots>
+  <url type="homepage">https://www.cars-sports-racing.net/</url>
+  <updatecontact>cars-sports-racing-devel@lists.sourceforge.net</updatecontact>
+</application>
