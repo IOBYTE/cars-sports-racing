@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="17.0.11" class="java.beans.XMLDecoder">
+ <object class="utils.Properties" id="Properties0">
+  <void property="currentA">
+   <double>-6.289067066758792</double>
+  </void>
+  <void property="currentX">
+   <double>0.22492888282198553</double>
+  </void>
+  <void property="currentY">
+   <double>0.06657791846091322</double>
+  </void>
+  <void property="curveNameCount">
+   <int>42</int>
+  </void>
+  <void property="image">
+   <string>cagliari.png</string>
+  </void>
+  <void property="imageScale">
+   <double>1.6</double>
+  </void>
+  <void property="imgOffset">
+   <void property="x">
+    <double>-1351.0</double>
+   </void>
+   <void property="y">
+    <double>834.0</double>
+   </void>
+  </void>
+  <void property="path">
+   <string>/home/xavier/Sources/cars-sports-racing/trunk/data/tracks/dirt/cagliari</string>
+  </void>
+  <void property="straightNameCount">
+   <int>16</int>
+  </void>
+ </object>
+</java>

@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+file                : casablanca.xml
+auto generated      : by sd2-trackeditor
+version             : 1.4.71
+copyright           : (C) 2005 by Charalampos Alexopoulos
+-->
+<!--
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+-->
+<!DOCTYPE params SYSTEM "../../../src/libs/tgf/params.dtd" [
+<!--  general definitions for tracks  -->
+<!ENTITY default-surfaces SYSTEM "../../../data/tracks/surfaces.xml">
+<!ENTITY default-objects SYSTEM "../../../data/tracks/objects.xml">
+]>
+
+<params name="casablanca" type="param" mode="mw">
+  <section name="Track Lights" />
+  <section name="Surfaces">
+    &default-surfaces;
+    <section name="desert-sand3">
+      <attnum name="color R1" val="0.1" />
+      <attnum name="color G1" val="0.1" />
+      <attnum name="color B1" val="0.1" />
+      <attnum name="color R2" val="0.2" />
+      <attnum name="color G2" val="0.2" />
+      <attnum name="color B2" val="0.2" />
+      <attstr name="texture name" val="sand.png" />
+      <attstr name="texture type" val="discrete" />
+      <attnum name="texture size" unit="m" val="24.0" />
+      <attnum name="texture mipmap" unit="m" val="0.0" />
+      <attnum name="friction" val="0.55" />
+      <attnum name="rolling resistance" val="0.3" />
+      <attnum name="bump size" unit="m" val="2.0" />
+      <attnum name="roughness" unit="m" val="0.025" />
+      <attnum name="roughness wavelength" unit="m" val="0.5" />
+    </section>
+    <section name="dirt-road">
+      <attnum name="color R1" val="0.1" />
+      <attnum name="color G1" val="0.1" />
+      <attnum name="color B1" val="0.1" />
+      <attnum name="color R2" val="0.2" />
+      <attnum name="color G2" val="0.2" />
+      <attnum name="color B2" val="0.2" />
+      <attstr name="texture name" val="dirt-road.png" />
+      <attstr name="texture type" val="discrete" />
+      <attnum name="texture size" unit="m" val="12.0" />
+      <attnum name="texture mipmap" unit="m" val="0.0" />
+      <attnum name="friction" val="0.65" />
+      <attnum name="rolling resistance" val="0.04" />
+      <attnum name="bump size" unit="m" val="2.0" />
+      <attnum name="roughness" unit="m" val="0.005" />
+      <attnum name="roughness wavelength" unit="m" val="0.5" />
+    </section>
+    <section name="snow-fence">
+      <attnum name="color R1" val="1.0" />
+      <attnum name="color G1" val="0.0" />
+      <attnum name="color B1" val="0.0" />
+      <attnum name="color R2" val="1.0" />
+      <attnum name="color G2" val="1.0" />
+      <attnum name="color B2" val="1.0" />
+      <attstr name="texture name" val="snow-fence-arbor_n.rgb" />
+      <attstr name="texture type" val="continuous" />
+      <attnum name="texture size" unit="m" val="4.0" />
+      <attnum name="texture mipmap" unit="m" val="4.0" />
+      <attnum name="friction" val="1.0" />
+      <attnum name="roughness" unit="m" val="0.002" />
+      <attnum name="roughness wavelength" unit="m" val="4.0" />
+      <attnum name="dammage" val="7.0" />
+      <attnum name="rebound" val="0.05" />
+    </section>
+  </section>
+  <section name="Objects">
+    &default-objects;
+    <section name="bush">
+      <attstr name="object" val="bush.ac" />
+      <attnum name="color" val="0x00FF01" />
+      <attstr name="orientation type" val="random" />
+      <attnum name="delta height" val="4.0" />
+      <attnum name="delta vert" val="10.0" />
+    </section>
+  </section>
+  <section name="Header">
+    <attstr name="name" val="Casablanca" />
+    <attstr name="short name" val="casablanca" />
+    <attstr name="category" val="dirt" />
+    <attnum name="version" val="4" />
+    <attstr name="author" val="Gus, Xavier Bertaux" />
+    <attstr name="description" val="Rallye sand to Casablanca" />
+  </section>
+  <section name="Local Info">
+    <attstr name="station" val="GMMN" />
+    <attnum name="time of day" unit="hour" val="5.3" />
+    <attnum name="sun ascension" unit="deg" val="70.0" />
+    <attnum name="altitude" unit="m" val="200.0" />
+    <attnum name="latitude" unit="deg" val="33.37027" />
+    <attnum name="longitude" unit="deg" val="7.58291" />
+    <attnum name="climat" val="5" />
+    <attnum name="precipitation" val="324.0" />
+  </section>
+  <section name="Graphic">
+    <attstr name="3d description" val="casablanca.ac" />
+    <attstr name="background image" val="background.png" />
+    <attnum name="background color R" val="0.6" />
+    <attnum name="background color G" val="0.6" />
+    <attnum name="background color B" val="0.5" />
+    <attnum name="ambient color R" val="1.0" />
+    <attnum name="ambient color G" val="1.0" />
+    <attnum name="ambient color B" val="1.0" />
+    <attnum name="diffuse color R" val="0.3" />
+    <attnum name="diffuse color G" val="0.3" />
+    <attnum name="diffuse color B" val="0.0" />
+    <attnum name="specular color R" val="0.6" />
+    <attnum name="specular color G" val="0.6" />
+    <attnum name="specular color B" val="0.6" />
+    <attnum name="light position x" unit="m" val="500.0" />
+    <attnum name="light position y" unit="m" val="-375.0" />
+    <attnum name="light position z" unit="m" val="1000.0" />
+    <attnum name="fov factor" val="0.6" />
+    <section name="Turn Marks" />
+    <section name="Terrain Generation">
+      <attnum name="track step" unit="m" val="20.0" />
+      <attnum name="border margin" unit="m" val="200.0" />
+      <attnum name="border step" unit="m" val="30.0" />
+      <attnum name="border height" unit="m" val="0.0" />
+      <attstr name="orientation" val="clockwise" />
+      <attstr name="surface" val="desert-sand3" />
+      <section name="Object Maps">
+        <section name="map 1">
+          <attstr name="object map" val="object-map.png" />
+        </section>
+      </section>
+      <section name="Objects" />
+    </section>
+    <section name="Environment Mapping" />
+  </section>
+  <section name="Starting Grid" />
+  <section name="Main Track">
+    <attnum name="width" unit="m" val="10.0" />
+    <attnum name="profil steps length" unit="m" val="4.0" />
+    <attstr name="surface" val="dirt-road" />
+    <!--Left part of track-->
+    <section name="Left Side">
+      <attnum name="width" unit="m" val="75.0" />
+      <attstr name="surface" val="desert-sand3" />
+    </section>
+    <section name="Left Barrier">
+      <attnum name="width" unit="m" val="0.1" />
+      <attnum name="height" unit="m" val="1.0" />
+      <attstr name="surface" val="snow-fence" />
+      <attstr name="style" val="fence" />
+    </section>
+    <!--End of left part-->
+    <!--Right part of track-->
+    <section name="Right Side">
+      <attnum name="width" unit="m" val="75.0" />
+      <attstr name="surface" val="desert-sand3" />
+    </section>
+    <section name="Right Barrier">
+      <attnum name="width" unit="m" val="0.1" />
+      <attnum name="height" unit="m" val="1.0" />
+      <attstr name="surface" val="snow-fence" />
+      <attstr name="style" val="fence" />
+    </section>
+    <!--End of right part-->
+    <section name="Pits">
+      <attstr name="side" val="right" />
+      <attnum name="length" unit="m" val="0.0" />
+      <attnum name="width" unit="m" val="0.0" />
+    </section>
+    <section name="Track Segments">
+      <!--******************************-->
+      <!--     Segment 1                -->
+      <!--******************************-->
+      <section name="1">
+        <attstr name="type" val="str" />
+        <attnum name="lg" unit="m" val="115.1881" />
+        <attnum name="z start" unit="m" val="0.0" />
+        <attnum name="z end" unit="m" val="12.0" />
+        <attstr name="surface" val="dirt-road" />
+        <!--Left part of segment-->
+        <section name="Left Side">
+          <attnum name="width" unit="m" val="75.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <section name="Left Barrier">
+          <attnum name="width" unit="m" val="0.1" />
+          <attnum name="height" unit="m" val="1.0" />
+          <attstr name="surface" val="snow-fence" />
+          <attstr name="style" val="fence" />
+        </section>
+        <!--End of left part-->
+        <!--Right part of segment-->
+        <section name="Right Side">
+          <attnum name="width" unit="m" val="75.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <section name="Right Barrier">
+          <attnum name="width" unit="m" val="0.1" />
+          <attnum name="height" unit="m" val="1.0" />
+          <attstr name="surface" val="snow-fence" />
+          <attstr name="style" val="fence" />
+        </section>
+        <!--End of right part-->
+      </section>
+      <!--******************************-->
+      <!--     Segment 2                -->
+      <!--******************************-->
+      <section name="2">
+        <attstr name="type" val="rgt" />
+        <attnum name="arc" unit="deg" val="66.0" />
+        <attnum name="radius" unit="m" val="147.0" />
+        <attnum name="end radius" unit="m" val="137.0" />
+        <attnum name="z start" unit="m" val="12.0" />
+        <attnum name="z end" unit="m" val="0.0" />
+        <attstr name="surface" val="dirt-road" />
+        <!--Left part of segment-->
+        <!--End of left part-->
+        <!--Right part of segment-->
+        <!--End of right part-->
+      </section>
+      <!--******************************-->
+      <!--     Segment 3                -->
+      <!--******************************-->
+      <section name="3">
+        <attstr name="type" val="str" />
+        <attnum name="lg" unit="m" val="100.0" />
+        <attnum name="z start" unit="m" val="0.0" />
+        <attnum name="z end" unit="m" val="11.0" />
+        <attstr name="surface" val="dirt-road" />
+        <!--Left part of segment-->
+        <!--End of left part-->
+        <!--Right part of segment-->
+        <!--End of right part-->
+      </section>
+      <!--******************************-->
+      <!--     Segment 4                -->
+      <!--******************************-->
+      <section name="4">
+        <attstr name="type" val="rgt" />
+        <attnum name="arc" unit="deg" val="72.0" />
+        <attnum name="radius" unit="m" val="121.0" />
+        <attnum name="end radius" unit="m" val="147.0" />
+        <attnum name="z start" unit="m" val="11.0" />
+        <attnum name="z end" unit="m" val="0.0" />
+        <attstr name="surface" val="dirt-road" />
+        <!--Left part of segment-->
+        <section name="Left Side">
+          <attnum name="start width" unit="m" val="75.0" />
+          <attnum name="end width" unit="m" val="50.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of left part-->
+        <!--Right part of segment-->
+        <section name="Right Side">
+          <attnum name="start width" unit="m" val="75.0" />
+          <attnum name="end width" unit="m" val="50.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of right part-->
+      </section>
+      <!--******************************-->
+      <!--     Segment 5                -->
+      <!--******************************-->
+      <section name="curve 1">
+        <attstr name="type" val="lft" />
+        <attnum name="arc" unit="deg" val="90.0" />
+        <attnum name="radius" unit="m" val="127.0" />
+        <attnum name="end radius" unit="m" val="72.0" />
+        <attnum name="z start" unit="m" val="0.0" />
+        <attnum name="z end" unit="m" val="12.0" />
+        <attstr name="surface" val="dirt-road" />
+        <!--Left part of segment-->
+        <!--End of left part-->
+        <!--Right part of segment-->
+        <!--End of right part-->
+      </section>
+      <!--******************************-->
+      <!--     Segment 6                -->
+      <!--******************************-->
+      <section name="curve 2">
+        <attstr name="type" val="rgt" />
+        <attnum name="arc" unit="deg" val="90.0" />
+        <attnum name="radius" unit="m" val="163.0" />
+        <attnum name="end radius" unit="m" val="92.0" />
+        <attnum name="z start" unit="m" val="12.0" />
+        <attnum name="z end" unit="m" val="0.0" />
+        <attstr name="surface" val="dirt-road" />
+        <!--Left part of segment-->
+        <!--End of left part-->
+        <!--Right part of segment-->
+        <!--End of right part-->
+      </section>
+      <!--******************************-->
+      <!--     Segment 7                -->
+      <!--******************************-->
+      <section name="straight 1">
+        <attstr name="type" val="str" />
+        <attnum name="lg" unit="m" val="50.0" />
+        <attnum name="z start" unit="m" val="0.0" />
+        <attnum name="z end" unit="m" val="5.0" />
+        <attstr name="surface" val="dirt-road" />
+        <!--Left part of segment-->
+        <section name="Left Side">
+          <attnum name="start width" unit="m" val="50.0" />
+          <attnum name="end width" unit="m" val="70.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of left part-->
+        <!--Right part of segment-->
+        <section name="Right Side">
+          <attnum name="start width" unit="m" val="50.0" />
+          <attnum name="end width" unit="m" val="70.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of right part-->
+      </section>
+      <!--******************************-->
+      <!--     Segment 8                -->
+      <!--******************************-->
+      <section name="straight 2">
+        <attstr name="type" val="str" />
+        <attnum name="lg" unit="m" val="50.0" />
+        <attnum name="z start" unit="m" val="5.0" />
+        <attnum name="z end" unit="m" val="0.0" />
+        <attstr name="surface" val="dirt-road" />
+        <!--Left part of segment-->
+        <section name="Left Side">
+          <attnum name="start width" unit="m" val="70.0" />
+          <attnum name="end width" unit="m" val="65.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of left part-->
+        <!--Right part of segment-->
+        <section name="Right Side">
+          <attnum name="start width" unit="m" val="70.0" />
+          <attnum name="end width" unit="m" val="65.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of right part-->
+      </section>
+      <!--******************************-->
+      <!--     Segment 9                -->
+      <!--******************************-->
+      <section name="straight 3">
+        <attstr name="type" val="str" />
+        <attnum name="lg" unit="m" val="50.0" />
+        <attnum name="z start" unit="m" val="0.0" />
+        <attnum name="z end" unit="m" val="4.0" />
+        <attstr name="surface" val="dirt-road" />
+        <!--Left part of segment-->
+        <section name="Left Side">
+          <attnum name="start width" unit="m" val="65.0" />
+          <attnum name="end width" unit="m" val="60.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of left part-->
+        <!--Right part of segment-->
+        <section name="Right Side">
+          <attnum name="start width" unit="m" val="65.0" />
+          <attnum name="end width" unit="m" val="60.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of right part-->
+      </section>
+      <!--******************************-->
+      <!--     Segment 10                -->
+      <!--******************************-->
+      <section name="straight 4">
+        <attstr name="type" val="str" />
+        <attnum name="lg" unit="m" val="50.0" />
+        <attnum name="z start" unit="m" val="4.0" />
+        <attnum name="z end" unit="m" val="0.0" />
+        <attstr name="surface" val="dirt-road" />
+        <!--Left part of segment-->
+        <section name="Left Side">
+          <attnum name="start width" unit="m" val="60.0" />
+          <attnum name="end width" unit="m" val="55.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of left part-->
+        <!--Right part of segment-->
+        <section name="Right Side">
+          <attnum name="start width" unit="m" val="60.0" />
+          <attnum name="end width" unit="m" val="55.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of right part-->
+      </section>
+      <!--******************************-->
+      <!--     Segment 11                -->
+      <!--******************************-->
+      <section name="curve 3">
+        <attstr name="type" val="rgt" />
+        <attnum name="arc" unit="deg" val="68.99999999999999" />
+        <attnum name="radius" unit="m" val="102.0" />
+        <attnum name="end radius" unit="m" val="98.0" />
+        <attnum name="z start" unit="m" val="0.0" />
+        <attnum name="z end" unit="m" val="12.0" />
+        <attstr name="surface" val="dirt-road" />
+        <!--Left part of segment-->
+        <section name="Left Side">
+          <attnum name="start width" unit="m" val="55.0" />
+          <attnum name="end width" unit="m" val="30.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of left part-->
+        <!--Right part of segment-->
+        <section name="Right Side">
+          <attnum name="start width" unit="m" val="55.0" />
+          <attnum name="end width" unit="m" val="30.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of right part-->
+      </section>
+      <!--******************************-->
+      <!--     Segment 12                -->
+      <!--******************************-->
+      <section name="curve 4">
+        <attstr name="type" val="lft" />
+        <attnum name="arc" unit="deg" val="90.0" />
+        <attnum name="radius" unit="m" val="179.0" />
+        <attnum name="end radius" unit="m" val="102.0" />
+        <attnum name="z start" unit="m" val="12.0" />
+        <attnum name="z end" unit="m" val="0.0" />
+        <attstr name="surface" val="dirt-road" />
+        <!--Left part of segment-->
+        <section name="Left Side">
+          <attnum name="start width" unit="m" val="30.0" />
+          <attnum name="end width" unit="m" val="4.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of left part-->
+        <!--Right part of segment-->
+        <section name="Right Side">
+          <attnum name="start width" unit="m" val="30.0" />
+          <attnum name="end width" unit="m" val="4.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of right part-->
+      </section>
+      <!--******************************-->
+      <!--     Segment 13                -->
+      <!--******************************-->
+      <section name="curve 5">
+        <attstr name="type" val="rgt" />
+        <attnum name="arc" unit="deg" val="90.0" />
+        <attnum name="radius" unit="m" val="50.0" />
+        <attnum name="z start" unit="m" val="0.0" />
+        <attnum name="z end" unit="m" val="4.0" />
+        <attstr name="surface" val="dirt-road" />
+        <!--Left part of segment-->
+        <!--End of left part-->
+        <!--Right part of segment-->
+        <!--End of right part-->
+      </section>
+      <!--******************************-->
+      <!--     Segment 14                -->
+      <!--******************************-->
+      <section name="curve 6">
+        <attstr name="type" val="rgt" />
+        <attnum name="arc" unit="deg" val="90.0" />
+        <attnum name="radius" unit="m" val="121.0" />
+        <attnum name="end radius" unit="m" val="72.0" />
+        <attnum name="z start" unit="m" val="4.0" />
+        <attnum name="z end" unit="m" val="20.0" />
+        <attstr name="surface" val="dirt-road" />
+        <!--Left part of segment-->
+        <section name="Left Side">
+          <attnum name="start width" unit="m" val="4.0" />
+          <attnum name="end width" unit="m" val="10.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of left part-->
+        <!--Right part of segment-->
+        <section name="Right Side">
+          <attnum name="start width" unit="m" val="4.0" />
+          <attnum name="end width" unit="m" val="10.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of right part-->
+      </section>
+      <!--******************************-->
+      <!--     Segment 15                -->
+      <!--******************************-->
+      <section name="straight 5">
+        <attstr name="type" val="str" />
+        <attnum name="lg" unit="m" val="130.0" />
+        <attnum name="z start" unit="m" val="20.0" />
+        <attnum name="z end" unit="m" val="0.0" />
+        <attstr name="surface" val="dirt-road" />
+        <!--Left part of segment-->
+        <section name="Left Side">
+          <attnum name="start width" unit="m" val="10.0" />
+          <attnum name="end width" unit="m" val="20.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of left part-->
+        <!--Right part of segment-->
+        <section name="Right Side">
+          <attnum name="start width" unit="m" val="10.0" />
+          <attnum name="end width" unit="m" val="20.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of right part-->
+      </section>
+      <!--******************************-->
+      <!--     Segment 16                -->
+      <!--******************************-->
+      <section name="straight 6">
+        <attstr name="type" val="str" />
+        <attnum name="lg" unit="m" val="120.0" />
+        <attnum name="z start" unit="m" val="0.0" />
+        <attnum name="z end" unit="m" val="10.0" />
+        <attstr name="surface" val="dirt-road" />
+        <!--Left part of segment-->
+        <section name="Left Side">
+          <attnum name="start width" unit="m" val="20.0" />
+          <attnum name="end width" unit="m" val="30.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of left part-->
+        <!--Right part of segment-->
+        <section name="Right Side">
+          <attnum name="start width" unit="m" val="20.0" />
+          <attnum name="end width" unit="m" val="30.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of right part-->
+      </section>
+      <!--******************************-->
+      <!--     Segment 17                -->
+      <!--******************************-->
+      <section name="straight 7">
+        <attstr name="type" val="str" />
+        <attnum name="lg" unit="m" val="50.0" />
+        <attnum name="z start" unit="m" val="10.0" />
+        <attnum name="z end" unit="m" val="5.0" />
+        <attstr name="surface" val="dirt-road" />
+        <!--Left part of segment-->
+        <section name="Left Side">
+          <attnum name="start width" unit="m" val="30.0" />
+          <attnum name="end width" unit="m" val="40.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of left part-->
+        <!--Right part of segment-->
+        <section name="Right Side">
+          <attnum name="start width" unit="m" val="30.0" />
+          <attnum name="end width" unit="m" val="40.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of right part-->
+      </section>
+      <!--******************************-->
+      <!--     Segment 18                -->
+      <!--******************************-->
+      <section name="straight 8">
+        <attstr name="type" val="str" />
+        <attnum name="lg" unit="m" val="50.0" />
+        <attnum name="z start" unit="m" val="5.0" />
+        <attnum name="z end" unit="m" val="0.0" />
+        <attstr name="surface" val="dirt-road" />
+        <!--Left part of segment-->
+        <section name="Left Side">
+          <attnum name="start width" unit="m" val="40.0" />
+          <attnum name="end width" unit="m" val="50.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of left part-->
+        <!--Right part of segment-->
+        <section name="Right Side">
+          <attnum name="start width" unit="m" val="40.0" />
+          <attnum name="end width" unit="m" val="50.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of right part-->
+      </section>
+      <!--******************************-->
+      <!--     Segment 19                -->
+      <!--******************************-->
+      <section name="curve 7">
+        <attstr name="type" val="lft" />
+        <attnum name="arc" unit="deg" val="70.0" />
+        <attnum name="radius" unit="m" val="95.0" />
+        <attnum name="end radius" unit="m" val="111.0" />
+        <attnum name="z start" unit="m" val="0.0" />
+        <attnum name="z end" unit="m" val="12.0" />
+        <attstr name="surface" val="dirt-road" />
+        <!--Left part of segment-->
+        <section name="Left Side">
+          <attnum name="start width" unit="m" val="50.0" />
+          <attnum name="end width" unit="m" val="75.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of left part-->
+        <!--Right part of segment-->
+        <section name="Right Side">
+          <attnum name="start width" unit="m" val="50.0" />
+          <attnum name="end width" unit="m" val="75.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of right part-->
+      </section>
+      <!--******************************-->
+      <!--     Segment 20                -->
+      <!--******************************-->
+      <section name="curve 8">
+        <attstr name="type" val="rgt" />
+        <attnum name="arc" unit="deg" val="90.0" />
+        <attnum name="radius" unit="m" val="173.0" />
+        <attnum name="end radius" unit="m" val="134.0" />
+        <attnum name="z start" unit="m" val="12.0" />
+        <attnum name="z end" unit="m" val="0.0" />
+        <attstr name="surface" val="dirt-road" />
+        <!--Left part of segment-->
+        <section name="Left Side">
+          <attnum name="width" unit="m" val="75.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of left part-->
+        <!--Right part of segment-->
+        <section name="Right Side">
+          <attnum name="width" unit="m" val="75.0" />
+          <attstr name="surface" val="desert-sand3" />
+        </section>
+        <!--End of right part-->
+      </section>
+      <!--******************************-->
+      <!--     Segment 21                -->
+      <!--******************************-->
+      <section name="curve 9">
+        <attstr name="type" val="rgt" />
+        <attnum name="arc" unit="deg" val="43.0" />
+        <attnum name="radius" unit="m" val="432.1" />
+        <attnum name="end radius" unit="m" val="176.0" />
+        <attnum name="z start" unit="m" val="0.0" />
+        <attnum name="z end" unit="m" val="0.0" />
+        <attstr name="surface" val="dirt-road" />
+        <!--Left part of segment-->
+        <!--End of left part-->
+        <!--Right part of segment-->
+        <!--End of right part-->
+      </section>
+    </section>
+  </section>
+  <section name="Cameras" />
+  <section name="Sectors" />
+</params>
+
