@@ -434,6 +434,7 @@ void dumpSeg(std::ofstream &ofs,const tTrackSeg *seg, const std::string & indent
     ofs << indent << "Kzl           " << seg->Kzl << std::endl;
     ofs << indent << "Kzw           " << seg->Kzw << std::endl;
     ofs << indent << "Kyl           " << seg->Kyl << std::endl;
+    ofs << indent << "Kyi           " << seg->Kyi << std::endl;
     ofs << indent << "rgtSideNormal " << seg->rgtSideNormal << std::endl;
     ofs << indent << "envIndex      " << seg->envIndex << std::endl;
     ofs << indent << "height        " << seg->height << std::endl;

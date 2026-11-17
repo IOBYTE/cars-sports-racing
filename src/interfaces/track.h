@@ -532,6 +532,14 @@ typedef struct trackSeg
         struct trackSeg* side[2];
     };
 
+    /** Lateral drift of the segment's inner edge per unit of toStart
+        (m/m on straights, m/rad on turns), positive = away from the main track.
+        Non-zero only for a side outside a variable-width border; 0 for main
+        segments, borders, and sides next to a constant-width border.
+        Used with Kyl: the outer edge drifts by Kyi + Kyl. Kept as the last member
+        so existing field offsets don't move. */
+    tdble   Kyi;
+
 } tTrackSeg;
 
 /* selection for local position structure */

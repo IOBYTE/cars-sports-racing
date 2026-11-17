@@ -113,11 +113,14 @@ void RtTrackLocal2Global(tTrkLocPos *p, tdble *X, tdble *Y, int flag)
             case TR_MAIN:
             case TR_LSIDE:
             case TR_LBORDER:
-                tr = p->toRight;
+                // vertex[TR_SR] is the inner edge; it drifts by Kyi (0 except
+                // for a side outside a tapered border)
+                tr = p->toRight + seg->Kyi * p->toStart;
                 break;
             case TR_RSIDE:
             case TR_RBORDER:
-                tr = p->toRight - seg->Kyl * p->toStart;
+                // vertex[TR_SR] is the outer edge; it drifts by Kyi + Kyl
+                tr = p->toRight - (seg->Kyl + seg->Kyi) * p->toStart;
                 break;
             default:
                 tr = 0;
@@ -134,11 +137,11 @@ void RtTrackLocal2Global(tTrkLocPos *p, tdble *X, tdble *Y, int flag)
             case TR_MAIN:
             case TR_LSIDE:
             case TR_LBORDER:
-                r = seg->radiusr - p->toRight;
+                r = seg->radiusr - seg->Kyi * p->toStart - p->toRight;
                 break;
             case TR_RSIDE:
             case TR_RBORDER:
-                r = seg->radiusl + seg->startWidth + seg->Kyl * p->toStart - p->toRight;
+                r = seg->radiusl + seg->Kyi * p->toStart + seg->startWidth + seg->Kyl * p->toStart - p->toRight;
                 break;
             default:
                 r = 0;
@@ -155,11 +158,11 @@ void RtTrackLocal2Global(tTrkLocPos *p, tdble *X, tdble *Y, int flag)
             case TR_MAIN:
             case TR_LSIDE:
             case TR_LBORDER:
-                r = seg->radiusr + p->toRight;
+                r = seg->radiusr + seg->Kyi * p->toStart + p->toRight;
                 break;
             case TR_RSIDE:
             case TR_RBORDER:
-                r = seg->radiusl - seg->startWidth - seg->Kyl * p->toStart + p->toRight;
+                r = seg->radiusl - seg->Kyi * p->toStart - seg->startWidth - seg->Kyl * p->toStart + p->toRight;
                 break;
             default:
                 r = 0;
@@ -425,7 +428,7 @@ tdble RtTrackHeightL(tTrkLocPos *p)
         //    left_side = false; // Never used.
 
         seg = seg->rside;
-        tr += seg->width;
+        tr += RtTrackGetWidth(seg, p->toStart);
 
         if ((tr < 0) && (seg->rside != NULL))
         {
@@ -437,7 +440,7 @@ tdble RtTrackHeightL(tTrkLocPos *p)
     {
         tr -= seg->width;
         seg = seg->lside;
-        if ((tr > seg->width) && (seg->lside != NULL))
+        if ((tr > RtTrackGetWidth(seg, p->toStart)) && (seg->lside != NULL))
         {
             tr -= RtTrackGetWidth(seg, p->toStart);
             seg = seg->lside;
@@ -455,6 +458,14 @@ tdble RtTrackHeightL(tTrkLocPos *p)
     }
     if (seg->style == TR_CURB)
     {
+        // Curbs may be tapered: use the width at this point, not seg->width (the minimum).
+        const tdble w = RtTrackGetWidth(seg, p->toStart);
+        if (w < 0.001f)
+        {
+            // Curb tapers to nothing here: plain surface height.
+            return seg->vertex[TR_SR].z + p->toStart * seg->Kzl + tr * tan(seg->angle[TR_XS] + p->toStart * seg->Kzw);
+        }
+
         // The final height = starting height + height difference due
         // to track angle + height difference due to curb (this seems
         // to be the way it is implemented in the graphics too: the
@@ -463,16 +474,16 @@ tdble RtTrackHeightL(tTrkLocPos *p)
         if (seg->type2 == TR_RBORDER)
         {
             // alpha shows how far we've moved into this segment.
-            tdble alpha = seg->width - tr;
+            tdble alpha = w - tr;
             tdble angle = seg->angle[TR_XS] + p->toStart * seg->Kzw;
-            tdble noise = seg->surface->kRoughness * sin(seg->surface->kRoughWaveLen * lg) * alpha / seg->width;
+            tdble noise = seg->surface->kRoughness * sin(seg->surface->kRoughWaveLen * lg) * alpha / w;
             tdble start_height = seg->vertex[TR_SR].z + p->toStart * seg->Kzl;
-            return start_height + tr * tan(angle) + alpha * atan2(seg->height, seg->width) + noise;
+            return start_height + tr * tan(angle) + alpha * atan2(seg->height, w) + noise;
         }
 
         return seg->vertex[TR_SR].z + p->toStart * seg->Kzl +
-               tr * (tan(seg->angle[TR_XS] + p->toStart * seg->Kzw) + atan2(seg->height, seg->width)) +
-               seg->surface->kRoughness * sin(seg->surface->kRoughWaveLen * lg) * tr / seg->width;
+               tr * (tan(seg->angle[TR_XS] + p->toStart * seg->Kzw) + atan2(seg->height, w)) +
+               seg->surface->kRoughness * sin(seg->surface->kRoughWaveLen * lg) * tr / w;
     }
 
     return seg->vertex[TR_SR].z + p->toStart * seg->Kzl + tr * tan(seg->angle[TR_XS] + p->toStart * seg->Kzw) +
@@ -488,7 +499,7 @@ tTrackSeg *RtTrackGetSeg(tTrkLocPos *p)
     if ((tr < 0) && (seg->rside != NULL))
     {
         seg = seg->rside;
-        tr += seg->width;
+        tr += RtTrackGetWidth(seg, p->toStart);
         if ((tr < 0) && (seg->rside != NULL))
         {
             seg = seg->rside;
@@ -499,7 +510,7 @@ tTrackSeg *RtTrackGetSeg(tTrkLocPos *p)
     {
         tr -= seg->width;
         seg = seg->lside;
-        if ((tr > seg->width) && (seg->lside != NULL))
+        if ((tr > RtTrackGetWidth(seg, p->toStart)) && (seg->lside != NULL))
         {
             tr -= RtTrackGetWidth(seg, p->toStart);
             seg = seg->lside;

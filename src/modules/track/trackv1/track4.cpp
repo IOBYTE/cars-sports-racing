@@ -53,7 +53,8 @@ static tTrackSurface *sideSurface[2];
 static int envIndex;
 static tdble DoVfactor = 1.0;
 
-static tdble borderWidth[2];
+static tdble borderStartWidth[2];
+static tdble borderEndWidth[2];
 static tdble borderHeight[2];
 static tSegStyle borderStyle[2];
 static const char *borderMaterial[2];
@@ -166,7 +167,8 @@ static void InitSides(void *TrackHandle, tTrack *theTrack)
         snprintf(path, sizeof(path), "%s/%s", TRK_SECT_MAIN, SectBorder[side]);
         borderMaterial[side] = GfParmGetStr(TrackHandle, path, TRK_ATT_SURF, TRK_VAL_GRASS);
         borderSurface[side] = AddTrackSurface(TrackHandle, theTrack, borderMaterial[side]);
-        borderWidth[side] = GfParmGetNum(TrackHandle, path, TRK_ATT_WIDTH, (char *)NULL, 0.0);
+        borderStartWidth[side] = borderEndWidth[side] =
+            GfParmGetNum(TrackHandle, path, TRK_ATT_WIDTH, (char *)NULL, 0.0);
         borderHeight[side] = GfParmGetNum(TrackHandle, path, TRK_ATT_HEIGHT, (char *)NULL, 0.0);
         style = GfParmGetStr(TrackHandle, path, TRK_ATT_STYLE, TRK_VAL_PLAN);
 
@@ -223,12 +225,12 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
     tdble x, y, z;
     tdble al, alfl;
     tdble x1, x2, y1, y2;
-    tdble sw, ew, bw;
+    tdble sw, ew, bsw, bew, bmax;
     tdble minWidth;
     tdble maxWidth;
     int type;
     const char *style;
-    tdble Kew;
+    tdble Kew, Kbw;
     static char path[BUFSIZE];
     static char path2[BUFSIZE << 1];
     char *segName;
@@ -267,8 +269,21 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
 
             /* Border parameters */
             snprintf(path2, sizeof(path2), "%s/%s", path, SectBorder[side]);
-            bw = GfParmGetNum(TrackHandle, path2, TRK_ATT_WIDTH, (char *)NULL, borderWidth[side]);
-            borderWidth[side] = bw;
+            // Same rules as sides: "width" sets both ends (old tracks unchanged);
+            // otherwise "start width" defaults to the previous end width and
+            // "end width" defaults to the start width.
+            if (GfParmExistsParam(TrackHandle, path2, TRK_ATT_WIDTH))
+            {
+                bsw = bew = GfParmGetNum(TrackHandle, path2, TRK_ATT_WIDTH, (char *)NULL, 0.0);
+            }
+            else
+            {
+                bsw = GfParmGetNum(TrackHandle, path2, TRK_ATT_SWIDTH, (char *)NULL, borderEndWidth[side]);
+                bew = GfParmGetNum(TrackHandle, path2, TRK_ATT_EWIDTH, (char *)NULL, bsw);
+            }
+
+            borderStartWidth[side] = bsw;
+            borderEndWidth[side] = bew;
             borderHeight[side] = GfParmGetNum(TrackHandle, path2, TRK_ATT_HEIGHT, (char *)NULL, borderHeight[side]);
             borderMaterial[side] = GfParmGetStr(TrackHandle, path2, TRK_ATT_SURF, borderMaterial[side]);
             borderSurface[side] = AddTrackSurface(TrackHandle, theTrack, borderMaterial[side]);
@@ -326,16 +341,22 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
         {
             sw = sideStartWidth[side];
             ew = sideEndWidth[side];
-            bw = borderWidth[side];
+            bsw = borderStartWidth[side];
+            bew = borderEndWidth[side];
         }
 
         Kew = (ew - sw) / (tdble)steps;
         ew = sw + (tdble)(curStep + 1) * Kew;
         sw = sw + (tdble)(curStep)*Kew;
 
+        Kbw = (bew - bsw) / (tdble)steps;
+        bew = bsw + (tdble)(curStep + 1) * Kbw;
+        bsw = bsw + (tdble)(curStep)*Kbw;
+
         /* Borders */
-        if (bw != 0.0)
+        if ((bsw != 0.0) || (bew != 0.0))
         {
+            bmax = MAX(bsw, bew);
             curBorder = (tTrackSeg *)calloc(1, sizeof(tTrackSeg));
 
             if (side == 1)
@@ -358,9 +379,9 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
             type = sideBankType[side];
             curBorder->name = curSeg->name;
             curBorder->id = curSeg->id;
-            curBorder->startWidth = bw;
-            curBorder->endWidth = bw;
-            curBorder->width = bw;
+            curBorder->startWidth = bsw;
+            curBorder->endWidth = bew;
+            curBorder->width = MIN(bsw, bew);
             curBorder->type = curSeg->type;
             curBorder->surface = borderSurface[side];
             curBorder->height = borderHeight[side];
@@ -383,24 +404,24 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
                 switch (side)
                 {
                 case 1:
-                    curBorder->vertex[TR_SL].x = curBorder->vertex[TR_SR].x + bw * curSeg->rgtSideNormal.x;
-                    curBorder->vertex[TR_SL].y = curBorder->vertex[TR_SR].y + bw * curSeg->rgtSideNormal.y;
+                    curBorder->vertex[TR_SL].x = curBorder->vertex[TR_SR].x + bsw * curSeg->rgtSideNormal.x;
+                    curBorder->vertex[TR_SL].y = curBorder->vertex[TR_SR].y + bsw * curSeg->rgtSideNormal.y;
                     curBorder->vertex[TR_SL].z =
-                        curBorder->vertex[TR_SR].z + (tdble)type * bw * tan(curSeg->angle[TR_XS]);
-                    x = curBorder->vertex[TR_EL].x = curBorder->vertex[TR_ER].x + bw * curSeg->rgtSideNormal.x;
-                    y = curBorder->vertex[TR_EL].y = curBorder->vertex[TR_ER].y + bw * curSeg->rgtSideNormal.y;
+                        curBorder->vertex[TR_SR].z + (tdble)type * bsw * tan(curSeg->angle[TR_XS]);
+                    x = curBorder->vertex[TR_EL].x = curBorder->vertex[TR_ER].x + bew * curSeg->rgtSideNormal.x;
+                    y = curBorder->vertex[TR_EL].y = curBorder->vertex[TR_ER].y + bew * curSeg->rgtSideNormal.y;
                     z = curBorder->vertex[TR_EL].z =
-                        curBorder->vertex[TR_ER].z + (tdble)type * bw * tan(curSeg->angle[TR_XE]);
+                        curBorder->vertex[TR_ER].z + (tdble)type * bew * tan(curSeg->angle[TR_XE]);
                     break;
                 case 0:
-                    curBorder->vertex[TR_SR].x = curBorder->vertex[TR_SL].x - bw * curSeg->rgtSideNormal.x;
-                    curBorder->vertex[TR_SR].y = curBorder->vertex[TR_SL].y - bw * curSeg->rgtSideNormal.y;
+                    curBorder->vertex[TR_SR].x = curBorder->vertex[TR_SL].x - bsw * curSeg->rgtSideNormal.x;
+                    curBorder->vertex[TR_SR].y = curBorder->vertex[TR_SL].y - bsw * curSeg->rgtSideNormal.y;
                     curBorder->vertex[TR_SR].z =
-                        curBorder->vertex[TR_SL].z - (tdble)type * bw * tan(curSeg->angle[TR_XS]);
-                    x = curBorder->vertex[TR_ER].x = curBorder->vertex[TR_EL].x - bw * curSeg->rgtSideNormal.x;
-                    y = curBorder->vertex[TR_ER].y = curBorder->vertex[TR_EL].y - bw * curSeg->rgtSideNormal.y;
+                        curBorder->vertex[TR_SL].z - (tdble)type * bsw * tan(curSeg->angle[TR_XS]);
+                    x = curBorder->vertex[TR_ER].x = curBorder->vertex[TR_EL].x - bew * curSeg->rgtSideNormal.x;
+                    y = curBorder->vertex[TR_ER].y = curBorder->vertex[TR_EL].y - bew * curSeg->rgtSideNormal.y;
                     z = curBorder->vertex[TR_ER].z =
-                        curBorder->vertex[TR_EL].z - (tdble)type * bw * tan(curSeg->angle[TR_XE]);
+                        curBorder->vertex[TR_EL].z - (tdble)type * bew * tan(curSeg->angle[TR_XE]);
                     break;
                 }
 
@@ -411,7 +432,7 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
 
                 curBorder->Kzl = tan(curBorder->angle[TR_YR]);
                 curBorder->Kzw = (curBorder->angle[TR_XE] - curBorder->angle[TR_XS]) / curBorder->length;
-                curBorder->Kyl = 0;
+                curBorder->Kyl = (bew - bsw) / curBorder->length;
 
                 curBorder->rgtSideNormal.x = curSeg->rgtSideNormal.x;
                 curBorder->rgtSideNormal.y = curSeg->rgtSideNormal.y;
@@ -428,22 +449,22 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
                 switch (side)
                 {
                 case 1:
-                    curBorder->radius = (tdble)(curSeg->radiusl - bw / 2.0);
+                    curBorder->radius = (tdble)(curSeg->radiusl - bsw / 2.0);
                     curBorder->radiusr = curSeg->radiusl;
-                    curBorder->radiusl = curSeg->radiusl - bw;
+                    curBorder->radiusl = curSeg->radiusl - bmax;
                     curBorder->arc = curSeg->arc;
                     curBorder->length = curBorder->radius * curBorder->arc;
 
-                    curBorder->vertex[TR_SL].x = curBorder->vertex[TR_SR].x - bw * cos(curBorder->angle[TR_CS]);
-                    curBorder->vertex[TR_SL].y = curBorder->vertex[TR_SR].y - bw * sin(curBorder->angle[TR_CS]);
+                    curBorder->vertex[TR_SL].x = curBorder->vertex[TR_SR].x - bsw * cos(curBorder->angle[TR_CS]);
+                    curBorder->vertex[TR_SL].y = curBorder->vertex[TR_SR].y - bsw * sin(curBorder->angle[TR_CS]);
                     curBorder->vertex[TR_SL].z =
-                        curBorder->vertex[TR_SR].z + (tdble)type * bw * tan(curSeg->angle[TR_XS]);
+                        curBorder->vertex[TR_SR].z + (tdble)type * bsw * tan(curSeg->angle[TR_XS]);
                     curBorder->vertex[TR_EL].x =
-                        curBorder->vertex[TR_ER].x - bw * cos(curBorder->angle[TR_CS] + curBorder->arc);
+                        curBorder->vertex[TR_ER].x - bew * cos(curBorder->angle[TR_CS] + curBorder->arc);
                     curBorder->vertex[TR_EL].y =
-                        curBorder->vertex[TR_ER].y - bw * sin(curBorder->angle[TR_CS] + curBorder->arc);
+                        curBorder->vertex[TR_ER].y - bew * sin(curBorder->angle[TR_CS] + curBorder->arc);
                     z = curBorder->vertex[TR_EL].z =
-                        curBorder->vertex[TR_ER].z + (tdble)type * bw * tan(curSeg->angle[TR_XE]);
+                        curBorder->vertex[TR_ER].z + (tdble)type * bew * tan(curSeg->angle[TR_XE]);
 
                     curBorder->angle[TR_YR] = atan2(curBorder->vertex[TR_ER].z - curBorder->vertex[TR_SR].z,
                                                     curBorder->arc * curBorder->radiusr);
@@ -452,7 +473,7 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
 
                     curBorder->Kzl = tan(curBorder->angle[TR_YR]) * curBorder->radiusr;
                     curBorder->Kzw = (curBorder->angle[TR_XE] - curBorder->angle[TR_XS]) / curBorder->arc;
-                    curBorder->Kyl = 0;
+                    curBorder->Kyl = (bew - bsw) / curBorder->arc;
 
                     /* to find the boundary */
                     al = (tdble)(curBorder->arc / 36.0);
@@ -471,22 +492,22 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
                     break;
 
                 case 0:
-                    curBorder->radius = (tdble)(curSeg->radiusr + bw / 2.0);
+                    curBorder->radius = (tdble)(curSeg->radiusr + bsw / 2.0);
                     curBorder->radiusl = curSeg->radiusr;
-                    curBorder->radiusr = curSeg->radiusr + bw;
+                    curBorder->radiusr = curSeg->radiusr + bmax;
                     curBorder->arc = curSeg->arc;
                     curBorder->length = curBorder->radius * curBorder->arc;
 
-                    curBorder->vertex[TR_SR].x = curBorder->vertex[TR_SL].x + bw * cos(curBorder->angle[TR_CS]);
-                    curBorder->vertex[TR_SR].y = curBorder->vertex[TR_SL].y + bw * sin(curBorder->angle[TR_CS]);
+                    curBorder->vertex[TR_SR].x = curBorder->vertex[TR_SL].x + bsw * cos(curBorder->angle[TR_CS]);
+                    curBorder->vertex[TR_SR].y = curBorder->vertex[TR_SL].y + bsw * sin(curBorder->angle[TR_CS]);
                     curBorder->vertex[TR_SR].z =
-                        curBorder->vertex[TR_SL].z - (tdble)type * bw * tan(curSeg->angle[TR_XS]);
+                        curBorder->vertex[TR_SL].z - (tdble)type * bsw * tan(curSeg->angle[TR_XS]);
                     curBorder->vertex[TR_ER].x =
-                        curBorder->vertex[TR_EL].x + bw * cos(curBorder->angle[TR_CS] + curBorder->arc);
+                        curBorder->vertex[TR_EL].x + bew * cos(curBorder->angle[TR_CS] + curBorder->arc);
                     curBorder->vertex[TR_ER].y =
-                        curBorder->vertex[TR_EL].y + bw * sin(curBorder->angle[TR_CS] + curBorder->arc);
+                        curBorder->vertex[TR_EL].y + bew * sin(curBorder->angle[TR_CS] + curBorder->arc);
                     z = curBorder->vertex[TR_ER].z =
-                        curBorder->vertex[TR_EL].z - (tdble)type * bw * tan(curSeg->angle[TR_XE]);
+                        curBorder->vertex[TR_EL].z - (tdble)type * bew * tan(curSeg->angle[TR_XE]);
 
                     curBorder->angle[TR_YR] = atan2(curBorder->vertex[TR_ER].z - curBorder->vertex[TR_SR].z,
                                                     curBorder->arc * curBorder->radiusr);
@@ -495,7 +516,7 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
 
                     curBorder->Kzl = tan(curBorder->angle[TR_YR]) * (curBorder->radiusr);
                     curBorder->Kzw = (curBorder->angle[TR_XE] - curBorder->angle[TR_XS]) / curBorder->arc;
-                    curBorder->Kyl = 0;
+                    curBorder->Kyl = (bew - bsw) / curBorder->arc;
 
                     /* to find the boundary */
                     al = (tdble)(curBorder->arc / 36.0);
@@ -522,22 +543,22 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
                 switch (side)
                 {
                 case 1:
-                    curBorder->radius = (tdble)(curSeg->radiusl + bw / 2.0);
+                    curBorder->radius = (tdble)(curSeg->radiusl + bsw / 2.0);
                     curBorder->radiusr = curSeg->radiusl;
-                    curBorder->radiusl = curSeg->radiusl + bw;
+                    curBorder->radiusl = curSeg->radiusl + bmax;
                     curBorder->arc = curSeg->arc;
                     curBorder->length = curBorder->radius * curBorder->arc;
 
-                    curBorder->vertex[TR_SL].x = curBorder->vertex[TR_SR].x + bw * cos(curBorder->angle[TR_CS]);
-                    curBorder->vertex[TR_SL].y = curBorder->vertex[TR_SR].y + bw * sin(curBorder->angle[TR_CS]);
+                    curBorder->vertex[TR_SL].x = curBorder->vertex[TR_SR].x + bsw * cos(curBorder->angle[TR_CS]);
+                    curBorder->vertex[TR_SL].y = curBorder->vertex[TR_SR].y + bsw * sin(curBorder->angle[TR_CS]);
                     curBorder->vertex[TR_SL].z =
-                        curBorder->vertex[TR_SR].z + (tdble)type * bw * tan(curSeg->angle[TR_XS]);
+                        curBorder->vertex[TR_SR].z + (tdble)type * bsw * tan(curSeg->angle[TR_XS]);
                     curBorder->vertex[TR_EL].x =
-                        curBorder->vertex[TR_ER].x + bw * cos(curBorder->angle[TR_CS] - curBorder->arc);
+                        curBorder->vertex[TR_ER].x + bew * cos(curBorder->angle[TR_CS] - curBorder->arc);
                     curBorder->vertex[TR_EL].y =
-                        curBorder->vertex[TR_ER].y + bw * sin(curBorder->angle[TR_CS] - curBorder->arc);
+                        curBorder->vertex[TR_ER].y + bew * sin(curBorder->angle[TR_CS] - curBorder->arc);
                     z = curBorder->vertex[TR_EL].z =
-                        curBorder->vertex[TR_ER].z + (tdble)type * bw * tan(curSeg->angle[TR_XE]);
+                        curBorder->vertex[TR_ER].z + (tdble)type * bew * tan(curSeg->angle[TR_XE]);
 
                     curBorder->angle[TR_YR] = atan2(curBorder->vertex[TR_ER].z - curBorder->vertex[TR_SR].z,
                                                     curBorder->arc * curBorder->radiusr);
@@ -546,7 +567,7 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
 
                     curBorder->Kzl = tan(curBorder->angle[TR_YR]) * curBorder->radiusr;
                     curBorder->Kzw = (curBorder->angle[TR_XE] - curBorder->angle[TR_XS]) / curBorder->arc;
-                    curBorder->Kyl = 0;
+                    curBorder->Kyl = (bew - bsw) / curBorder->arc;
 
                     /* to find the boundary */
                     al = (tdble)(curBorder->arc / 36.0);
@@ -565,22 +586,22 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
                     break;
 
                 case 0:
-                    curBorder->radius = (tdble)(curSeg->radiusr - bw / 2.0);
+                    curBorder->radius = (tdble)(curSeg->radiusr - bsw / 2.0);
                     curBorder->radiusl = curSeg->radiusr;
-                    curBorder->radiusr = curSeg->radiusr - bw;
+                    curBorder->radiusr = curSeg->radiusr - bmax;
                     curBorder->arc = curSeg->arc;
                     curBorder->length = curBorder->radius * curBorder->arc;
 
-                    curBorder->vertex[TR_SR].x = curBorder->vertex[TR_SL].x - bw * cos(curBorder->angle[TR_CS]);
-                    curBorder->vertex[TR_SR].y = curBorder->vertex[TR_SL].y - bw * sin(curBorder->angle[TR_CS]);
+                    curBorder->vertex[TR_SR].x = curBorder->vertex[TR_SL].x - bsw * cos(curBorder->angle[TR_CS]);
+                    curBorder->vertex[TR_SR].y = curBorder->vertex[TR_SL].y - bsw * sin(curBorder->angle[TR_CS]);
                     curBorder->vertex[TR_SR].z =
-                        curBorder->vertex[TR_SL].z - (tdble)type * bw * tan(curSeg->angle[TR_XS]);
+                        curBorder->vertex[TR_SL].z - (tdble)type * bsw * tan(curSeg->angle[TR_XS]);
                     curBorder->vertex[TR_ER].x =
-                        curBorder->vertex[TR_EL].x - bw * cos(curBorder->angle[TR_CS] - curBorder->arc);
+                        curBorder->vertex[TR_EL].x - bew * cos(curBorder->angle[TR_CS] - curBorder->arc);
                     curBorder->vertex[TR_ER].y =
-                        curBorder->vertex[TR_EL].y - bw * sin(curBorder->angle[TR_CS] - curBorder->arc);
+                        curBorder->vertex[TR_EL].y - bew * sin(curBorder->angle[TR_CS] - curBorder->arc);
                     z = curBorder->vertex[TR_ER].z =
-                        curBorder->vertex[TR_EL].z - (tdble)type * bw * tan(curSeg->angle[TR_XE]);
+                        curBorder->vertex[TR_EL].z - (tdble)type * bew * tan(curSeg->angle[TR_XE]);
 
                     curBorder->angle[TR_YR] = atan2(curBorder->vertex[TR_ER].z - curBorder->vertex[TR_SR].z,
                                                     curBorder->arc * curBorder->radiusr);
@@ -589,7 +610,7 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
 
                     curBorder->Kzl = tan(curBorder->angle[TR_YR]) * (curBorder->radiusr);
                     curBorder->Kzw = (curBorder->angle[TR_XE] - curBorder->angle[TR_XS]) / curBorder->arc;
-                    curBorder->Kyl = 0;
+                    curBorder->Kyl = (bew - bsw) / curBorder->arc;
 
                     /* to find the boundary */
                     al = (tdble)(curBorder->arc / 36.0);
@@ -639,7 +660,6 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
             curSide->startWidth = sw;
             curSide->endWidth = ew;
             curSide->width = minWidth = MIN(sw, ew);
-            maxWidth = MAX(sw, ew);
             curSide->type = curSeg->type;
             curSide->surface = sideSurface[side];
             curSide->envIndex = envIndex;
@@ -649,6 +669,24 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
             curSide->angle[TR_ZS] = curSeg->angle[TR_ZS];
             curSide->angle[TR_ZE] = curSeg->angle[TR_ZE];
             curSide->angle[TR_CS] = curSeg->angle[TR_CS];
+
+            // The side's inner edge is the outer edge of curSeg (a border or the
+            // main track). If that is a tapered border the inner edge drifts.
+            curSide->Kyi = curSeg->Kyl + curSeg->Kyi;
+
+            // Inner edge radius at the start of the segment. Next to a border, use
+            // the border's start width (its stored outer radius is the max-width
+            // extent); next to the main track keep the stored radius.
+            const bool onBorder = (curSeg->type2 == TR_LBORDER) || (curSeg->type2 == TR_RBORDER);
+            tdble innerR;
+
+            // Widest extent of the outer edge, measured from the inner edge at the
+            // start (used for the outer radius / bounding box). Includes the drift
+            // of the inner edge when it follows a tapered border.
+            if (onBorder)
+                maxWidth = MAX(sw, ew + curSeg->endWidth - curSeg->startWidth);
+            else
+                maxWidth = MAX(sw, ew);
 
             switch (curSeg->type)
             {
@@ -701,9 +739,10 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
                 switch (side)
                 {
                 case 1:
-                    curSide->radius = (tdble)(curSeg->radiusl - sw / 2.0);
-                    curSide->radiusr = curSeg->radiusl;
-                    curSide->radiusl = curSeg->radiusl - maxWidth;
+                    innerR = onBorder ? curSeg->radiusr - curSeg->startWidth : curSeg->radiusl;
+                    curSide->radius = (tdble)(innerR - sw / 2.0);
+                    curSide->radiusr = innerR;
+                    curSide->radiusl = innerR - maxWidth;
                     curSide->arc = curSeg->arc;
                     curSide->length = curSide->radius * curSide->arc;
 
@@ -743,9 +782,10 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
                     break;
 
                 case 0:
-                    curSide->radius = (tdble)(curSeg->radiusr + sw / 2.0);
-                    curSide->radiusl = curSeg->radiusr;
-                    curSide->radiusr = curSeg->radiusr + maxWidth;
+                    innerR = onBorder ? curSeg->radiusl + curSeg->startWidth : curSeg->radiusr;
+                    curSide->radius = (tdble)(innerR + sw / 2.0);
+                    curSide->radiusl = innerR;
+                    curSide->radiusr = innerR + maxWidth;
                     curSide->arc = curSeg->arc;
                     curSide->length = curSide->radius * curSide->arc;
 
@@ -793,9 +833,10 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
                 switch (side)
                 {
                 case 1:
-                    curSide->radius = (tdble)(curSeg->radiusl + sw / 2.0);
-                    curSide->radiusr = curSeg->radiusl;
-                    curSide->radiusl = curSeg->radiusl + maxWidth;
+                    innerR = onBorder ? curSeg->radiusr + curSeg->startWidth : curSeg->radiusl;
+                    curSide->radius = (tdble)(innerR + sw / 2.0);
+                    curSide->radiusr = innerR;
+                    curSide->radiusl = innerR + maxWidth;
                     curSide->arc = curSeg->arc;
                     curSide->length = curSide->radius * curSide->arc;
 
@@ -835,9 +876,10 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
                     break;
 
                 case 0:
-                    curSide->radius = (tdble)(curSeg->radiusr - sw / 2.0);
-                    curSide->radiusl = curSeg->radiusr;
-                    curSide->radiusr = curSeg->radiusr - maxWidth;
+                    innerR = onBorder ? curSeg->radiusl - curSeg->startWidth : curSeg->radiusr;
+                    curSide->radius = (tdble)(innerR - sw / 2.0);
+                    curSide->radiusl = innerR;
+                    curSide->radiusr = innerR - maxWidth;
                     curSide->arc = curSeg->arc;
                     curSide->length = curSide->radius * curSide->arc;
 
@@ -1219,6 +1261,7 @@ static void AddPitDoors(tTrack *theTrack, void *TrackHandle, bool found)
 
             bool changeSeg = true;
             tdble offset = 0;
+            tTrackSeg *pitBorderSeg = NULL; // border between track and pit lane, if any
             tdble toStart = 0;
             int i = 0;
             while (i < pits->nMaxPits)
@@ -1226,7 +1269,7 @@ static void AddPitDoors(tTrack *theTrack, void *TrackHandle, bool found)
                 if (changeSeg)
                 {
                     changeSeg = false;
-                    offset = 0;
+                    pitBorderSeg = NULL;
                     mSeg = mSeg->next;
 
                     if (toStart >= mSeg->length)
@@ -1242,7 +1285,7 @@ static void AddPitDoors(tTrack *theTrack, void *TrackHandle, bool found)
                         curPitSeg = mSeg->rside;
                         if (curPitSeg->rside)
                         {
-                            offset = curPitSeg->width;
+                            pitBorderSeg = curPitSeg;
                             curPitSeg = curPitSeg->rside;
                         }
                         break;
@@ -1251,7 +1294,7 @@ static void AddPitDoors(tTrack *theTrack, void *TrackHandle, bool found)
                         curPitSeg = mSeg->lside;
                         if (curPitSeg->lside)
                         {
-                            offset = curPitSeg->width;
+                            pitBorderSeg = curPitSeg;
                             curPitSeg = curPitSeg->lside;
                         }
                         break;
@@ -1286,6 +1329,10 @@ static void AddPitDoors(tTrack *theTrack, void *TrackHandle, bool found)
                 pits->driversPits[i].pos.seg = mSeg;
                 pits->driversPits[i].pos.toStart = (tdble)(toStart + pits->len / 2.0);
                 GfLogDebug("toStart: %s %.2f ", mSeg->name, pits->driversPits[i].pos.toStart);
+
+                // The border may be tapered, so measure it at this pit rather than
+                // using its (minimum) width. Sampled at the same toStart as the side.
+                offset = pitBorderSeg ? RtTrackGetWidth(pitBorderSeg, toStart) : 0;
 
                 switch (pits->side)
                 {
