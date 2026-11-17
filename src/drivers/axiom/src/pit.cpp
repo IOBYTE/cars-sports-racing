@@ -716,8 +716,9 @@ double Pit::calcRefuel()
         stintfuel += 0.5 * mAvgFuelPerLap;
     }
 
-    stintfuel = Utils::clip(stintfuel, 0.0, (double)(mCar->_tank));
+    // Safety margin first, then limit to what the tank can hold.
     stintfuel += 3.0;
+    stintfuel = Utils::clip(stintfuel, 0.0, (double)(mCar->_tank));
 
     // Tire strategy
     double tiresdist = ((mMyCar->wheels()->TyreTreadDepth() / 100) / mMyCar->wheels()->avgWearPerMeter());
@@ -738,7 +739,11 @@ double Pit::calcRefuel()
     LogAXIOM.debug("AXIOM Tire pitstops %i\n", tirespitstops);
     LogAXIOM.debug("AXIOM Tire wear per meter %.9f\n", mMyCar->wheels()->avgWearPerMeter());
 
-    return stintfuel - mCar->_fuel;
+    // Never request a negative amount (the simu ignores it but the race engine
+    // still charges fabs(_pitFuel) as refuel time), nor more than fits in the
+    // tank : the request is also used as "fuel added" by updateFuel().
+    double refuel = stintfuel - mCar->_fuel;
+    return Utils::clip(refuel, 0.0, std::max(0.0, (double)(mCar->_tank - mCar->_fuel)));
 }
 
 int Pit::calcRepair() const
