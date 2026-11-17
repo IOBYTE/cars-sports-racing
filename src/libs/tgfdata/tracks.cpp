@@ -623,6 +623,7 @@ bool GfTrack::load() const
 	{
 		GfLogWarning("Unusable track %s : could not find 3D model %s\n",
 					 _strId.c_str(), ossFileName.str().c_str());
+        piTrackLoader->unload(); // Don't leave a half-usable track loaded.
         return false;
     }
 

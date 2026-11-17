@@ -1232,10 +1232,19 @@ GfParmReadBuf (char *buffer)
 void *
 GfParmReadFileBoth(const char *file, int mode)
 {
-    void *ret = GfParmReadFileLocal(file, mode);
+    // Look for an existing file first (user settings dir, then data dir).
+    // CREAT must not be honoured here : with it, a missing local file still
+    // yields an (empty) handle and the data dir copy is never read.
+    const int noCreat = mode & ~GFPARM_RMODE_CREAT;
+
+    void *ret = GfParmReadFileLocal(file, noCreat, false);
 
     if (!ret)
-        return GfParmReadFile(file, mode);
+        ret = GfParmReadFile(file, noCreat);
+
+    // Neither exists : fall back to the original behaviour (create if asked).
+    if (!ret && (mode & GFPARM_RMODE_CREAT))
+        ret = GfParmReadFileLocal(file, mode);
 
     return ret;
 }

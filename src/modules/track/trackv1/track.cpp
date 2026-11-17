@@ -402,14 +402,19 @@ TrackShutdown(void)
         return;
     }
 
-    nextSeg = theTrack->seg->next;
-
-    do
+    // theTrack->seg is NULL when the track was allocated but its segments
+    // were never built (e.g. unknown track version or unreadable file).
+    if (theTrack->seg)
     {
-        curSeg = nextSeg;
-        nextSeg = nextSeg->next;
-        freeSeg(curSeg);
-    } while (curSeg != theTrack->seg);
+        nextSeg = theTrack->seg->next;
+
+        do
+        {
+            curSeg = nextSeg;
+            nextSeg = nextSeg->next;
+            freeSeg(curSeg);
+        } while (curSeg != theTrack->seg);
+    }
 
     curSurf = theTrack->surfaces;
 
