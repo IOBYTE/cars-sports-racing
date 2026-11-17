@@ -273,7 +273,10 @@
 #define TRK_VAL_WALL                "wall"
 #define TRK_VAL_CURB                "curb"
 #define TRK_VAL_FENCE               "fence"
+#define TRK_VAL_FENCE1              "fence1"
+#define TRK_VAL_FENCE2              "fence2"
 #define TRK_VAL_NO_BARRIER          "no barrier"
+#define TRK_VAL_PITBUILDING         "pit building"
 
 
 #define TRK_SECT_CAM                "Cameras"
@@ -344,14 +347,21 @@ typedef struct trackSurface
 
 } tTrackSurface;
 
+#define TRACK_SEG_STYLES \
+    X(PLAN)             /**< Flat (border only) */ \
+    X(CURB)             /**< Curb (border only) */ \
+    X(WALL)             /**< Wall (border and barrier) */ \
+    X(FENCE)            /**< Fence (no width) (barrier only) (2 sided geometry) (texture mirrored on back side) */ \
+    X(PITBUILDING)      /**< Pit building wall (barrier only) */ \
+    X(NO_BARRIER)       /**< No Barrier (barrier only) */ \
+    X(FENCE1)           /**< Fence (no width) (barrier only) (1 sided geometry) (same texture on both sides) */ \
+    X(FENCE2)           /**< Fence (no width) (barrier only) (1 sided geometry) (different texture on each side) */
+
 enum tSegStyle
 {
-    TR_PLAN        = 0,      /**< Flat (border only) */
-    TR_CURB        = 1,      /**< Curb (border only) */
-    TR_WALL        = 2,      /**< Wall (border and barrier) */
-    TR_FENCE       = 3,      /**< Fence (no width) (barrier only) */
-    TR_PITBUILDING = 4,      /**< Pit building wall (barrier only) */
-    TR_NO_BARRIER  = 5       /**< No Barrier (barrier only) */
+#define X(x) TR_##x,
+    TRACK_SEG_STYLES
+#undef X
 };
 
 /** Barrier */
@@ -414,6 +424,8 @@ typedef struct trackSeg
                                         - TR_CURB
                                         - TR_WALL
                                         - TR_FENCE
+                                        - TR_FENCE1
+                                        - TR_FENCE2
                                         - TR_PITBUILDING
                                         - TR_NO_BARRIER
                                 */

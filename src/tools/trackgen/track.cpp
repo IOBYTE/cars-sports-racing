@@ -847,6 +847,8 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                         }
                         break;
                     case TR_FENCE:
+                    case TR_FENCE1:
+                    case TR_FENCE2:
                     case TR_PITBUILDING:
                     case TR_NO_BARRIER:
                         // not supported
@@ -927,6 +929,8 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                             }
                             break;
                         case TR_FENCE:
+                        case TR_FENCE1:
+                        case TR_FENCE2:
                         case TR_PITBUILDING:
                         case TR_NO_BARRIER:
                             // not supported
@@ -1019,6 +1023,8 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                             }
                             break;
                         case TR_FENCE:
+                        case TR_FENCE1:
+                        case TR_FENCE2:
                         case TR_PITBUILDING:
                         case TR_NO_BARRIER:
                             // not supported
@@ -1112,6 +1118,8 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                             }
                             break;
                         case TR_FENCE:
+                        case TR_FENCE1:
+                        case TR_FENCE2:
                         case TR_PITBUILDING:
                         case TR_NO_BARRIER:
                             // not supported
@@ -1184,6 +1192,8 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                     }
                     break;
                 case TR_FENCE:
+                case TR_FENCE1:
+                case TR_FENCE2:
                 case TR_PITBUILDING:
                 case TR_NO_BARRIER:
                     // not supported
@@ -1460,6 +1470,8 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                         }
                         break;
                     case TR_FENCE:
+                    case TR_FENCE1:
+                    case TR_FENCE2:
                     case TR_PITBUILDING:
                     case TR_NO_BARRIER:
                         // not supported
@@ -1540,6 +1552,8 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                             }
                             break;
                         case TR_FENCE:
+                        case TR_FENCE1:
+                        case TR_FENCE2:
                         case TR_PITBUILDING:
                         case TR_NO_BARRIER:
                             // not supported
@@ -1632,6 +1646,8 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                             }
                             break;
                         case TR_FENCE:
+                        case TR_FENCE1:
+                        case TR_FENCE2:
                         case TR_PITBUILDING:
                         case TR_NO_BARRIER:
                             // not supported
@@ -1725,6 +1741,8 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                             }
                             break;
                         case TR_FENCE:
+                        case TR_FENCE1:
+                        case TR_FENCE2:
                         case TR_PITBUILDING:
                         case TR_NO_BARRIER:
                             // not supported
@@ -1797,6 +1815,8 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                     }
                     break;
                 case TR_FENCE:
+                case TR_FENCE1:
+                case TR_FENCE2:
                 case TR_PITBUILDING:
                 case TR_NO_BARRIER:
                     // not supported
@@ -2065,6 +2085,30 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                         SETPOINT(texLen, 1.0, seg->vertex[TR_SR].x, seg->vertex[TR_SR].y, seg->vertex[TR_SR].z + curBarrier->height);
                     }
                     break;
+                case TR_FENCE1:
+                    if (j == 0)
+                    {
+                        SETPOINT(texLen, 0.0, seg->vertex[TR_SR].x, seg->vertex[TR_SR].y, seg->vertex[TR_SR].z);
+                        SETPOINT(texLen, 1.0, seg->vertex[TR_SR].x, seg->vertex[TR_SR].y, seg->vertex[TR_SR].z + curBarrier->height);
+                    }
+                    else if (j == 2)
+                    {
+                        SETPOINT(-texLen, 1.0, seg->vertex[TR_SR].x, seg->vertex[TR_SR].y, seg->vertex[TR_SR].z + curBarrier->height);
+                        SETPOINT(-texLen, 0.0, seg->vertex[TR_SR].x, seg->vertex[TR_SR].y, seg->vertex[TR_SR].z);
+                    }
+                    break;
+                case TR_FENCE2:
+                    if (j == 0)
+                    {
+                        SETPOINT(texLen, 0.0, seg->vertex[TR_SR].x, seg->vertex[TR_SR].y, seg->vertex[TR_SR].z);
+                        SETPOINT(texLen, 0.5, seg->vertex[TR_SR].x, seg->vertex[TR_SR].y, seg->vertex[TR_SR].z + curBarrier->height);
+                    }
+                    else if (j == 2)
+                    {
+                        SETPOINT(texLen, 0.5, seg->vertex[TR_SR].x, seg->vertex[TR_SR].y, seg->vertex[TR_SR].z + curBarrier->height);
+                        SETPOINT(texLen, 1.0, seg->vertex[TR_SR].x, seg->vertex[TR_SR].y, seg->vertex[TR_SR].z);
+                    }
+                    break;
                 case TR_WALL:
                     switch (j)
                     {
@@ -2128,6 +2172,30 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                             SETPOINT(texLen, 1.0, x, y, curHeight + curBarrier->height);
                         }
                         break;
+                    case TR_FENCE1:
+                        if (j == 0)
+                        {
+                            SETPOINT(texLen, 0.0, x, y, curHeight);
+                            SETPOINT(texLen, 1.0, x, y, curHeight + curBarrier->height);
+                        }
+                        else if (j == 2)
+                        {
+                            SETPOINT(-texLen, 1.0, x, y, curHeight + curBarrier->height);
+                            SETPOINT(-texLen, 0.0, x, y, curHeight);
+                        }
+                        break;
+                    case TR_FENCE2:
+                        if (j == 0)
+                        {
+                            SETPOINT(texLen, 0.0, x, y, curHeight);
+                            SETPOINT(texLen, 0.5, x, y, curHeight + curBarrier->height);
+                        }
+                        else if (j == 2)
+                        {
+                            SETPOINT(texLen, 0.5, x, y, curHeight + curBarrier->height);
+                            SETPOINT(texLen, 1.0, x, y, curHeight);
+                        }
+                        break;
                     case TR_WALL:
                         switch (j)
                         {
@@ -2189,6 +2257,30 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                         {
                             SETPOINT(texLen, 0.0, x, y, curHeight);
                             SETPOINT(texLen, 1.0, x, y, curHeight + curBarrier->height);
+                        }
+                        break;
+                    case TR_FENCE1:
+                        if (j == 0)
+                        {
+                            SETPOINT(texLen, 0.0, x, y, curHeight);
+                            SETPOINT(texLen, 1.0, x, y, curHeight + curBarrier->height);
+                        }
+                        else if (j == 2)
+                        {
+                            SETPOINT(-texLen, 1.0, x, y, curHeight + curBarrier->height);
+                            SETPOINT(-texLen, 0.0, x, y, curHeight);
+                        }
+                        break;
+                    case TR_FENCE2:
+                        if (j == 0)
+                        {
+                            SETPOINT(texLen, 0.0, x, y, curHeight);
+                            SETPOINT(texLen, 0.5, x, y, curHeight + curBarrier->height);
+                        }
+                        else if (j == 2)
+                        {
+                            SETPOINT(texLen, 0.5, x, y, curHeight + curBarrier->height);
+                            SETPOINT(texLen, 1.0, x, y, curHeight);
                         }
                         break;
                     case TR_WALL:
@@ -2256,6 +2348,30 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                             SETPOINT(texLen, 1.0, x, y, curHeight + curBarrier->height);
                         }
                         break;
+                    case TR_FENCE1:
+                        if (j == 0)
+                        {
+                            SETPOINT(texLen, 0.0, x, y, curHeight);
+                            SETPOINT(texLen, 1.0, x, y, curHeight + curBarrier->height);
+                        }
+                        else if (j == 2)
+                        {
+                            SETPOINT(-texLen, 1.0, x, y, curHeight + curBarrier->height);
+                            SETPOINT(-texLen, 0.0, x, y, curHeight);
+                        }
+                        break;
+                    case TR_FENCE2:
+                        if (j == 0)
+                        {
+                            SETPOINT(texLen, 0.0, x, y, curHeight);
+                            SETPOINT(texLen, 0.5, x, y, curHeight + curBarrier->height);
+                        }
+                        else if (j == 2)
+                        {
+                            SETPOINT(texLen, 0.5, x, y, curHeight + curBarrier->height);
+                            SETPOINT(texLen, 1.0, x, y, curHeight);
+                        }
+                        break;
                     case TR_WALL:
                         switch (j)
                         {
@@ -2303,6 +2419,30 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                 {
                     SETPOINT(texLen, 0.0, seg->vertex[TR_ER].x, seg->vertex[TR_ER].y, seg->vertex[TR_ER].z);
                     SETPOINT(texLen, 1.0, seg->vertex[TR_ER].x, seg->vertex[TR_ER].y, seg->vertex[TR_ER].z + curBarrier->height);
+                }
+                break;
+            case TR_FENCE1:
+                if (j == 0)
+                {
+                    SETPOINT(texLen, 0.0, seg->vertex[TR_ER].x, seg->vertex[TR_ER].y, seg->vertex[TR_ER].z);
+                    SETPOINT(texLen, 1.0, seg->vertex[TR_ER].x, seg->vertex[TR_ER].y, seg->vertex[TR_ER].z + curBarrier->height);
+                }
+                else if (j == 2)
+                {
+                    SETPOINT(-texLen, 1.0, seg->vertex[TR_ER].x, seg->vertex[TR_ER].y, seg->vertex[TR_ER].z + curBarrier->height);
+                    SETPOINT(-texLen, 0.0, seg->vertex[TR_ER].x, seg->vertex[TR_ER].y, seg->vertex[TR_ER].z);
+                }
+                break;
+            case TR_FENCE2:
+                if (j == 0)
+                {
+                    SETPOINT(texLen, 0.0, seg->vertex[TR_ER].x, seg->vertex[TR_ER].y, seg->vertex[TR_ER].z);
+                    SETPOINT(texLen, 0.5, seg->vertex[TR_ER].x, seg->vertex[TR_ER].y, seg->vertex[TR_ER].z + curBarrier->height);
+                }
+                else if (j == 2)
+                {
+                    SETPOINT(texLen, 0.5, seg->vertex[TR_ER].x, seg->vertex[TR_ER].y, seg->vertex[TR_ER].z + curBarrier->height);
+                    SETPOINT(texLen, 1.0, seg->vertex[TR_ER].x, seg->vertex[TR_ER].y, seg->vertex[TR_ER].z);
                 }
                 break;
             case TR_WALL:
@@ -2434,6 +2574,30 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                         SETPOINT(texLen, 0.0, seg->vertex[TR_SL].x, seg->vertex[TR_SL].y, seg->vertex[TR_SL].z);
                     }
                     break;
+                case TR_FENCE1:
+                    if (j == 0)
+                    {
+                        SETPOINT(texLen, 1.0, seg->vertex[TR_SL].x, seg->vertex[TR_SL].y, seg->vertex[TR_SL].z + curBarrier->height);
+                        SETPOINT(texLen, 0.0, seg->vertex[TR_SL].x, seg->vertex[TR_SL].y, seg->vertex[TR_SL].z);
+                    }
+                    else if (j == 2)
+                    {
+                        SETPOINT(-texLen, 0.0, seg->vertex[TR_SL].x, seg->vertex[TR_SL].y, seg->vertex[TR_SL].z);
+                        SETPOINT(-texLen, 1.0, seg->vertex[TR_SL].x, seg->vertex[TR_SL].y, seg->vertex[TR_SL].z + curBarrier->height);
+                    }
+                    break;
+                case TR_FENCE2:
+                    if (j == 0)
+                    {
+                        SETPOINT(texLen, 0.5, seg->vertex[TR_SL].x, seg->vertex[TR_SL].y, seg->vertex[TR_SL].z + curBarrier->height);
+                        SETPOINT(texLen, 0.0, seg->vertex[TR_SL].x, seg->vertex[TR_SL].y, seg->vertex[TR_SL].z);
+                    }
+                    else if (j == 2)
+                    {
+                        SETPOINT(texLen, 1.0, seg->vertex[TR_SL].x, seg->vertex[TR_SL].y, seg->vertex[TR_SL].z);
+                        SETPOINT(texLen, 0.5, seg->vertex[TR_SL].x, seg->vertex[TR_SL].y, seg->vertex[TR_SL].z + curBarrier->height);
+                    }
+                    break;
                 case TR_WALL:
                     switch (j)
                     {
@@ -2500,6 +2664,30 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                             SETPOINT(texLen, 0, x, y, curHeight);
                         }
                         break;
+                    case TR_FENCE1:
+                        if (j == 0)
+                        {
+                            SETPOINT(texLen, 1.0, x, y, curHeight + curBarrier->height);
+                            SETPOINT(texLen, 0.0, x, y, curHeight);
+                        }
+                        else if (j == 2)
+                        {
+                            SETPOINT(-texLen, 0.0, x, y, curHeight);
+                            SETPOINT(-texLen, 1.0, x, y, curHeight + curBarrier->height);
+                        }
+                        break;
+                    case TR_FENCE2:
+                        if (j == 0)
+                        {
+                            SETPOINT(texLen, 0.5, x, y, curHeight + curBarrier->height);
+                            SETPOINT(texLen, 0.0, x, y, curHeight);
+                        }
+                        else if (j == 2)
+                        {
+                            SETPOINT(texLen, 1.0, x, y, curHeight);
+                            SETPOINT(texLen, 0.5, x, y, curHeight + curBarrier->height);
+                        }
+                        break;
                     case TR_WALL:
                         switch (j)
                         {
@@ -2563,6 +2751,30 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                         {
                             SETPOINT(texLen, 1.0, x, y, curHeight + curBarrier->height);
                             SETPOINT(texLen, 0, x, y, curHeight);
+                        }
+                        break;
+                    case TR_FENCE1:
+                        if (j == 0)
+                        {
+                            SETPOINT(texLen, 1.0, x, y, curHeight + curBarrier->height);
+                            SETPOINT(texLen, 0.0, x, y, curHeight);
+                        }
+                        else if (j == 2)
+                        {
+                            SETPOINT(-texLen, 0.0, x, y, curHeight);
+                            SETPOINT(-texLen, 1.0, x, y, curHeight + curBarrier->height);
+                        }
+                        break;
+                    case TR_FENCE2:
+                        if (j == 0)
+                        {
+                            SETPOINT(texLen, 0.5, x, y, curHeight + curBarrier->height);
+                            SETPOINT(texLen, 0.0, x, y, curHeight);
+                        }
+                        else if (j == 2)
+                        {
+                            SETPOINT(texLen, 1.0, x, y, curHeight);
+                            SETPOINT(texLen, 0.5, x, y, curHeight + curBarrier->height);
                         }
                         break;
                     case TR_WALL:
@@ -2631,6 +2843,30 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                             SETPOINT(texLen, 0, x, y, curHeight);
                         }
                         break;
+                    case TR_FENCE1:
+                        if (j == 0)
+                        {
+                            SETPOINT(texLen, 1.0, x, y, curHeight + curBarrier->height);
+                            SETPOINT(texLen, 0.0, x, y, curHeight);
+                        }
+                        else if (j == 2)
+                        {
+                            SETPOINT(-texLen, 0.0, x, y, curHeight);
+                            SETPOINT(-texLen, 1.0, x, y, curHeight + curBarrier->height);
+                        }
+                        break;
+                    case TR_FENCE2:
+                        if (j == 0)
+                        {
+                            SETPOINT(texLen, 0.5, x, y, curHeight + curBarrier->height);
+                            SETPOINT(texLen, 0.0, x, y, curHeight);
+                        }
+                        else if (j == 2)
+                        {
+                            SETPOINT(texLen, 1.0, x, y, curHeight);
+                            SETPOINT(texLen, 0.5, x, y, curHeight + curBarrier->height);
+                        }
+                        break;
                     case TR_WALL:
                         switch (j)
                         {
@@ -2683,6 +2919,30 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                 {
                     SETPOINT(texLen, 1.0, seg->vertex[TR_EL].x, seg->vertex[TR_EL].y, seg->vertex[TR_EL].z + curBarrier->height);
                     SETPOINT(texLen, 0, seg->vertex[TR_EL].x, seg->vertex[TR_EL].y, seg->vertex[TR_EL].z);
+                }
+                break;
+            case TR_FENCE1:
+                if (j == 0)
+                {
+                    SETPOINT(texLen, 1.0, seg->vertex[TR_EL].x, seg->vertex[TR_EL].y, seg->vertex[TR_EL].z + curBarrier->height);
+                    SETPOINT(texLen, 0.0, seg->vertex[TR_EL].x, seg->vertex[TR_EL].y, seg->vertex[TR_EL].z);
+                }
+                else if (j == 2)
+                {
+                    SETPOINT(-texLen, 0.0, seg->vertex[TR_EL].x, seg->vertex[TR_EL].y, seg->vertex[TR_EL].z);
+                    SETPOINT(-texLen, 1.0, seg->vertex[TR_EL].x, seg->vertex[TR_EL].y, seg->vertex[TR_EL].z + curBarrier->height);
+                }
+                break;
+            case TR_FENCE2:
+                if (j == 0)
+                {
+                    SETPOINT(texLen, 0.5, seg->vertex[TR_EL].x, seg->vertex[TR_EL].y, seg->vertex[TR_EL].z + curBarrier->height);
+                    SETPOINT(texLen, 0.0, seg->vertex[TR_EL].x, seg->vertex[TR_EL].y, seg->vertex[TR_EL].z);
+                }
+                else if (j == 2)
+                {
+                    SETPOINT(texLen, 1.0, seg->vertex[TR_EL].x, seg->vertex[TR_EL].y, seg->vertex[TR_EL].z);
+                    SETPOINT(texLen, 0.5, seg->vertex[TR_EL].x, seg->vertex[TR_EL].y, seg->vertex[TR_EL].z + curBarrier->height);
                 }
                 break;
             case TR_WALL:
