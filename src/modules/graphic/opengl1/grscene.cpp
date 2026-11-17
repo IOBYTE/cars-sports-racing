@@ -255,6 +255,12 @@ grLoadScene(tTrack *track)
     ssgModelPath(buf);
 
     desc = grssgLoadAC3D(acname, NULL);
+    if (!desc)
+    {
+        GfLogError("Could not load track 3D model '%s' (model path tracks/%s/%s)\n",
+                   acname, grTrack->category, grTrack->internalname);
+        return -1;
+    }
 
     shad_xmax=t_xmax;
     shad_ymax=t_ymax;
