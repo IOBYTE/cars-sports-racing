@@ -597,7 +597,7 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
     }
 
     nbvert++;
-    nbvert *= 30;
+    nbvert *= 40;
     nbvert += 58; /* start bridge */
     nbvert += 12 + 10 * Track->pits.driversPitsNb;
     // TODO: Investigate if this is a feasible solution, nbvert was perviously += 1000.
@@ -2393,7 +2393,7 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                 {
                     tTrackSeg *prevSide = mseg->next;
                     while (prevSide->lside)
-                        prevSide = prevSide->rside;
+                        prevSide = prevSide->lside;
                     startPolygonNeeded = std::fabs(seg->vertex[TR_SL].x - prevSide->vertex[TR_EL].x) > 0.001 || std::fabs(seg->vertex[TR_SL].y - prevSide->vertex[TR_EL].y) > 0.001;
                     startNeeded = true;
                 }
