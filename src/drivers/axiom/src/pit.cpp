@@ -19,6 +19,28 @@
 
 #include "Utils.h"
 
+#include <algorithm>
+#include <cmath>
+
+namespace
+{
+// Width of a (main, border or side) segment at a fraction of its length.
+// RtTrackGetWidth wants the distance into the segment in the segment's own
+// units: meters on straights, radians on turns.
+double segWidthAt(const tTrackSeg* seg, double frac)
+{
+    double toStart = frac * (seg->type == TR_STR ? seg->length : seg->arc);
+
+    return RtTrackGetWidth(const_cast<tTrackSeg*>(seg), (tdble)toStart);
+}
+
+// Zero-slope Hermite blend used by Spline between two points.
+double smoothStep(double t)
+{
+    return t * t * (3.0 - 2.0 * t);
+}
+}
+
 Pit::Pit() :
     mTrack(NULL),
     mMyCar(NULL),
@@ -109,10 +131,15 @@ void Pit::init(const tTrack* track, tSituation* situation, CarParams* car,
         //mPitp[5].x = mPitInfo->pitEnd->lgfromstart + mPitInfo->nPitSeg * mPitInfo->len;
         mPitp[6].x = mPitInfo->pitExit->lgfromstart + mPitInfo->pitExit->length;
         //mPitp[6].x = mPitInfo->pitExit->lgfromstart;
+        // Drive through: entry, end of entry, pit lane start, pit lane end,
+        // start of exit, exit. The extra lane points keep the car in the lane
+        // when the end of entry / start of exit get pulled in off the grass.
         mDtp[0].x = mPitp[0].x;
         mDtp[1].x = mPitp[1].x;
-        mDtp[2].x = mPitp[5].x;
-        mDtp[3].x = mPitp[6].x;
+        mDtp[2].x = mPitInfo->pitStart->lgfromstart;
+        mDtp[3].x = mPitInfo->pitEnd->lgfromstart + mPitInfo->pitEnd->length;
+        mDtp[4].x = mPitp[5].x;
+        mDtp[5].x = mPitp[6].x;
         mPitEntry = mPitp[0].x;
         mPitExit = mPitp[6].x;
         mLimitEntry = mPitp[1].x;
@@ -131,24 +158,56 @@ void Pit::init(const tTrack* track, tSituation* situation, CarParams* car,
             mDtp[i].x = toSplineCoord(mDtp[i].x);
         }
 
-        // Fix broken pit exit.
-        if (mPitp[6].x < mPitp[5].x)
-        {
-            //fprintf(stderr,"bt: Pitexit broken on track %s.\n", track->name);fflush(stderr);
-            mPitp[6].x = mPitp[5].x;// +50.0f;
-        }
-
         mPitp[1].x = std::min(mPitp[1].x, mPitp[2].x);
         mPitp[5].x = std::max(mPitp[4].x, mPitp[5].x);
 
+        // Broken pit exit: the start of the exit is at or past the end of
+        // the pit exit segment. Keep point 6 at the end of the pit exit and
+        // move point 5 back between its neighbours so the car still blends
+        // back to the track edge. If there is no room (last pit box and a
+        // very short pit exit segment), fall back to collapsing point 6.
+        if (mPitp[6].x <= mPitp[5].x)
+        {
+            if (mPitp[4].x < mPitp[6].x)
+            {
+                mPitp[5].x = (mPitp[4].x + mPitp[6].x) / 2.0;
+            }
+            else
+            {
+                mPitp[6].x = mPitp[5].x;
+            }
+        }
+
+        if (mDtp[5].x <= mDtp[4].x)
+        {
+            if (mDtp[3].x < mDtp[5].x)
+            {
+                mDtp[4].x = (mDtp[3].x + mDtp[5].x) / 2.0;
+            }
+            else
+            {
+                mDtp[5].x = mDtp[4].x;
+            }
+        }
+
+        // End of the drive through entry wraps to almost a full lap when the
+        // pit entry is less than a pit length before the pit start. Put it
+        // back between its neighbours so the spline points stay in order.
+        if (mDtp[1].x >= mDtp[2].x)
+        {
+            mDtp[1].x = (mDtp[0].x + mDtp[2].x) / 2.0;
+        }
+
         mPitOnLeftSide = mPitInfo->side == TR_LFT;
         double sign = mPitOnLeftSide ? 1.0 : -1.0;
-        mPitp[0].y = sign * (mTrack->width / 2.0 - 2.0);
-        mPitp[6].y = sign * (mTrack->width / 2.0 - 2.0);
+        // 2 m inside the edge of the actual segment at the pit entry start and
+        // the pit exit end, not the track's default width.
+        mPitp[0].y = sign * (segWidthAt(mPitInfo->pitEntry, 0.0) / 2.0 - 2.0);
+        mPitp[6].y = sign * (segWidthAt(mPitInfo->pitExit, 1.0) / 2.0 - 2.0);
         //mPitp[0].y = 0.0;
         //mPitp[6].y = 0.0;
         mDtp[0].y = mPitp[0].y;
-        mDtp[3].y = mPitp[6].y;
+        mDtp[DTPOINTS - 1].y = mPitp[6].y;
 
         for (int i = 1; i < PITPOINTS - 1; i++)
         {
@@ -164,6 +223,27 @@ void Pit::init(const tTrack* track, tSituation* situation, CarParams* car,
 
         mPitp[3].y = sign * (fabs(mPitInfo->driversPits->pos.toMiddle) + mPitRight);
         GfLogDebug("#mPitp[3].y = %.3f\n", mPitp[3].y);
+
+        // Keep the entry and exit transitions on the paved part of the track.
+        // The lateral target at the end of the pit entry and the start of the
+        // pit exit is limited so the whole blend from / to the track edge
+        // stays inside the drivable width (no grass, sand or gravel).
+        double margin = mCar->_dimension_y / 2.0 + 0.5;
+        double edge = fabs(mPitp[0].y);
+
+        double a = limitTransition(mPitp[0].x, edge, mPitp[1].x, fabs(mPitp[1].y), margin);
+        mPitp[1].y = sign * a;
+        a = limitTransition(mPitp[6].x, fabs(mPitp[6].y), mPitp[5].x, fabs(mPitp[5].y), margin);
+        mPitp[5].y = sign * a;
+
+        a = limitTransition(mDtp[0].x, edge, mDtp[1].x, fabs(mDtp[1].y), margin);
+        mDtp[1].y = sign * a;
+        a = limitTransition(mDtp[5].x, fabs(mDtp[5].y), mDtp[4].x, fabs(mDtp[4].y), margin);
+        mDtp[4].y = sign * a;
+
+        GfLogDebug("#Pit drivable limits: mPitp[1].y = %.3f mPitp[5].y = %.3f mDtp[1].y = %.3f mDtp[4].y = %.3f\n",
+                   mPitp[1].y, mPitp[5].y, mDtp[1].y, mDtp[4].y);
+
         mPitSpline.init(PITPOINTS, mPitp);
         mDtSpline.init(DTPOINTS, mDtp);
     }
@@ -180,6 +260,109 @@ double Pit::toSplineCoord(double x) const
     }
 
     return x;
+}
+
+// Finds the main segment at a distance from start and the distance into it.
+const tTrackSeg* Pit::segAt(double fromstart, double& toStart) const
+{
+    while (fromstart < 0.0)
+    {
+        fromstart += mTrack->length;
+    }
+
+    while (fromstart >= mTrack->length)
+    {
+        fromstart -= mTrack->length;
+    }
+
+    const tTrackSeg* seg = mTrack->seg;
+
+    for (int i = 0; i < mTrack->nseg; i++)
+    {
+        if (fromstart >= seg->lgfromstart && fromstart < seg->lgfromstart + seg->length)
+        {
+            toStart = fromstart - seg->lgfromstart;
+            return seg;
+        }
+
+        seg = seg->next;
+    }
+
+    toStart = 0.0;
+    return mTrack->seg;
+}
+
+// Distance from the track middle to the outer edge of the drivable surface
+// on the pit side: the main track plus any border / side that is paved,
+// stopping at the first grass, sand or gravel. A wall border does not end
+// the drivable area: a pit lane can be walled off from the track and the
+// car drives on the side between the walls, so the wall counts only if
+// there is pavement beyond it.
+double Pit::drivableToMiddle(double fromstart) const
+{
+    double toStart = 0.0;
+    const tTrackSeg* seg = segAt(fromstart, toStart);
+    double frac = seg->length > 0.0 ? Utils::clip(toStart / seg->length, 0.0, 1.0) : 0.0;
+    int side = mPitOnLeftSide ? TR_SIDE_LFT : TR_SIDE_RGT;
+
+    double extent = segWidthAt(seg, frac) / 2.0;
+    double wallWidth = 0.0;
+    const tTrackSeg* s = seg->side[side];
+
+    // At most a border and a side.
+    for (int i = 0; i < 2 && s != NULL; i++)
+    {
+        double w = segWidthAt(s, frac);
+        bool border = (s->type2 == TR_LBORDER || s->type2 == TR_RBORDER);
+
+        if (border && s->style == TR_WALL)
+        {
+            wallWidth += w;
+        }
+        // Same off-track rule as Driver::stateOfftrack (friction below 1.0),
+        // using the dry value so wet asphalt still counts as drivable.
+        else if (s->surface->kFrictionDry < 1.0)
+        {
+            break;
+        }
+        else
+        {
+            extent += wallWidth + w;
+            wallWidth = 0.0;
+        }
+
+        s = s->side[side];
+    }
+
+    return extent;
+}
+
+// Returns the largest outward offset (<= aFree) for the spline point at xFree
+// such that the blend between the fixed point (xFixed, aFixed) and it stays
+// at least 'margin' inside the drivable edge everywhere along the way.
+// x values are spline coordinates, a values are distances from the middle
+// towards the pit side.
+double Pit::limitTransition(double xFixed, double aFixed, double xFree, double aFree, double margin) const
+{
+    double len = fabs(xFree - xFixed);
+    int n = std::max(2, (int)ceil(len / 0.5));
+    double limit = aFree;
+
+    for (int i = 1; i <= n; i++)
+    {
+        double t = (double)i / n;
+        double fs = xFixed + (xFree - xFixed) * t + mPitEntry;
+        double maxa = drivableToMiddle(fs) - margin;
+        double w = smoothStep(t);
+
+        if (w > 0.001)
+        {
+            limit = std::min(limit, (maxa - aFixed * (1.0 - w)) / w);
+        }
+    }
+
+    // Never pull the point in past the fixed (on track) point.
+    return std::max(limit, std::min(aFree, aFixed));
 }
 
 // Computes offset to track middle for trajectory

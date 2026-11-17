@@ -29,7 +29,7 @@
 #include "CarParams.h"
 
 #define PITPOINTS 7
-#define DTPOINTS 4 // drive through
+#define DTPOINTS 6 // drive through
 
 class Pit
 {
@@ -61,6 +61,9 @@ private:
     bool    pitForPenalty();
     void    setPitstop(bool pitstop);
     double  toSplineCoord(double x) const;
+    const tTrackSeg* segAt(double fromstart, double& toStart) const;
+    double  drivableToMiddle(double fromstart) const;
+    double  limitTransition(double xFixed, double aFixed, double xFree, double aFree, double margin) const;
     int     calcRepair() const;
     double  calcRefuel();
 
