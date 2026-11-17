@@ -795,7 +795,7 @@ typedef struct Track
 #define TRK_ATT_RBAS            "rbarrier style"
 #define TRK_ATT_RBAW            "rbarrier width"
 #define TRK_ATT_RBAH            "rbarrier height"
-#define TRK_ATT_LBAFRCT         "lbarrier friction"
+#define TRK_ATT_RBAFRCT         "rbarrier friction"
 #define TRK_ATT_RBASURF         "rbarrier surface"
 
 #define TRK_VAL_PIT_TYPE_NONE		"no pit"
