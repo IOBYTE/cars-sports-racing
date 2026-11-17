@@ -862,10 +862,10 @@ void buildWalls(tTrackSeg *start, int side) {
                 if (close == true)
                 {
                     dtBegin(DT_POLYGON);
-                        dtVertex(svl.x, svl.y, svl.z);
-                        dtVertex(svr.x, svr.y, svr.z);
-                        dtVertex(svr.x, svr.y, svr.z + h);
-                        dtVertex(svl.x, svl.y, svl.z + h);
+                        dtVertex(evl.x, evl.y, evl.z);
+                        dtVertex(evr.x, evr.y, evr.z);
+                        dtVertex(evr.x, evr.y, evr.z + h);
+                        dtVertex(evl.x, evl.y, evl.z + h);
                     dtEnd();
 
                     dtEndComplexShape();
