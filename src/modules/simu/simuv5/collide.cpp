@@ -759,6 +759,19 @@ static tTrackSeg *getFirstWallStart(tTrackSeg *start, int side)
     return NULL;
 }
 
+// A wall's height at its start and at its end: they differ for a wall whose height
+// changes along the segment (version 4 tracks: "start height" and "end height"),
+// otherwise both are its height.
+static float wallStartHeight(const tTrackSeg *s)
+{
+    return s->startHeight != s->endHeight ? s->startHeight : s->height;
+}
+
+static float wallEndHeight(const tTrackSeg *s)
+{
+    return s->startHeight != s->endHeight ? s->endHeight : s->height;
+}
+
 // Create the left walls, start must point to a segment with a wall on the left and a leading
 // non wall segment.
 // FIXME: Does not work for a closed ring "by design".
@@ -780,7 +793,8 @@ void buildWalls(tTrackSeg *start, int side) {
         // Current segment is a wall?
         if (s != NULL && s->style == TR_WALL && s->side[side] != NULL)
         {
-            float h = s->height;
+            float hs = wallStartHeight(s);
+            float he = wallEndHeight(s);
             t3Dd svl = s->vertex[TR_SL];
             t3Dd svr = s->vertex[TR_SR];
             t3Dd evl = s->vertex[TR_EL];
@@ -791,7 +805,7 @@ void buildWalls(tTrackSeg *start, int side) {
             if (p == NULL || p->style != TR_WALL ||
                 (fabs(p->vertex[TR_EL].x - svl.x) > weps) ||
                 (fabs(p->vertex[TR_ER].x - svr.x) > weps) ||
-                (fabs(h - p->height) > weps) ||
+                (fabs(hs - wallEndHeight(p)) > weps) ||
                 fixedid == 0)
             {
                 // Enough space in array?
@@ -815,8 +829,8 @@ void buildWalls(tTrackSeg *start, int side) {
                 dtBegin(DT_POLYGON);
                     dtVertex(svl.x, svl.y, svl.z);
                     dtVertex(svr.x, svr.y, svr.z);
-                    dtVertex(svr.x, svr.y, svr.z + h);
-                    dtVertex(svl.x, svl.y, svl.z + h);
+                    dtVertex(svr.x, svr.y, svr.z + hs);
+                    dtVertex(svl.x, svl.y, svl.z + hs);
                 dtEnd();
             }
 
@@ -828,24 +842,24 @@ void buildWalls(tTrackSeg *start, int side) {
                 // Left.
                 dtBegin(DT_POLYGON);
                     dtVertex(svl.x, svl.y, svl.z);
-                    dtVertex(svl.x, svl.y, svl.z + h);
-                    dtVertex(evl.x, evl.y, evl.z + h);
+                    dtVertex(svl.x, svl.y, svl.z + hs);
+                    dtVertex(evl.x, evl.y, evl.z + he);
                     dtVertex(evl.x, evl.y, evl.z);
                 dtEnd();
                 /*
                 // Top.
                 dtBegin(DT_POLYGON);
-                    dtVertex(svl.x, svl.y, svl.z + h);
-                    dtVertex(svr.x, svr.y, svr.z + h);
-                    dtVertex(evr.x, evr.y, evr.z + h);
-                    dtVertex(evl.x, evl.y, evl.z + h);
+                    dtVertex(svl.x, svl.y, svl.z + hs);
+                    dtVertex(svr.x, svr.y, svr.z + hs);
+                    dtVertex(evr.x, evr.y, evr.z + he);
+                    dtVertex(evl.x, evl.y, evl.z + he);
                 dtEnd();*/
                 // Right.
                 dtBegin(DT_POLYGON);
-                    dtVertex(svr.x, svr.y, svr.z + h);
+                    dtVertex(svr.x, svr.y, svr.z + hs);
                     dtVertex(svr.x, svr.y, svr.z);
                     dtVertex(evr.x, evr.y, evr.z);
-                    dtVertex(evr.x, evr.y, evr.z + h);
+                    dtVertex(evr.x, evr.y, evr.z + he);
                 dtEnd();
             }
             else
@@ -857,15 +871,15 @@ void buildWalls(tTrackSeg *start, int side) {
             if (n == NULL || n->style != TR_WALL ||
                 (fabs(n->vertex[TR_SL].x - evl.x) > weps) ||
                 (fabs(n->vertex[TR_SR].x - evr.x) > weps) ||
-                (fabs(h - n->height) > weps))
+                (fabs(he - wallStartHeight(n)) > weps))
             {
                 if (close == true)
                 {
                     dtBegin(DT_POLYGON);
                         dtVertex(evl.x, evl.y, evl.z);
                         dtVertex(evr.x, evr.y, evr.z);
-                        dtVertex(evr.x, evr.y, evr.z + h);
-                        dtVertex(evl.x, evl.y, evl.z + h);
+                        dtVertex(evr.x, evr.y, evr.z + he);
+                        dtVertex(evl.x, evl.y, evl.z + he);
                     dtEnd();
 
                     dtEndComplexShape();

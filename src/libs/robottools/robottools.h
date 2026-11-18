@@ -76,6 +76,7 @@ do {								\
 
 /* for variable width segments */
 ROBOTTOOLS_API tdble RtTrackGetWidth(tTrackSeg *seg, tdble toStart);
+ROBOTTOOLS_API tdble RtTrackGetBorderHeight(tTrackSeg *seg, tdble toStart);
 
 /*
  * Convert a Local position (segment, toRight, toStart)

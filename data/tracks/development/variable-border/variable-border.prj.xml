@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="25.0.4.1" class="java.beans.XMLDecoder">
+ <object class="utils.Properties">
+  <void property="currentA">
+   <double>-6.283185307179578</double>
+  </void>
+  <void property="currentX">
+   <double>4.999990261822518E-7</double>
+  </void>
+  <void property="currentY">
+   <double>2.4863354855073646E-12</double>
+  </void>
+  <void property="curveNameCount">
+   <int>2</int>
+  </void>
+  <void property="path">
+   <string>C:\Users\Bob\cars-sports-racing\data\tracks\development\variable-border</string>
+  </void>
+  <void property="pitGenerator">
+   <object class="utils.circuit.Pits$Generator">
+    <void property="entry">
+     <object class="utils.circuit.Pits$GeneratorPart">
+      <void property="borderEndWidth">
+       <double>10.0</double>
+      </void>
+      <void property="borderHeight">
+       <double>0.0</double>
+      </void>
+      <void property="borderSurface">
+       <string>asphalt</string>
+      </void>
+      <void property="borderType">
+       <string>plan</string>
+      </void>
+      <void property="borderWidth">
+       <double>1.0</double>
+      </void>
+      <void property="sideEndWidth">
+       <double>5.0</double>
+      </void>
+      <void property="surface">
+       <string>grass</string>
+      </void>
+     </object>
+    </void>
+    <void property="exit">
+     <object class="utils.circuit.Pits$GeneratorPart">
+      <void property="borderHeight">
+       <double>0.0</double>
+      </void>
+      <void property="borderStartWidth">
+       <double>10.0</double>
+      </void>
+      <void property="borderSurface">
+       <string>asphalt</string>
+      </void>
+      <void property="borderType">
+       <string>plan</string>
+      </void>
+      <void property="borderWidth">
+       <double>1.0</double>
+      </void>
+      <void property="sideStartWidth">
+       <double>5.0</double>
+      </void>
+      <void property="surface">
+       <string>grass</string>
+      </void>
+     </object>
+    </void>
+    <void property="pits">
+     <object class="utils.circuit.Pits$GeneratorPart">
+      <void property="borderHeight">
+       <double>1.0</double>
+      </void>
+      <void property="borderSurface">
+       <string>wall</string>
+      </void>
+      <void property="borderType">
+       <string>wall</string>
+      </void>
+      <void property="borderWidth">
+       <double>0.5</double>
+      </void>
+      <void property="surface">
+       <string>asphalt-pits</string>
+      </void>
+     </object>
+    </void>
+    <void property="segmentsKey">
+     <int>-1437285171</int>
+    </void>
+   </object>
+  </void>
+  <void property="straightNameCount">
+   <int>8</int>
+  </void>
+  <void property="view3D">
+   <string>3.14103 -0.00000 15.000 3.912 2.522 1.100 1 60.00</string>
+  </void>
+  <void property="viewCenterX">
+   <double>-17.973247578084056</double>
+  </void>
+  <void property="viewCenterY">
+   <double>-100.86146150500227</double>
+  </void>
+  <void property="viewZoom">
+   <double>2.061883408071752</double>
+  </void>
+ </object>
+</java>

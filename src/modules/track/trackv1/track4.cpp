@@ -56,6 +56,8 @@ static tdble DoVfactor = 1.0;
 static tdble borderStartWidth[2];
 static tdble borderEndWidth[2];
 static tdble borderHeight[2];
+static tdble borderStartHeight[2];
+static tdble borderEndHeight[2];
 static tSegStyle borderStyle[2];
 static const char *borderMaterial[2];
 static tTrackSurface *borderSurface[2];
@@ -185,6 +187,7 @@ static void InitSides(void *TrackHandle, tTrack *theTrack)
         {
             borderStyle[side] = TR_WALL;
         }
+        borderStartHeight[side] = borderEndHeight[side] = borderHeight[side];
 
         /* Barrier parameters */
         snprintf(path, sizeof(path), "%s/%s", TRK_SECT_MAIN, SectBarrier[side]);
@@ -225,12 +228,12 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
     tdble x, y, z;
     tdble al, alfl;
     tdble x1, x2, y1, y2;
-    tdble sw, ew, bsw, bew, bmax;
+    tdble sw, ew, bsw, bew, bmax, bsh, beh;
     tdble minWidth;
     tdble maxWidth;
     int type;
     const char *style;
-    tdble Kew, Kbw;
+    tdble Kew, Kbw, Kbh;
     static char path[BUFSIZE];
     static char path2[BUFSIZE << 1];
     char *segName;
@@ -284,7 +287,18 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
 
             borderStartWidth[side] = bsw;
             borderEndWidth[side] = bew;
-            borderHeight[side] = GfParmGetNum(TrackHandle, path2, TRK_ATT_HEIGHT, (char *)NULL, borderHeight[side]);
+            // Heights the same way as widths: "height" sets both ends;
+            // otherwise "start height" defaults to the previous end height and
+            // "end height" defaults to the start height.
+            if (GfParmExistsParam(TrackHandle, path2, TRK_ATT_HEIGHT))
+            {
+                bsh = beh = GfParmGetNum(TrackHandle, path2, TRK_ATT_HEIGHT, (char *)NULL, 0.0);
+            }
+            else
+            {
+                bsh = GfParmGetNum(TrackHandle, path2, TRK_ATT_SHEIGHT, (char *)NULL, borderEndHeight[side]);
+                beh = GfParmGetNum(TrackHandle, path2, TRK_ATT_EHEIGHT, (char *)NULL, bsh);
+            }
             borderMaterial[side] = GfParmGetStr(TrackHandle, path2, TRK_ATT_SURF, borderMaterial[side]);
             borderSurface[side] = AddTrackSurface(TrackHandle, theTrack, borderMaterial[side]);
             style = GfParmGetStr(TrackHandle, path2, TRK_ATT_STYLE, ValStyle[borderStyle[side]]);
@@ -292,7 +306,7 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
             if (strcmp(style, TRK_VAL_PLAN) == 0)
             {
                 borderStyle[side] = TR_PLAN;
-                borderHeight[side] = 0;
+                bsh = beh = 0;
             }
             else if (strcmp(style, TRK_VAL_CURB) == 0)
             {
@@ -302,6 +316,24 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
             {
                 borderStyle[side] = TR_WALL;
             }
+
+            // A curb with one height whose widths differ keeps the slope of the
+            // segment's wide end: its height goes with its width, from its
+            // height at the wide end down in proportion (to nothing where it
+            // narrows to zero). Worked out for the whole segment, so each step
+            // keeps that slope, and the next segment starts as high as this
+            // one ends.
+            if (borderStyle[side] == TR_CURB && fabs(bsh - beh) < 0.001f && fabs(bsw - bew) >= 0.001f)
+            {
+                const tdble wide = MAX(bsw, bew);
+                const tdble h = bsh;
+                bsh = h * bsw / wide;
+                beh = h * bew / wide;
+            }
+
+            borderStartHeight[side] = bsh;
+            borderEndHeight[side] = beh;
+            borderHeight[side] = MAX(bsh, beh);
 
             /* Barrier parameters */
             snprintf(path2, sizeof(path2), "%s/%s", path, SectBarrier[side]);
@@ -343,6 +375,8 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
             ew = sideEndWidth[side];
             bsw = borderStartWidth[side];
             bew = borderEndWidth[side];
+            bsh = borderStartHeight[side];
+            beh = borderEndHeight[side];
         }
 
         Kew = (ew - sw) / (tdble)steps;
@@ -352,6 +386,10 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
         Kbw = (bew - bsw) / (tdble)steps;
         bew = bsw + (tdble)(curStep + 1) * Kbw;
         bsw = bsw + (tdble)(curStep)*Kbw;
+
+        Kbh = (beh - bsh) / (tdble)steps;
+        beh = bsh + (tdble)(curStep + 1) * Kbh;
+        bsh = bsh + (tdble)(curStep)*Kbh;
 
         /* Borders */
         if ((bsw != 0.0) || (bew != 0.0))
@@ -384,7 +422,11 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
             curBorder->width = MIN(bsw, bew);
             curBorder->type = curSeg->type;
             curBorder->surface = borderSurface[side];
-            curBorder->height = borderHeight[side];
+            // height is the highest, for what uses one height; the height
+            // along it is RtTrackGetBorderHeight()
+            curBorder->startHeight = bsh;
+            curBorder->endHeight = beh;
+            curBorder->height = MAX(bsh, beh);
             curBorder->style = borderStyle[side];
             curBorder->envIndex = envIndex;
             curBorder->DoVfactor = DoVfactor;
@@ -630,6 +672,9 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
                 }
                 break;
             }
+
+            // how much the height changes per unit of toStart, like Kyl
+            curBorder->Kyh = (beh - bsh) / (curSeg->type == TR_STR ? curBorder->length : curBorder->arc);
 
             curSeg = curBorder;
         }

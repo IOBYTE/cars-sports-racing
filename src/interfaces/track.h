@@ -267,6 +267,8 @@
 #define TRK_ATT_EWIDTH              "end width"
 #define TRK_ATT_STYLE               "style"
 #define TRK_ATT_HEIGHT              "height"
+#define TRK_ATT_SHEIGHT             "start height"
+#define TRK_ATT_EHEIGHT             "end height"
 #define TRK_ATT_BANKTYPE            "banking type"
 
 #define TRK_VAL_PLAN                "plan"
@@ -539,6 +541,16 @@ typedef struct trackSeg
         Used with Kyl: the outer edge drifts by Kyi + Kyl. Kept as the last member
         so existing field offsets don't move. */
     tdble   Kyi;
+
+    /** Border heights at the start and end of the segment (version 4 tracks:
+        "start height" and "end height", like "start width" and "end width").
+        They differ only for a border whose height changes along the segment,
+        and are 0 when the loader doesn't set them: use height then (see
+        RtTrackGetBorderHeight). After Kyi so existing field offsets don't move. */
+    tdble   startHeight;
+    tdble   endHeight;
+    /** Height change per unit of toStart (m/m on straights, m/rad on turns), like Kyl */
+    tdble   Kyh;
 
 } tTrackSeg;
 

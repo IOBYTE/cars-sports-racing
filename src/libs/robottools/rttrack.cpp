@@ -54,6 +54,25 @@ tdble RtTrackGetWidth(tTrackSeg *seg, tdble toStart)
     return fabs(seg->startWidth + toStart * seg->Kyl);
 }
 
+/** Get the height of a border (curb or wall) at a distance from its start
+    @ingroup	tracktools
+    @param	seg	Border segment
+    @param	toStart	Distance from the beginning of the segment.
+            <br>The units are:
+        - meters for straights
+        - radians for turns
+    @return	Height of the border at this point: it changes along the segment
+            from startHeight to endHeight when they differ (version 4 tracks),
+            otherwise it is height.
+ */
+tdble RtTrackGetBorderHeight(tTrackSeg *seg, tdble toStart)
+{
+    if (seg->startHeight != seg->endHeight)
+        return seg->startHeight + toStart * seg->Kyh;
+
+    return seg->height;
+}
+
 /** Convert a Local position (segment, toRight, toStart)
     @ingroup	tracktools
     into a Global one (X, Y)
@@ -466,14 +485,14 @@ tdble RtTrackHeightL(tTrkLocPos *p)
             return seg->vertex[TR_SR].z + p->toStart * seg->Kzl + tr * tan(seg->angle[TR_XS] + p->toStart * seg->Kzw);
         }
 
-        // Cross slope of the curb. A curb whose start and end widths differ
-        // keeps the slope of its wide end, so its outer edge height changes in
-        // a straight line along the segment with the width, down to the ground
+        // Cross slope of the curb: its height here over its width here. A curb
+        // whose start and end heights differ changes height along the segment;
+        // one with one height whose widths differ is given heights in
+        // proportion to its widths when the track is loaded, so it keeps the
+        // slope of its wide end and its outer edge goes down to the ground
         // where it narrows to zero (trackgen draws it the same way). Constant
         // width curbs rise by about seg->height across their width.
-        const tdble slope = (fabs(seg->startWidth - seg->endWidth) >= 0.001f)
-                            ? atan2(seg->height, MAX(seg->startWidth, seg->endWidth))
-                            : atan2(seg->height, w);
+        const tdble slope = atan2(RtTrackGetBorderHeight(seg, p->toStart), w);
 
         // The final height = starting height + height difference due
         // to track angle + height difference due to curb (this seems
