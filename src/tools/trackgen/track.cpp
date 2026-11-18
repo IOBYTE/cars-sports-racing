@@ -84,6 +84,14 @@ static tdble TrackStep = DEFAULT_TRACK_STEP;
 #define sqr(x) ((x) * (x))
 #endif
 
+// Height of a curb at an end of the given width : a curb that narrows down to
+// zero width also comes down to the ground there, so it ends in a triangle
+// instead of a vertical edge.
+static tdble curbHeightAt(const tTrackSeg *seg, tdble width)
+{
+    return width > 0.0f ? seg->height : 0.0f;
+}
+
 static void initPits(tTrack *theTrack, void *TrackHandle, tTrackPitInfo *pits)
 {
     tTrackSeg *curMainSeg;
@@ -811,17 +819,19 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                         switch (j)
                         {
                         case 0:
-                            if (!mseg->prev->rside || (mseg->prev->rside->type2 != TR_RBORDER) || (mseg->prev->rside->style != TR_CURB) ||
-                                (mseg->prev->rside->style == TR_CURB && (mseg->prev->rside->endWidth != seg->startWidth || mseg->prev->rside->height != seg->height)))
+                            // Start cap, unless the curb starts with zero width (it starts as a triangle)
+                            if (seg->startWidth > 0.0f &&
+                                (!mseg->prev->rside || (mseg->prev->rside->type2 != TR_RBORDER) || (mseg->prev->rside->style != TR_CURB) ||
+                                (mseg->prev->rside->style == TR_CURB && (mseg->prev->rside->endWidth != seg->startWidth || mseg->prev->rside->height != seg->height))))
                             {
                                 SETPOINT(texLen, 0, seg->vertex[TR_SL].x, seg->vertex[TR_SL].y, seg->vertex[TR_SL].z - 0.1);
                                 SETPOINT(texLen, texMaxT, seg->vertex[TR_SR].x, seg->vertex[TR_SR].y, seg->vertex[TR_SR].z);
                             }
                             SETPOINT(texLen, 0, seg->vertex[TR_SL].x, seg->vertex[TR_SL].y, seg->vertex[TR_SL].z);
-                            SETPOINT(texLen, texMaxT, seg->vertex[TR_SR].x, seg->vertex[TR_SR].y, seg->vertex[TR_SR].z + seg->height);
+                            SETPOINT(texLen, texMaxT, seg->vertex[TR_SR].x, seg->vertex[TR_SR].y, seg->vertex[TR_SR].z + curbHeightAt(seg, seg->startWidth));
                             break;
                         case 1:
-                            SETPOINT(texLen, texMaxT, seg->vertex[TR_SR].x, seg->vertex[TR_SR].y, seg->vertex[TR_SR].z + seg->height);
+                            SETPOINT(texLen, texMaxT, seg->vertex[TR_SR].x, seg->vertex[TR_SR].y, seg->vertex[TR_SR].z + curbHeightAt(seg, seg->startWidth));
                             SETPOINT(texLen, texMaxT, seg->vertex[TR_SR].x, seg->vertex[TR_SR].y, seg->vertex[TR_SR].z);
                             break;
                         case 2:
@@ -1157,8 +1167,9 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                     {
                     case 0:
                         SETPOINT(texLen, 0, seg->vertex[TR_EL].x, seg->vertex[TR_EL].y, seg->vertex[TR_EL].z);
-                        SETPOINT(texLen, texMaxT, seg->vertex[TR_ER].x, seg->vertex[TR_ER].y, seg->vertex[TR_ER].z + seg->height);
-                        if (mseg->next->rside && ((mseg->next->rside->type2 != TR_RBORDER) || (mseg->next->rside->style != TR_CURB) ||
+                        SETPOINT(texLen, texMaxT, seg->vertex[TR_ER].x, seg->vertex[TR_ER].y, seg->vertex[TR_ER].z + curbHeightAt(seg, seg->endWidth));
+                        // End cap, unless the curb ends with zero width (it ends as a triangle)
+                        if (seg->endWidth > 0.0f && mseg->next->rside && ((mseg->next->rside->type2 != TR_RBORDER) || (mseg->next->rside->style != TR_CURB) ||
                             (mseg->next->rside->style == TR_CURB && (mseg->next->rside->startWidth != seg->endWidth || mseg->next->rside->height != seg->height))))
                         {
                             SETPOINT(texLen, 0, seg->vertex[TR_EL].x, seg->vertex[TR_EL].y, seg->vertex[TR_EL].z - 0.1);
@@ -1166,7 +1177,7 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                         }
                         break;
                     case 1:
-                        SETPOINT(texLen, texMaxT, seg->vertex[TR_ER].x, seg->vertex[TR_ER].y, seg->vertex[TR_ER].z + seg->height);
+                        SETPOINT(texLen, texMaxT, seg->vertex[TR_ER].x, seg->vertex[TR_ER].y, seg->vertex[TR_ER].z + curbHeightAt(seg, seg->endWidth));
                         SETPOINT(texLen, texMaxT, seg->vertex[TR_ER].x, seg->vertex[TR_ER].y, seg->vertex[TR_ER].z);
                         break;
                     case 2:
@@ -1435,16 +1446,18 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                         {
                         case 0:
                             SETPOINT(texLen, texMaxT, seg->vertex[TR_SL].x, seg->vertex[TR_SL].y, seg->vertex[TR_SL].z);
-                            SETPOINT(texLen, texMaxT, seg->vertex[TR_SL].x, seg->vertex[TR_SL].y, seg->vertex[TR_SL].z + seg->height);
+                            SETPOINT(texLen, texMaxT, seg->vertex[TR_SL].x, seg->vertex[TR_SL].y, seg->vertex[TR_SL].z + curbHeightAt(seg, seg->startWidth));
                             break;
                         case 1:
-                            if (!mseg->prev->lside || (mseg->prev->lside->type2 != TR_LBORDER) || (mseg->prev->lside->style != TR_CURB) ||
-                                (mseg->prev->lside->style == TR_CURB && (mseg->prev->lside->endWidth != seg->startWidth || mseg->prev->lside->height != seg->height)))
+                            // Start cap, unless the curb starts with zero width (it starts as a triangle)
+                            if (seg->startWidth > 0.0f &&
+                                (!mseg->prev->lside || (mseg->prev->lside->type2 != TR_LBORDER) || (mseg->prev->lside->style != TR_CURB) ||
+                                (mseg->prev->lside->style == TR_CURB && (mseg->prev->lside->endWidth != seg->startWidth || mseg->prev->lside->height != seg->height))))
                             {
                                 SETPOINT(texLen, texMaxT, seg->vertex[TR_SL].x, seg->vertex[TR_SL].y, seg->vertex[TR_SL].z);
                                 SETPOINT(texLen, 0, seg->vertex[TR_SR].x, seg->vertex[TR_SR].y, seg->vertex[TR_SR].z - 0.1);
                             }
-                            SETPOINT(texLen, texMaxT, seg->vertex[TR_SL].x, seg->vertex[TR_SL].y, seg->vertex[TR_SL].z + seg->height);
+                            SETPOINT(texLen, texMaxT, seg->vertex[TR_SL].x, seg->vertex[TR_SL].y, seg->vertex[TR_SL].z + curbHeightAt(seg, seg->startWidth));
                             SETPOINT(texLen, 0, seg->vertex[TR_SR].x, seg->vertex[TR_SR].y, seg->vertex[TR_SR].z);
                             break;
                         case 2:
@@ -1780,12 +1793,13 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                     {
                     case 0:
                         SETPOINT(texLen, texMaxT, seg->vertex[TR_EL].x, seg->vertex[TR_EL].y, seg->vertex[TR_EL].z);
-                        SETPOINT(texLen, texMaxT, seg->vertex[TR_EL].x, seg->vertex[TR_EL].y, seg->vertex[TR_EL].z + seg->height);
+                        SETPOINT(texLen, texMaxT, seg->vertex[TR_EL].x, seg->vertex[TR_EL].y, seg->vertex[TR_EL].z + curbHeightAt(seg, seg->endWidth));
                         break;
                     case 1:
-                        SETPOINT(texLen, texMaxT, seg->vertex[TR_EL].x, seg->vertex[TR_EL].y, seg->vertex[TR_EL].z + seg->height);
+                        SETPOINT(texLen, texMaxT, seg->vertex[TR_EL].x, seg->vertex[TR_EL].y, seg->vertex[TR_EL].z + curbHeightAt(seg, seg->endWidth));
                         SETPOINT(texLen, 0, seg->vertex[TR_ER].x, seg->vertex[TR_ER].y, seg->vertex[TR_ER].z);
-                        if (mseg->next->lside && ((mseg->next->lside->type2 != TR_LBORDER) || (mseg->next->lside->style != TR_CURB) ||
+                        // End cap, unless the curb ends with zero width (it ends as a triangle)
+                        if (seg->endWidth > 0.0f && mseg->next->lside && ((mseg->next->lside->type2 != TR_LBORDER) || (mseg->next->lside->style != TR_CURB) ||
                             (mseg->next->lside->style == TR_CURB && (mseg->next->lside->height != seg->height || mseg->next->lside->startWidth != seg->endWidth))))
                         {
                             SETPOINT(texLen, texMaxT, seg->vertex[TR_EL].x, seg->vertex[TR_EL].y, seg->vertex[TR_EL].z);
@@ -3402,6 +3416,27 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
     return 0;
 } // InitScene
 
+// True when two of the three strip vertices are at the same place, so the
+// triangle has no area (e.g. the tip of a curb that tapers to zero width).
+// Such triangles are skipped : they draw nothing and only spoil smooth normals.
+static bool isDegenerate(int start, int a, int b, int c)
+{
+    const int idx[3] = { 3 * (start + a), 3 * (start + b), 3 * (start + c) };
+
+    for (int m = 0; m < 3; m++)
+    {
+        const float *p = &trackvertices[idx[m]];
+        const float *q = &trackvertices[idx[(m + 1) % 3]];
+
+        if (sqr(p[0] - q[0]) + sqr(p[1] - q[1]) + sqr(p[2] - q[2]) < 1.0e-8f)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 static void saveObject(Ac3d &ac3d, int nb, int start, char *texture, char *name, Ac3d::Surface::SURF surfType)
 {
     Ac3d::Object object;
@@ -3422,11 +3457,19 @@ static void saveObject(Ac3d &ac3d, int nb, int start, char *texture, char *name,
     surface.refs.emplace_back(1, tracktexcoord[2 * (start + 1)], tracktexcoord[2 * (start + 1) + 1]);
     surface.refs.emplace_back(2, tracktexcoord[2 * (start + 2)], tracktexcoord[2 * (start + 2) + 1]);
 
-    object.surfaces.push_back(surface);
+    if (!isDegenerate(start, 0, 1, 2))
+    {
+        object.surfaces.push_back(surface);
+    }
 
     /* triangle strip conversion to triangles */
     for (int i = 2; i < nb - 1; i++)
     {
+        if (isDegenerate(start, i - 1, i, i + 1))
+        {
+            continue;
+        }
+
         surface.surf = surfType;
         surface.mat = 0;
         surface.refs.clear();
