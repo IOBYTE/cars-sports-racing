@@ -2155,6 +2155,96 @@ static void CreateSegRing(void *TrackHandle, tTrack *theTrack, tTrackSeg *start,
 }
 
 /*
+ * Curb roughness. RtTrackHeightL() ripples a rough curb along its length. Measured
+ * from the start of each segment, the ripple would restart at every step of a
+ * segment, and jump there; measured from the start line, a curb could start or end
+ * on a bump. So it is measured along each run of curbs of the same surface, from
+ * where the run starts, with the surface's wavelength adjusted so that the run
+ * holds a whole number of waves: 0 at both ends, continuous in between.
+ */
+static bool sameCurbRun(const tTrackSeg *prev, const tTrackSeg *cur)
+{
+    return prev != NULL && cur != NULL && prev->style == TR_CURB && cur->style == TR_CURB &&
+           prev->type2 == cur->type2 && prev->surface == cur->surface;
+}
+
+static void InitCurbRoughness(tTrack *theTrack)
+{
+    const int nseg = theTrack->nseg;
+    tTrackSeg *first = theTrack->seg->next;
+
+    for (int side = 0; side < 2; side++)
+    {
+        const tSegType2 borderType = side == TR_SIDE_RGT ? TR_RBORDER : TR_LBORDER;
+
+        // the border of a main segment on this side, when it is a curb
+        auto curbOf = [&](const tTrackSeg *mseg) -> tTrackSeg * {
+            tTrackSeg *b = mseg->side[side];
+            return (b != NULL && b->type2 == borderType && b->style == TR_CURB) ? b : NULL;
+        };
+
+        // start where a run starts, so that no run is split at the start line
+        tTrackSeg *start = NULL;
+        tTrackSeg *mseg = first;
+        for (int i = 0; i < nseg; i++, mseg = mseg->next)
+        {
+            if (curbOf(mseg) && !sameCurbRun(curbOf(mseg->prev), curbOf(mseg)))
+            {
+                start = mseg;
+                break;
+            }
+        }
+        // one curb all the way round: a run of the whole lap, from the start line
+        const bool wholeLap = start == NULL && curbOf(first) != NULL;
+        if (wholeLap)
+            start = first;
+        if (start == NULL)
+            continue;
+
+        mseg = start;
+        for (int i = 0; i < nseg;)
+        {
+            tTrackSeg *curb = curbOf(mseg);
+            if (curb == NULL)
+            {
+                mseg = mseg->next;
+                i++;
+                continue;
+            }
+
+            // one run: its segments and its length
+            tTrackSeg *runStart = mseg;
+            tdble length = 0;
+            int count = 0;
+            do
+            {
+                length += curbOf(mseg)->length;
+                mseg = mseg->next;
+                count++;
+            } while (i + count < nseg && sameCurbRun(curbOf(mseg->prev), curbOf(mseg)) && (!wholeLap || mseg != start));
+
+            // a whole number of waves, at least one, as close to the surface's as can be
+            const tdble k = curb->surface->kRoughWaveLen;
+            tdble waves = (tdble)floor(length * k / (2.0 * PI) + 0.5);
+            if (waves < 1)
+                waves = 1;
+            const tdble runK = length > 0 ? (tdble)(2.0 * PI * waves / length) : k;
+
+            tdble offset = 0;
+            tTrackSeg *s = runStart;
+            for (int j = 0; j < count; j++, s = s->next)
+            {
+                tTrackSeg *c = curbOf(s);
+                c->roughOffset = offset;
+                c->roughWaveLen = runK;
+                offset += c->length;
+            }
+            i += count;
+        }
+    }
+}
+
+/*
  * Read version 4 track segments
  */
 void ReadTrack4(tTrack *theTrack, void *TrackHandle, tRoadCam **camList, int ext)
@@ -2171,6 +2261,8 @@ void ReadTrack4(tTrack *theTrack, void *TrackHandle, tRoadCam **camList, int ext
     GlobalStepLen = GfParmGetNum(TrackHandle, TRK_SECT_MAIN, TRK_ATT_PROFSTEPSLEN, (char *)NULL, 0);
     // Chop all the track to uniform length sub-segments
     CreateSegRing(TrackHandle, theTrack, (tTrackSeg *)NULL, (tTrackSeg *)NULL, ext);
+    // Where each rough curb's ripple starts, and its wavelength
+    InitCurbRoughness(theTrack);
     // Check for the limits of the pit
     bool found = InitPits(theTrack, TrackHandle);
     // Add coords for drawing pit doors in modules/grscene.cpp

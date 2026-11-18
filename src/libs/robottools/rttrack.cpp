@@ -414,6 +414,17 @@ void RtTrackGlobal2Local(tTrackSeg *segment, tdble X, tdble Y, tTrkLocPos *p, in
     }
 }
 
+/* The ripple of a rough curb lg meters along the segment, -1 to 1: along its run
+   of curbs of the same surface when the track loader set it (see roughOffset),
+   from the start of the segment otherwise */
+static tdble curbRipple(const tTrackSeg *seg, tdble lg)
+{
+    if (seg->roughWaveLen > 0)
+        return sin(seg->roughWaveLen * (seg->roughOffset + lg));
+
+    return sin(seg->surface->kRoughWaveLen * lg);
+}
+
 /** Returns the absolute height in meters of the road
     at the Local position p.
     If the point lies outside the track (and sides)
@@ -504,14 +515,14 @@ tdble RtTrackHeightL(tTrkLocPos *p)
             // alpha shows how far we've moved into this segment.
             tdble alpha = w - tr;
             tdble angle = seg->angle[TR_XS] + p->toStart * seg->Kzw;
-            tdble noise = seg->surface->kRoughness * sin(seg->surface->kRoughWaveLen * lg) * alpha / w;
+            tdble noise = seg->surface->kRoughness * curbRipple(seg, lg) * alpha / w;
             tdble start_height = seg->vertex[TR_SR].z + p->toStart * seg->Kzl;
             return start_height + tr * tan(angle) + alpha * slope + noise;
         }
 
         return seg->vertex[TR_SR].z + p->toStart * seg->Kzl +
                tr * (tan(seg->angle[TR_XS] + p->toStart * seg->Kzw) + slope) +
-               seg->surface->kRoughness * sin(seg->surface->kRoughWaveLen * lg) * tr / w;
+               seg->surface->kRoughness * curbRipple(seg, lg) * tr / w;
     }
 
     return seg->vertex[TR_SR].z + p->toStart * seg->Kzl + tr * tan(seg->angle[TR_XS] + p->toStart * seg->Kzw) +

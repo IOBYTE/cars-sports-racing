@@ -552,6 +552,15 @@ typedef struct trackSeg
     /** Height change per unit of toStart (m/m on straights, m/rad on turns), like Kyl */
     tdble   Kyh;
 
+    /** Curb roughness, for a curb in a run of curbs of the same surface: how far
+        along the run (m) this segment starts, and the run's roughness wave
+        number (rad/m), the surface's adjusted so that the run holds a whole
+        number of waves. The ripple is then 0 where the run starts and ends and
+        continuous along it. 0 when not set: use the surface's kRoughWaveLen,
+        from the start of the segment. */
+    tdble   roughOffset;
+    tdble   roughWaveLen;
+
 } tTrackSeg;
 
 /* selection for local position structure */
