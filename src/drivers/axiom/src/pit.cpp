@@ -641,15 +641,17 @@ bool Pit::pitBeforeTeammate(int remaininglaps) const
     if (teamcarrunning && (mCar->_fuel < teamcarfuel) && (mCar->_fuel < remaininglaps * mAvgFuelPerLap))
     {
         double matelaps = teamcarfuel / mAvgFuelPerLap;
-        double matetoentry;
+        // Distance the teammate still has to drive to reach (pit entry - entry
+        // margin), wrapped around the start line.
+        double matetoentry = (mPitEntry - mEntryMargin) - mTeamCar->_distFromStartLine;
 
-        if ((mPitEntry - mEntryMargin) > mTeamCar->_distFromStartLine)
+        if (matetoentry < 0.0)
         {
-            matetoentry = (mPitEntry - mEntryMargin) - mTeamCar->_distFromStartLine;
+            matetoentry += mTrack->length;
         }
-        else
+        else if (matetoentry >= mTrack->length)
         {
-            matetoentry = mTrack->length - (mTeamCar->_distFromStartLine + (mPitEntry - mEntryMargin));
+            matetoentry -= mTrack->length;
         }
 
         double matefulllaps = floor(matelaps - matetoentry / mTrack->length);
