@@ -787,10 +787,9 @@ double Pit::calcRefuel()
     int pitstops = std::max(fuelpitstops, tirespitstops);
     LogAXIOM.debug("Pit Stop = %i\n", pitstops);
 
-    // Calc the stint fuel
+    // Calc the stint fuel : split the fuel still needed evenly over this stint
+    // and the stops still to come.
     double stintfuel = fueltoend / (pitstops + 1);
-
-    stintfuel = fueltoend + 3.0;
     LogAXIOM.debug("# PIT STRATEGY Fuel stintfuel = %.2f\n", stintfuel);
 
     if (mMaxFuel < stintfuel)
