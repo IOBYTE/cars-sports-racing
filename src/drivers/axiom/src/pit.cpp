@@ -39,6 +39,29 @@ double smoothStep(double t)
 {
     return t * t * (3.0 - 2.0 * t);
 }
+
+// Distance from start wrapped into [0, tracklen). The race engine can report
+// a negative _distFromStartLine just before the line; that is a position near
+// the end of the lap, not near its start (fabs() would mirror it).
+double lapPos(double fromstart, double tracklen)
+{
+    double d = std::fmod(fromstart, tracklen);
+
+    if (d < 0.0)
+    {
+        d += tracklen;
+    }
+
+    return d;
+}
+
+// True when fromstart is at or after 'start' and less than 'len' metres past
+// it along the lap, handling the start / finish line wrap ('start' may be
+// negative or past the end of the lap).
+bool inLapWindow(double fromstart, double start, double len, double tracklen)
+{
+    return lapPos(fromstart - start, tracklen) < len;
+}
 }
 
 Pit::Pit() :
@@ -420,10 +443,7 @@ void Pit::setPitstop(bool pitstop)
 
 bool Pit::isBetween(double fromstart) const
 {
-    if (fromstart > mTrack->length)
-    {
-        fromstart -= mTrack->length;
-    }
+    fromstart = lapPos(fromstart, mTrack->length);
 
     if (mPitEntry <= mPitExit)
     {
@@ -482,7 +502,7 @@ void Pit::update()
         return;
     }
 
-    double fs = fabs(mCar->_distFromStartLine); // TORCS problem with negative _distFromStartLine
+    double fs = lapPos(mCar->_distFromStartLine, mTrack->length); // _distFromStartLine can be negative
     updateInPitLane(fs);
     updateFuel(fs);
     int remaininglaps = mCar->_remainingLaps - mCar->_lapsBehindLeader;
@@ -523,7 +543,13 @@ void Pit::update()
 
     LogAXIOM.debug(" # Tyre depth = %.2f Pit Tyres change = %i\n", mMyCar->wheels()->TyreTreadDepth(), pittyres);
 
-    if ((fs > mPitEntry - mEntryMargin - mPreEntryMargin - 3.0) && (fs < mPitEntry - mEntryMargin - mPreEntryMargin) && !mStopChecked)
+    // Decide 3 m before (pit entry - entry margin - pre entry margin) and re-arm
+    // at (pit entry - entry margin). Both points can fall before the start line
+    // when the pit entry is close after it, so wrap them around the lap.
+    const double decisionPoint = mPitEntry - mEntryMargin - mPreEntryMargin;
+    const double rearmPoint = mPitEntry - mEntryMargin;
+
+    if (inLapWindow(fs, decisionPoint - 3.0, 3.0, mTrack->length) && !mStopChecked)
     {
         if (pitBeforeTeammate(remaininglaps))
         {
@@ -546,7 +572,7 @@ void Pit::update()
 
         mStopChecked = true;
     }
-    else if ((fs >= mPitEntry - mEntryMargin) && (fs < mPitEntry - mEntryMargin + 3.0))
+    else if (inLapWindow(fs, rearmPoint, 3.0, mTrack->length))
     {
         mStopChecked = false;
     }
@@ -618,7 +644,7 @@ bool Pit::pitForPenalty()
 
 void Pit::updateDriveThrough()
 {
-    double fs = fabs(mCar->_distFromStartLine);
+    double fs = lapPos(mCar->_distFromStartLine, mTrack->length);
     mDriveThrough = mCar->_penaltyDrivethrough;
 
     if((fs > mPitExit - 30.0 && fs < mPitExit - 29.0) && mDriveThrough == true)
