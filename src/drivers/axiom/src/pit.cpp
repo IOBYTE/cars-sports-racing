@@ -422,22 +422,28 @@ void Pit::setPitstop(bool pitstop)
         return;
     }
 
+    if (!pitstop)
+    {
+        // Also withdraw the pit request. The race engine only clears it when
+        // the car stops in its box, so after a drive through (no stop) it would
+        // stay set and keep the teammate from pitting.
+        mPitstop = false;
+        mCar->_raceCmd &= ~RM_CMD_PIT_ASKED;
+        return;
+    }
+
     if (!isBetween(mCar->_distFromStartLine) && !isBetween(mCar->_distFromStartLine + mEntryMargin + mPreEntryMargin))
     {
         if (mTeamCar != NULL && !(mTeamCar->_state & RM_CAR_STATE_OUT))
         {
-            if (mTeamCar->_raceCmd == RM_CMD_PIT_ASKED || mTeamCar->_state & RM_CAR_STATE_PIT)
+            if ((mTeamCar->_raceCmd & RM_CMD_PIT_ASKED) || (mTeamCar->_state & RM_CAR_STATE_PIT))
             {
                 return;
             }
         }
 
-        mCar->_raceCmd = RM_CMD_PIT_ASKED;
-        mPitstop = pitstop;
-    }
-    else if (pitstop == false)
-    {
-        mPitstop = pitstop;
+        mCar->_raceCmd |= RM_CMD_PIT_ASKED;
+        mPitstop = true;
     }
 }
 
@@ -530,6 +536,42 @@ void Pit::update()
     pitfuel = (mCar->_fuel < (mAvgFuelPerLap * 1.2) || mCar->_fuel < (mAvgFuelPerMeter * mTrack->length * 1.2));
     pitdamage = (mCar->_dammage > mMaxDamage && remaininglaps * mTrack->length > mMaxDamageDist && mLastFuel > 15.0) || (mCar->_dammage > mMaxDamage);
     enginetemperature = (mCar->_engineTempWater > mCar->_engineMaxTempWater + 2.0f);
+
+    // Teammates share one pit box and setPitstop() refuses a stop while the
+    // teammate has asked for or is in the pit. If both run short of fuel on the
+    // same lap and are close together on track, the second car is refused and
+    // can run dry before its next chance. So when both will need fuel within
+    // about two laps, the teammate isn't pitting yet, and they are closer in
+    // time than one stop blocks the box, go a lap early: whoever gets here
+    // first pits first, the other one pits next lap with the box free again.
+    bool pitfuelearly = false;
+
+    if (!pitfuel && mTeamCar != NULL && !(mTeamCar->_state & RM_CAR_STATE_OUT))
+    {
+        const double soonfuel = mAvgFuelPerLap * 2.2;
+        const int materemaininglaps = mTeamCar->_remainingLaps - mTeamCar->_lapsBehindLeader;
+        const bool ineedsoon = (mCar->_fuel < soonfuel) && (mCar->_fuel < remaininglaps * mAvgFuelPerLap);
+        const bool mateneedsoon = (mTeamCar->_fuel < soonfuel) && (mTeamCar->_fuel < materemaininglaps * mAvgFuelPerLap);
+        const bool matepitting = (mTeamCar->_raceCmd & RM_CMD_PIT_ASKED) || (mTeamCar->_state & RM_CAR_STATE_PIT);
+
+        if (ineedsoon && mateneedsoon && !matepitting)
+        {
+            // Gap to the teammate along the lap, ahead or behind, in seconds.
+            double gapdist = lapPos(mTeamCar->_distFromStartLine - mCar->_distFromStartLine, mTrack->length);
+            gapdist = std::min(gapdist, mTrack->length - gapdist);
+            double laptime = mCar->_bestLapTime > 0.0 ? mCar->_bestLapTime : mTeamCar->_bestLapTime;
+            double gaptime = laptime > 0.0 ? gapdist / mTrack->length * laptime : 0.0; // no lap time yet: assume close
+
+            // How long one stop keeps the box busy: decision point to the box at
+            // the pit speed limit, plus the service time (same estimate as
+            // pitBeforeTeammate()), plus a margin.
+            double approachtime = (mEntryMargin + mPreEntryMargin + mPitp[3].x) / std::max(mSpeedLimit, 1.0);
+            double damage = std::max(mCar->_dammage, mTeamCar->_dammage);
+            double blocktime = approachtime + 15.0 + 0.007 * damage + mTiresChangeTime + 10.0;
+
+            pitfuelearly = gaptime < blocktime;
+        }
+    }
     double tires = ((mMyCar->wheels()->TyreTreadDepth() / 100) / mMyCar->wheels()->avgWearPerMeter());
     double dist = mTrack->length * (remaininglaps + 1);
 
@@ -556,10 +598,18 @@ void Pit::update()
             setPitstop(true);
             LogAXIOM.debug(" # Strategy pitbefore Team Mate !\n");
         }
-        else if ((mCar->race.laps > 1) && (pitfuel || pitdamage || pittyres || enginetemperature))
+        else if ((mCar->race.laps > 1) && (pitfuel || pitfuelearly || pitdamage || pittyres || enginetemperature))
         {
             setPitstop(true);
-            LogAXIOM.debug(" # Strategy pit stop asked\n");
+
+            if (!mPitstop)
+            {
+                // Refused: teammate has asked for or is in the shared pit.
+                LogAXIOM.info(" # %s : pit stop refused, teammate using the pit (fuel %.2f, %.2f per lap)\n",
+                              mCar->_name, mCar->_fuel, mAvgFuelPerLap);
+            }
+
+            LogAXIOM.debug(" # Strategy pit stop asked (early for teammate = %i)\n", pitfuelearly);
             LogAXIOM.debug(" # Tyre depth = %.2f Pit Tyres change = %i\n", mMyCar->wheels()->TyreTreadDepth(), pittyres);
             LogAXIOM.debug(" # Pit Damage = %i\n", pitdamage);
             LogAXIOM.debug(" # Pit Fuel = %.2f - Fuel Per Meters = %.5f - Fuel per Lap = %.2f - Remaning Lap = %i - AVG Fuel = %.2f\n",
@@ -606,7 +656,7 @@ bool Pit::pitBeforeTeammate(int remaininglaps) const
         double matetime = (matefulllaps + matetoentry / mTrack->length) * mTeamCar->_bestLapTime;
         double maxstoptime = 15.0 + 0.007 * mCar->_dammage + mTiresChangeTime;
         double mytime = mCar->_bestLapTime + maxstoptime + 60.0;
-        bool matepitasked = mTeamCar->_raceCmd == RM_CMD_PIT_ASKED;
+        bool matepitasked = (mTeamCar->_raceCmd & RM_CMD_PIT_ASKED) != 0;
         bool matestop = mTeamCar->_state & RM_CAR_STATE_PIT;
 
         if (matetime < mytime && !(matepitasked || matestop))
