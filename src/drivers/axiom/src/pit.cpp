@@ -515,8 +515,13 @@ void Pit::update()
 
     if (mSituation->_totTime > mSituation->currentTime)
     {
-        if (mCar->_laps > 2)
-            remaininglaps += ( mSituation->_totTime - mSituation->currentTime ) / mCar->_bestLapTime;
+        // In practice / qualifying a lap that hit a wall or cut a corner is not
+        // kept as best lap, so _bestLapTime can still be 0 here : fall back to
+        // the last lap time, and with neither, treat it like the first two laps.
+        double laptime = mCar->_bestLapTime > 0.0 ? mCar->_bestLapTime : mCar->_lastLapTime;
+
+        if (mCar->_laps > 2 && laptime > 0.0)
+            remaininglaps += ( mSituation->_totTime - mSituation->currentTime ) / laptime;
         else
         {
             // It has a pit stop in the first two laps. Normally we don't want to refuel.
@@ -754,8 +759,11 @@ double Pit::calcRefuel()
 
     if (mSituation->_totTime > mSituation->currentTime)
     {
-        if (mCar->_laps > 2)
-            laps += ( mSituation->_totTime - mSituation->currentTime ) / mCar->_bestLapTime;
+        // Same lap time fallback as in update().
+        double laptime = mCar->_bestLapTime > 0.0 ? mCar->_bestLapTime : mCar->_lastLapTime;
+
+        if (mCar->_laps > 2 && laptime > 0.0)
+            laps += ( mSituation->_totTime - mSituation->currentTime ) / laptime;
         else
         {
             // It has a pit stop in the first two laps. Normally we don't want to refuel.
