@@ -514,6 +514,8 @@ if(OPTION_OSG)
    ExternalProject_Add(${OSG_PROJECT}
       URL ${OSG_URL}
       URL_HASH ${OSG_HASH}
+      # newer Visual Studio C runtimes don't have _FPOSOFF, which the osga plugin uses
+      PATCH_COMMAND ${CMAKE_COMMAND} -DSOURCE_DIR=<SOURCE_DIR> -P "${CMAKE_SOURCE_DIR}/patches/${OSG_PROJECT}.osga.cmake"
       CMAKE_ARGS ${OSG_ARGS}
       DEPENDS ${ZLIB_PROJECT} ${CURL_PROJECT} ${FREETYPE_PROJECT}${FREETYPE_LEGACY_PROJECT} OpenGL-headers ${JPEG_PROJECT} ${PNG_PROJECT} ${SDL2_PROJECT})
 endif(OPTION_OSG)
