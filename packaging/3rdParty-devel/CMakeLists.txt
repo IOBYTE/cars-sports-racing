@@ -64,7 +64,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
 set(EXTERNALS_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/deps" CACHE PATH "")
 set(EXTERNALS_INSTALL_DIR "${CMAKE_CURRENT_BINARY_DIR}/3rdParty" CACHE PATH "")
-set(EXTERNALS_CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNALS_INSTALL_DIR} CACHE PATH "")
+set(EXTERNALS_CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNALS_INSTALL_DIR} CACHE PATH "" -DCMAKE_POLICY_VERSION_MINIMUM=3.5)
 
 # Need to pass CMAKE_SYSTEM_VERSION to all the projects for the case
 # where build is targeting newer system than the build host
@@ -111,7 +111,7 @@ option(OPTION_PNG "Download and Build libpng" true)
 option(OPTION_SQLITE3 "Download and Build sqlite3" false)
 option(OPTION_FREETYPE "Download and Build FreeType" true)
 option(OPTION_CURL "Download and Build curl" true)
-option(OPTION_OSG "Download and Build OpenSceneGraph" false)
+option(OPTION_OSG "Download and Build OpenSceneGraph" true)
 option(OPTION_GLM "Download and install GLM math headers" true)
 option(OPTION_TINYGLTF "Download and Build TinyGLTF" true)
 option(OPTION_CACHED_ARCHIVES "Download from a defined cache" false)
@@ -168,7 +168,7 @@ if(OPTION_ZLIB)
       URL ${ZLIB_URL}
       URL_HASH ${ZLIB_HASH}
       CMAKE_ARGS ${EXTERNALS_CMAKE_ARGS}
-      PATCH_COMMAND ${CMAKE_COMMAND} -E remove -f <SOURCE_DIR>/zconf.h)
+      PATCH_COMMAND "")
    ExternalProject_Add_Step(${ZLIB_PROJECT} sd_zlib_remove_dll
       COMMAND "${CMAKE_COMMAND}" -E remove -f ${EXTERNALS_INSTALL_DIR}/bin/zlib${SUPER_BUILD_POSTFIX}.dll
       DEPENDEES install)
@@ -290,7 +290,7 @@ if(OPTION_JPEG)
    ExternalProject_Add(${JPEG_PROJECT}
    URL ${JPEG_URL}
    URL_HASH ${JPEG_HASH}
-   CMAKE_ARGS ${EXTERNALS_CMAKE_ARGS})
+   CMAKE_ARGS ${EXTERNALS_CMAKE_ARGS} -DCMAKE_POLICY_VERSION_MINIMUM=3.5)
    ExternalProject_Add_Step(${JPEG_PROJECT} jpeg_add_cmake
       COMMAND ${CMAKE_COMMAND} -E copy_if_different
               "${CMAKE_SOURCE_DIR}/patches/${JPEG_PROJECT}.CMakeLists.txt"
@@ -308,7 +308,7 @@ else(OPTION_JPEG)
 endif(OPTION_JPEG)
 
 if(OPTION_FREESOLID)
-   set(FreeSOLID_ARGS ${EXTERNALS_CMAKE_ARGS} -D'CMAKE_DEBUG_POSTFIX=""')
+   set(FreeSOLID_ARGS ${EXTERNALS_CMAKE_ARGS} -D'CMAKE_DEBUG_POSTFIX=""' -DCMAKE_POLICY_VERSION_MINIMUM=3.5)
    ExternalProject_Add(${FREESOLID_PROJECT}
       DOWNLOAD_NAME ${FREESOLID_FILE}
       URL ${FREESOLID_URL}
@@ -480,7 +480,7 @@ else(OPTION_FREETYPE)
 endif(OPTION_FREETYPE)
 
 if(OPTION_CURL)
-   set(CURL_ARGS ${EXTERNALS_CMAKE_ARGS} -DBUILD_TESTING=Off -DCMAKE_DEBUG_POSTFIX= -DCURL_USE_SCHANNEL=On -DCURL_WINDOWS_SSPI=On)
+   set(CURL_ARGS ${EXTERNALS_CMAKE_ARGS} -DBUILD_TESTING=Off -DCMAKE_DEBUG_POSTFIX= -DCURL_USE_SCHANNEL=On -DCURL_WINDOWS_SSPI=On -DCURL_USE_LIBPSL=OFF)
    ExternalProject_Add(${CURL_PROJECT}
       URL ${CURL_URL}
       URL_HASH ${CURL_HASH}
