@@ -47,6 +47,20 @@ bool materialNeedsMerge(const std::vector<mat_t> &mat1, const std::vector<mat_t>
     return false;
 }
 
+static void removeEmpty(std::list<ob_t> &objects)
+{
+    for (std::list<ob_t>::iterator it = objects.begin(); it != objects.end();)
+    {
+        if (it->numsurf == 0)
+        {
+            printf("Skipping %s because there are no surfaces\n", it->name.c_str());
+            it = objects.erase(it);
+        }
+        else
+            ++it;
+    }
+}
+
 void loadAndGroup(const std::string &OutputFileName)
 {
     std::list<ob_t> ob0;
@@ -313,6 +327,12 @@ void loadAndGroup(const std::string &OutputFileName)
 
         if (array_groups[i].kids1.size() > 0)
             mergeSplitted(array_groups[i].kids1);
+
+        /* printOb doesn't write objects without surfaces so don't count them */
+        removeEmpty(array_groups[i].kids3);
+        removeEmpty(array_groups[i].kids2);
+        removeEmpty(array_groups[i].kids1);
+        removeEmpty(array_groups[i].kids0);
     }
 
     fprintf(stderr, "writing destination file %s\n", OutputFileName.c_str());
@@ -378,7 +398,7 @@ void loadAndGroup(const std::string &OutputFileName)
         /* there is always a group 0 with the tkmn at leat */
         fprintf(ofile, "OBJECT group\n");
         fprintf(ofile, "name \"___%s_gl0\"\n", array_groups[i].tkmn->name.c_str());
-        fprintf(ofile, "kids %d\n", static_cast<int>(array_groups[i].kids0.size() + 1));
+        fprintf(ofile, "kids %d\n", static_cast<int>(array_groups[i].kids0.size()) + (array_groups[i].tkmn->numsurf > 0 ? 1 : 0));
         printf("writing group: ___%s_gl0\n", array_groups[i].tkmn->name.c_str());
         for (std::list<ob_t>::iterator it = array_groups[i].kids0.begin(); it != array_groups[i].kids0.end(); ++it)
         {

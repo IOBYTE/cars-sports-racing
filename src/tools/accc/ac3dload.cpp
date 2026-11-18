@@ -51,6 +51,7 @@
 #define KIDS     "Kids"
 #define NAME     "name"
 #define LOC      "loc"
+#define ROT      "rot"
 #define DATA     "data"
 #define TEXTURE  "texture"
 #define TEXREP   "texrep"
@@ -268,6 +269,73 @@ int vert;
 int numvertice = 0;
 char tex[256][256];
 int texnum = 0;
+
+/* The position of an object in the file: its rot and loc combined with those
+ * of the groups it is in. A point p becomes p * r + l, as rot and loc are
+ * applied by the game's loaders. Groups aren't kept as objects: their
+ * transforms are applied to the vertices of the objects they hold.
+ */
+struct frame_t
+{
+    double r[9];
+    double l[3];
+    int remaining; /* kids still to be read */
+};
+
+std::vector<frame_t> frames;   /* the groups being read, innermost last */
+double objectRot[9];           /* the rot of the object being read */
+frame_t objectFrame;           /* where its vertices go */
+
+static void setIdentity(double r[9])
+{
+    for (int i = 0; i < 9; i++)
+        r[i] = (i % 4 == 0) ? 1.0 : 0.0;
+}
+
+/* the frame of the object being read: its own rot and loc, then its groups' */
+static void computeObjectFrame(const ob_t &object)
+{
+    const double local[3] = { object.loc.x, object.loc.y, object.loc.z };
+
+    if (frames.empty())
+    {
+        for (int i = 0; i < 9; i++)
+            objectFrame.r[i] = objectRot[i];
+        for (int i = 0; i < 3; i++)
+            objectFrame.l[i] = local[i];
+        return;
+    }
+
+    const frame_t &parent = frames.back();
+
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            objectFrame.r[i * 3 + j] = objectRot[i * 3 + 0] * parent.r[0 * 3 + j] +
+                                       objectRot[i * 3 + 1] * parent.r[1 * 3 + j] +
+                                       objectRot[i * 3 + 2] * parent.r[2 * 3 + j];
+        }
+    }
+    for (int j = 0; j < 3; j++)
+    {
+        objectFrame.l[j] = local[0] * parent.r[0 * 3 + j] +
+                           local[1] * parent.r[1 * 3 + j] +
+                           local[2] * parent.r[2 * 3 + j] + parent.l[j];
+    }
+}
+
+/* an object and all its kids have been read: count it in its group */
+static void objectDone()
+{
+    while (!frames.empty())
+    {
+        if (--frames.back().remaining > 0)
+            break;
+        frames.pop_back();
+    }
+}
+
 struct verbaction_t
 {
     const char * verb;
@@ -279,6 +347,7 @@ int doObject(char *Line, std::list<ob_t> &objects, std::vector<mat_t> &materials
 int doKids(char *Line, std::list<ob_t> &objects, std::vector<mat_t> &materials);
 int doName(char *Line, std::list<ob_t> &objects, std::vector<mat_t> &materials);
 int doLoc(char *Line, std::list<ob_t> &objects, std::vector<mat_t> &materials);
+int doRot(char *Line, std::list<ob_t> &objects, std::vector<mat_t> &materials);
 int doData(char *Line, std::list<ob_t> &objects, std::vector<mat_t> &materials);
 int doTexture(char *Line, std::list<ob_t> &objects, std::vector<mat_t> &materials);
 int doTexrep(char *Line, std::list<ob_t> &objects, std::vector<mat_t> &materials);
@@ -302,6 +371,7 @@ verbaction_t verbTab[] =
 { KIDS, doKids },
 { NAME, doName },
 { LOC, doLoc },
+{ ROT, doRot },
 { DATA, doData },
 { TEXTURE, doTexture },
 { TEXREP, doTexrep },
@@ -647,6 +717,7 @@ int doObject(char *Line, std::list<ob_t> &objects, std::vector<mat_t> &materials
     objectt.texrep_y = 1.0;
 
     //numob++;
+    setIdentity(objectRot);
     numrefs = 0;
     numsurf = 0;
     numvertFound = false;
@@ -1014,7 +1085,8 @@ int doKids(char *Line, std::list<ob_t> &objects, std::vector<mat_t> &materials)
     }
 
     ob_t &object = objects.front();
-    if (kids == 0)
+    /* a poly with kids is still a poly */
+    if (kids == 0 || object.type == "poly")
     {
         if (numsurf != object.numsurf)
         {
@@ -1061,8 +1133,21 @@ int doKids(char *Line, std::list<ob_t> &objects, std::vector<mat_t> &materials)
         numvertex = 0;
         numvertice = 0;
     }
+    object.kids = kids;
+
+    if (kids > 0)
+    {
+        /* its kids are placed by it */
+        computeObjectFrame(object);
+        objectFrame.remaining = kids;
+        frames.push_back(objectFrame);
+    }
     else
-        object.kids = kids;
+        objectDone();
+
+    /* a group has no geometry: its kids are what is kept */
+    if (object.type == "group")
+        objects.pop_front();
 
     return (0);
 }
@@ -1138,6 +1223,34 @@ int doLoc(char *Line, std::list<ob_t> &objects, std::vector<mat_t> &materials)
         fprintf(stderr, "invalid Loc format %s\n", p);
         return (-1);
     }
+
+    dataFound = false;
+    return (0);
+}
+
+int doRot(char *Line, std::list<ob_t> &objects, std::vector<mat_t> &materials)
+{
+    char * p = strstr(Line, " ");
+    if (p == NULL)
+    {
+        fprintf(stderr, "unknown rot format %s\n", Line);
+        return (-1);
+    }
+    double r[9];
+    if (sscanf(p, "%lf %lf %lf %lf %lf %lf %lf %lf %lf",
+               &r[0], &r[1], &r[2], &r[3], &r[4], &r[5], &r[6], &r[7], &r[8]) != 9)
+    {
+        fprintf(stderr, "invalid rot format %s\n", p);
+        return (-1);
+    }
+    for (int i = 0; i < 9; i++)
+        objectRot[i] = r[i];
+
+    const double det = r[0] * (r[4] * r[8] - r[5] * r[7]) -
+                       r[1] * (r[3] * r[8] - r[5] * r[6]) +
+                       r[2] * (r[3] * r[7] - r[4] * r[6]);
+    if (det < 0)
+        fprintf(stderr, "warning: rot of %s mirrors it: its faces will be inside out\n", objects.front().name.c_str());
 
     dataFound = false;
     return (0);
@@ -1248,6 +1361,7 @@ int doNumvert(char *Line, std::list<ob_t> &objects, std::vector<mat_t> &material
         return (-1);
     }
     object.vertex.resize(object.numvert);
+    computeObjectFrame(object);
     numvertex = 0;
     numvertFound = true;
     dataFound = false;
@@ -1276,17 +1390,18 @@ int doNumsurf(char *Line, std::list<ob_t> &objects, std::vector<mat_t> &material
 int doGetVertex(char *Line, std::list<ob_t> &objects, std::vector<mat_t> &materials)
 {
     ob_t &object = objects.front();
-    if (sscanf(Line, "%lf %lf %lf ",
-        &object.vertex[numvertex].x,
-        &object.vertex[numvertex].z,
-        &object.vertex[numvertex].y) != 3)
+    double v[3];
+    if (sscanf(Line, "%lf %lf %lf ", &v[0], &v[1], &v[2]) != 3)
     {
         fprintf(stderr, "invalid vertex format %s\n", Line);
         return (-1);
     }
-    object.vertex[numvertex].x += object.loc.x;
-    object.vertex[numvertex].y += object.loc.z;
-    object.vertex[numvertex].z += object.loc.y;
+    /* where the object and its groups put it */
+    const double *r = objectFrame.r;
+    const double *l = objectFrame.l;
+    object.vertex[numvertex].x = v[0] * r[0] + v[1] * r[3] + v[2] * r[6] + l[0];
+    object.vertex[numvertex].z = v[0] * r[1] + v[1] * r[4] + v[2] * r[7] + l[1];
+    object.vertex[numvertex].y = v[0] * r[2] + v[1] * r[5] + v[2] * r[8] + l[2];
     object.vertex[numvertex].y = -object.vertex[numvertex].y;
     /* compute min/max of the vertex for this object */
     if (object.vertex[numvertex].x > object.x_max)
@@ -1525,6 +1640,9 @@ int loadAC(const std::string &inputFilename, std::list<ob_t> &objects, std::vect
     }
 
     fprintf(stderr, "starting loading ...\n");
+
+    frames.clear();
+    setIdentity(objectRot);
 
     while (fgets(Line, sizeof(Line), file))
     {
