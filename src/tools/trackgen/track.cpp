@@ -84,12 +84,30 @@ static tdble TrackStep = DEFAULT_TRACK_STEP;
 #define sqr(x) ((x) * (x))
 #endif
 
-// Height of a curb at an end of the given width : a curb that narrows down to
-// zero width also comes down to the ground there, so it ends in a triangle
-// instead of a vertical edge.
+// Height of a curb's outer edge where the curb is 'width' wide. A curb whose
+// start and end widths differ keeps the slope of its wide end, so its height
+// changes in a straight line along the segment with the width (a curb that
+// narrows to zero ends in a triangle); this is the same height as
+// RtTrackHeightL() uses for the physics. Constant width curbs keep their full
+// height.
 static tdble curbHeightAt(const tTrackSeg *seg, tdble width)
 {
-    return width > 0.0f ? seg->height : 0.0f;
+    if (fabs(seg->startWidth - seg->endWidth) < 0.001f)
+        return seg->height;
+
+    if (width < 0.001f)
+        return 0.0f;
+
+    return width * atan2(seg->height, MAX(seg->startWidth, seg->endWidth));
+}
+
+// Ground height (without the curb) of a border segment at a local position, the
+// plane RtTrackHeightL() uses for a flat border. Curb points are built from it
+// rather than from RtTrackHeightL(), which for a side segment narrower than
+// 'toRight' (tapered borders) walks off to the neighbouring segment.
+static tdble groundHeightAt(const tTrackSeg *seg, tdble toStart, tdble toRight)
+{
+    return seg->vertex[TR_SR].z + toStart * seg->Kzl + toRight * tan(seg->angle[TR_XS] + toStart * seg->Kzw);
 }
 
 static void initPits(tTrack *theTrack, void *TrackHandle, tTrackPitInfo *pits)
@@ -903,16 +921,16 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                             case 0:
                                 trkpos.toRight = width;
                                 RtTrackLocal2Global(&trkpos, &x, &y, TR_TORIGHT);
-                                SETPOINT(texLen, 0, x, y, RtTrackHeightL(&trkpos));
+                                SETPOINT(texLen, 0, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight));
                                 trkpos.toRight = 0;
                                 RtTrackLocal2Global(&trkpos, &x, &y, TR_TORIGHT);
-                                SETPOINT(texLen, texMaxT, x, y, RtTrackHeightL(&trkpos) + seg->height);
+                                SETPOINT(texLen, texMaxT, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight) + curbHeightAt(seg, width));
                                 break;
                             case 1:
                                 trkpos.toRight = 0;
                                 RtTrackLocal2Global(&trkpos, &x, &y, TR_TORIGHT);
-                                SETPOINT(texLen, texMaxT, x, y, RtTrackHeightL(&trkpos) + seg->height);
-                                SETPOINT(texLen, texMaxT, x, y, RtTrackHeightL(&trkpos));
+                                SETPOINT(texLen, texMaxT, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight) + curbHeightAt(seg, width));
+                                SETPOINT(texLen, texMaxT, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight));
                                 break;
                             case 2:
                                 break;
@@ -994,17 +1012,17 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                                 /* left */
                                 trkpos.toRight = width;
                                 RtTrackLocal2Global(&trkpos, &x, &y, TR_TORIGHT);
-                                SETPOINT(texLen, 0, x, y, RtTrackHeightL(&trkpos));
+                                SETPOINT(texLen, 0, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight));
                                 /* right */
                                 trkpos.toRight = 0;
                                 RtTrackLocal2Global(&trkpos, &x, &y, TR_TORIGHT);
-                                SETPOINT(texLen, texMaxT, x, y, RtTrackHeightL(&trkpos) + seg->height);
+                                SETPOINT(texLen, texMaxT, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight) + curbHeightAt(seg, width));
                                 break;
                             case 1:
                                 trkpos.toRight = 0;
                                 RtTrackLocal2Global(&trkpos, &x, &y, TR_TORIGHT);
-                                SETPOINT(texLen, texMaxT, x, y, RtTrackHeightL(&trkpos) + seg->height);
-                                SETPOINT(texLen, texMaxT, x, y, RtTrackHeightL(&trkpos));
+                                SETPOINT(texLen, texMaxT, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight) + curbHeightAt(seg, width));
+                                SETPOINT(texLen, texMaxT, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight));
                                 break;
                             case 2:
                                 break;
@@ -1089,17 +1107,17 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                                 /* left */
                                 trkpos.toRight = width;
                                 RtTrackLocal2Global(&trkpos, &x, &y, TR_TORIGHT);
-                                SETPOINT(texLen, 0, x, y, RtTrackHeightL(&trkpos));
+                                SETPOINT(texLen, 0, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight));
                                 /* right */
                                 trkpos.toRight = 0;
                                 RtTrackLocal2Global(&trkpos, &x, &y, TR_TORIGHT);
-                                SETPOINT(texLen, texMaxT, x, y, RtTrackHeightL(&trkpos) + seg->height);
+                                SETPOINT(texLen, texMaxT, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight) + curbHeightAt(seg, width));
                                 break;
                             case 1:
                                 trkpos.toRight = 0;
                                 RtTrackLocal2Global(&trkpos, &x, &y, TR_TORIGHT);
-                                SETPOINT(texLen, texMaxT, x, y, RtTrackHeightL(&trkpos) + seg->height);
-                                SETPOINT(texLen, texMaxT, x, y, RtTrackHeightL(&trkpos));
+                                SETPOINT(texLen, texMaxT, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight) + curbHeightAt(seg, width));
+                                SETPOINT(texLen, texMaxT, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight));
                                 break;
                             case 2:
                                 break;
@@ -1529,16 +1547,16 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                             case 0:
                                 trkpos.toRight = width;
                                 RtTrackLocal2Global(&trkpos, &x, &y, TR_TORIGHT);
-                                SETPOINT(texLen, texMaxT, x, y, RtTrackHeightL(&trkpos));
-                                SETPOINT(texLen, texMaxT, x, y, RtTrackHeightL(&trkpos) + seg->height);
+                                SETPOINT(texLen, texMaxT, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight));
+                                SETPOINT(texLen, texMaxT, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight) + curbHeightAt(seg, width));
                                 break;
                             case 1:
                                 trkpos.toRight = width;
                                 RtTrackLocal2Global(&trkpos, &x, &y, TR_TORIGHT);
-                                SETPOINT(texLen, texMaxT, x, y, RtTrackHeightL(&trkpos) + seg->height);
+                                SETPOINT(texLen, texMaxT, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight) + curbHeightAt(seg, width));
                                 trkpos.toRight = 0;
                                 RtTrackLocal2Global(&trkpos, &x, &y, TR_TORIGHT);
-                                SETPOINT(texLen, 0, x, y, RtTrackHeightL(&trkpos));
+                                SETPOINT(texLen, 0, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight));
                                 break;
                             case 2:
                                 break;
@@ -1619,18 +1637,18 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                             case 0:
                                 trkpos.toRight = width;
                                 RtTrackLocal2Global(&trkpos, &x, &y, TR_TORIGHT);
-                                SETPOINT(texLen, texMaxT, x, y, RtTrackHeightL(&trkpos));
-                                SETPOINT(texLen, texMaxT, x, y, RtTrackHeightL(&trkpos) + seg->height);
+                                SETPOINT(texLen, texMaxT, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight));
+                                SETPOINT(texLen, texMaxT, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight) + curbHeightAt(seg, width));
                                 break;
                             case 1:
                                 /* left */
                                 trkpos.toRight = width;
                                 RtTrackLocal2Global(&trkpos, &x, &y, TR_TORIGHT);
-                                SETPOINT(texLen, texMaxT, x, y, RtTrackHeightL(&trkpos) + seg->height);
+                                SETPOINT(texLen, texMaxT, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight) + curbHeightAt(seg, width));
                                 /* right */
                                 trkpos.toRight = 0;
                                 RtTrackLocal2Global(&trkpos, &x, &y, TR_TORIGHT);
-                                SETPOINT(texLen, 0, x, y, RtTrackHeightL(&trkpos));
+                                SETPOINT(texLen, 0, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight));
                                 break;
                             case 2:
                                 break;
@@ -1714,18 +1732,18 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                             case 0:
                                 trkpos.toRight = width;
                                 RtTrackLocal2Global(&trkpos, &x, &y, TR_TORIGHT);
-                                SETPOINT(texLen, texMaxT, x, y, RtTrackHeightL(&trkpos));
-                                SETPOINT(texLen, texMaxT, x, y, RtTrackHeightL(&trkpos) + seg->height);
+                                SETPOINT(texLen, texMaxT, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight));
+                                SETPOINT(texLen, texMaxT, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight) + curbHeightAt(seg, width));
                                 break;
                             case 1:
                                 /* left */
                                 trkpos.toRight = width;
                                 RtTrackLocal2Global(&trkpos, &x, &y, TR_TORIGHT);
-                                SETPOINT(texLen, texMaxT, x, y, RtTrackHeightL(&trkpos) + seg->height);
+                                SETPOINT(texLen, texMaxT, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight) + curbHeightAt(seg, width));
                                 /* right */
                                 trkpos.toRight = 0;
                                 RtTrackLocal2Global(&trkpos, &x, &y, TR_TORIGHT);
-                                SETPOINT(texLen, 0, x, y, RtTrackHeightL(&trkpos));
+                                SETPOINT(texLen, 0, x, y, groundHeightAt(seg, trkpos.toStart, trkpos.toRight));
                                 break;
                             case 2:
                                 break;

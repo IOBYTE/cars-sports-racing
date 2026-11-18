@@ -466,6 +466,15 @@ tdble RtTrackHeightL(tTrkLocPos *p)
             return seg->vertex[TR_SR].z + p->toStart * seg->Kzl + tr * tan(seg->angle[TR_XS] + p->toStart * seg->Kzw);
         }
 
+        // Cross slope of the curb. A curb whose start and end widths differ
+        // keeps the slope of its wide end, so its outer edge height changes in
+        // a straight line along the segment with the width, down to the ground
+        // where it narrows to zero (trackgen draws it the same way). Constant
+        // width curbs rise by about seg->height across their width.
+        const tdble slope = (fabs(seg->startWidth - seg->endWidth) >= 0.001f)
+                            ? atan2(seg->height, MAX(seg->startWidth, seg->endWidth))
+                            : atan2(seg->height, w);
+
         // The final height = starting height + height difference due
         // to track angle + height difference due to curb (this seems
         // to be the way it is implemented in the graphics too: the
@@ -478,11 +487,11 @@ tdble RtTrackHeightL(tTrkLocPos *p)
             tdble angle = seg->angle[TR_XS] + p->toStart * seg->Kzw;
             tdble noise = seg->surface->kRoughness * sin(seg->surface->kRoughWaveLen * lg) * alpha / w;
             tdble start_height = seg->vertex[TR_SR].z + p->toStart * seg->Kzl;
-            return start_height + tr * tan(angle) + alpha * atan2(seg->height, w) + noise;
+            return start_height + tr * tan(angle) + alpha * slope + noise;
         }
 
         return seg->vertex[TR_SR].z + p->toStart * seg->Kzl +
-               tr * (tan(seg->angle[TR_XS] + p->toStart * seg->Kzw) + atan2(seg->height, w)) +
+               tr * (tan(seg->angle[TR_XS] + p->toStart * seg->Kzw) + slope) +
                seg->surface->kRoughness * sin(seg->surface->kRoughWaveLen * lg) * tr / w;
     }
 
