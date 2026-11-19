@@ -636,16 +636,22 @@ void SimWheelUpdateForce(tCar *car, int index)
     }
     else
     {
+        /* Sideways slip is the sideways velocity over the speed: near a standstill a few
+           cm/s sideways (the body rolling moves the contact patch) would be a large slip and
+           nearly all the grip, which rolls the body back the other way, and so on. Below
+           LATERAL_SLIP_SPEED it is taken over that speed instead, so the sideways force
+           grows with the sideways velocity and damps the motion, as sx does with
+           FEAT_SLOWGRIP. */
+        const tdble LATERAL_SLIP_SPEED = 1.0f;
         if (car->features & FEAT_SLOWGRIP)
         {
             sx = (vt - wrl) / MAX(fabs(vt), 1.0f); //avoid divergence
-            sy = sin(sa);
         }
         else
         {
             sx = (vt - wrl) / fabs(vt);
-            sy = sin(sa);
         }
+        sy = sin(sa) * MIN(1.0f, v / LATERAL_SLIP_SPEED);
     }
 
     Ft = 0.0f;
