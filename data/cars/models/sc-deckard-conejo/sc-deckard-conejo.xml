@@ -882,6 +882,7 @@
 		<attnum name="ride height" unit="mm" val="110"/>
 		<attnum name="toe" unit="deg" val="-0.1"/>
 		<attnum name="camber" unit="deg" min="-5" max="5" val="-2"/>
+		<attnum name="caster" unit="deg" val="6"/>
 		<!-- tire degradation -->
 		<attnum name="ideal temperature" unit="C" val="80.0"/>
 		<attnum name="hysteresis" val="0.54"/>
@@ -906,6 +907,7 @@
 		<attnum name="ride height" unit="mm" val="110"/>
 		<attnum name="toe" unit="deg" val="0.1"/>
 		<attnum name="camber" unit="deg" min="-5" max="5" val="-2"/>
+		<attnum name="caster" unit="deg" val="6"/>
 		<!-- tire degradation -->
 		<attnum name="ideal temperature" unit="C" val="80.0"/>
 		<attnum name="hysteresis" val="0.54"/>

@@ -867,6 +867,7 @@ typedef struct CarElt
 #define PRM_ROLLINGRESIST           "rolling resistance"
 #define PRM_TOE                     "toe"
 #define PRM_CAMBER                  "camber"
+#define PRM_CASTER                  "caster"
 #define PRM_CA                      "stiffness"
 #define PRM_RFACTOR                 "dynamic friction"
 #define PRM_EFACTOR                 "elasticity factor"

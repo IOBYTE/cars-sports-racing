@@ -76,6 +76,8 @@ typedef struct
     tdble	lfK;		/* Load factor */
     tdble	opLoad;		/* Operating load */
     tdble   AlignTqFactor; /* aligning torque factor */
+    tdble   caster;        /* caster: the steering axis' lean back from vertical, positive with its top to the rear */
+    tdble   casterTrail;   /* caster's mechanical trail: how far ahead of the tire's contact patch the steering axis meets the ground */
     tdble	mass;		/* total wheel mass (incl. brake) (unsprung mass) */
     tdble	camber;		/* camber, negative toward exterior on both sides */
     tdble	pressure;	/* tire pressure */

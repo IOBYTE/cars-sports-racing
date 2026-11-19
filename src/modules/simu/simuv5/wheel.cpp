@@ -173,6 +173,7 @@ void SimWheelConfig(tCar *car, int index)
     wheel->lfMax          = GfParmGetNum(hdle, WheelSect[index], PRM_LOADFMAX, (char*)NULL, 1.6f);
     wheel->lfMin          = GfParmGetNum(hdle, WheelSect[index], PRM_LOADFMIN, (char*)NULL, 0.8f);
     wheel->AlignTqFactor  = GfParmGetNum(hdle, WheelSect[index], PRM_ALIGNTQFACTOR, (char*)NULL, 0.6f);
+    wheel->caster         = GfParmGetNum(hdle, WheelSect[index], PRM_CASTER, (char*)NULL, 0.0f);
     wheel->mass           = GfParmGetNum(hdle, WheelSect[index], PRM_MASS, (char*)NULL, 20.0f);
 
     wheel->lfMin = MIN(0.9f, wheel->lfMin);
@@ -182,6 +183,9 @@ void SimWheelConfig(tCar *car, int index)
     {
         wheel->AlignTqFactor = 0.1f;
     }
+
+    // within what a car's steering can have: tan() grows without bound toward 90 degrees
+    wheel->caster = MIN((tdble)(30.0 * PI / 180.0), MAX((tdble)(-30.0 * PI / 180.0), wheel->caster));
 
     // Absolute pressure of cold tire.
     wheel->pressure = MIN(setupPressure->max, MAX(setupPressure->min, setupPressure->desired_value));
@@ -210,6 +214,10 @@ void SimWheelConfig(tCar *car, int index)
         wheel->radius = rimdiam / 2.0f + tireheight;
     else
         wheel->radius = rimdiam / 2.0f + tirewidth * tireratio;
+
+    // the steering axis, leaning back by the caster through the wheel's center,
+    // meets the ground this far ahead of the contact patch
+    wheel->casterTrail = wheel->radius * tan(wheel->caster);
 
     patchLen = wheel->weight0 / (tirewidth * wheel->pressure);
     wheel->tireSpringRate = wheel->weight0 / (wheel->radius * (1.0f - cos(asin(patchLen / (2.0f * wheel->radius)))));
@@ -738,6 +746,13 @@ void SimWheelUpdateForce(tCar *car, int index)
 
     wheel->forces.x = Ft * CosA - Fn * SinA;
     wheel->forces.y = Ft * SinA + Fn * CosA;
+
+    /* caster's part of the aligning torque: the tire's lateral force acts behind the
+       steering axis by the mechanical trail, turning the wheel back as the pneumatic
+       trail does (Fn is against the slip angle, the aligning torque with it) */
+    if (v > 1.5f)
+        wheel->torqueAlign -= Fn * wheel->casterTrail;
+
     wheel->spinTq = Ft * wheel->radius;
     wheel->sa = sa;
     wheel->sx = sx;
