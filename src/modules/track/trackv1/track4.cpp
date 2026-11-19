@@ -289,15 +289,23 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
             borderEndWidth[side] = bew;
             // Heights the same way as widths: "height" sets both ends;
             // otherwise "start height" defaults to the previous end height and
-            // "end height" defaults to the start height.
-            if (GfParmExistsParam(TrackHandle, path2, TRK_ATT_HEIGHT))
+            // "end height" defaults to the start height, but an end that is
+            // not set and has no width is 0 high.
+            const bool heightSet = GfParmExistsParam(TrackHandle, path2, TRK_ATT_HEIGHT);
+            if (heightSet)
             {
                 bsh = beh = GfParmGetNum(TrackHandle, path2, TRK_ATT_HEIGHT, (char *)NULL, 0.0);
             }
             else
             {
-                bsh = GfParmGetNum(TrackHandle, path2, TRK_ATT_SHEIGHT, (char *)NULL, borderEndHeight[side]);
-                beh = GfParmGetNum(TrackHandle, path2, TRK_ATT_EHEIGHT, (char *)NULL, bsh);
+                // An end with no width has no height unless its height is set:
+                // an end height that isn't set is the start height the segment
+                // would otherwise have, not the 0 of a start with no width.
+                const tdble inherited = GfParmGetNum(TrackHandle, path2, TRK_ATT_SHEIGHT, (char *)NULL, borderEndHeight[side]);
+                const bool startSet = GfParmExistsParam(TrackHandle, path2, TRK_ATT_SHEIGHT);
+                const bool endSet = GfParmExistsParam(TrackHandle, path2, TRK_ATT_EHEIGHT);
+                bsh = (!startSet && bsw == 0) ? 0 : inherited;
+                beh = endSet ? GfParmGetNum(TrackHandle, path2, TRK_ATT_EHEIGHT, (char *)NULL, inherited) : (bew == 0 ? 0 : inherited);
             }
             borderMaterial[side] = GfParmGetStr(TrackHandle, path2, TRK_ATT_SURF, borderMaterial[side]);
             borderSurface[side] = AddTrackSurface(TrackHandle, theTrack, borderMaterial[side]);
@@ -317,13 +325,15 @@ static void AddSides(tTrackSeg *curSeg, void *TrackHandle, tTrack *theTrack, int
                 borderStyle[side] = TR_WALL;
             }
 
-            // A curb with one height whose widths differ keeps the slope of the
-            // segment's wide end: its height goes with its width, from its
-            // height at the wide end down in proportion (to nothing where it
-            // narrows to zero). Worked out for the whole segment, so each step
-            // keeps that slope, and the next segment starts as high as this
-            // one ends.
-            if (borderStyle[side] == TR_CURB && fabs(bsh - beh) < 0.001f && fabs(bsw - bew) >= 0.001f)
+            // A curb whose segment sets "height" and whose widths differ keeps
+            // the slope of the segment's wide end: its height goes with its
+            // width, from that height at the wide end down in proportion (to
+            // nothing where it narrows to zero). Worked out for the whole
+            // segment, so each step keeps that slope, and the next segment
+            // starts as high as this one ends. Start and end heights, and a
+            // height carried on from the previous segment, are used as they
+            // are: equal ones give a curb of one height whatever its width.
+            if (heightSet && borderStyle[side] == TR_CURB && fabs(bsw - bew) >= 0.001f)
             {
                 const tdble wide = MAX(bsw, bew);
                 const tdble h = bsh;

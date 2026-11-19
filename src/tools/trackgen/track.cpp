@@ -87,9 +87,10 @@ static tdble TrackStep = DEFAULT_TRACK_STEP;
 // Height of a border's top (for a curb, its outer edge) toStart along it, where
 // it is 'width' wide: RtTrackGetBorderHeight(), which RtTrackHeightL() uses for
 // the physics too. A border's height changes along the segment when its start
-// and end heights differ; a curb with one height whose widths differ is given
-// heights in proportion to its widths when the track is loaded, so it keeps the
-// slope of its wide end (a curb that narrows to zero ends in a triangle).
+// and end heights differ; a curb whose segment sets "height" and whose widths
+// differ is given heights in proportion to its widths when the track is loaded,
+// so it keeps the slope of its wide end (a curb that narrows to zero ends in a
+// triangle).
 static tdble curbHeightAt(tTrackSeg *seg, tdble toStart, tdble width)
 {
     if (width < 0.001f)

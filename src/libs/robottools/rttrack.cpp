@@ -498,9 +498,9 @@ tdble RtTrackHeightL(tTrkLocPos *p)
 
         // Cross slope of the curb: its height here over its width here. A curb
         // whose start and end heights differ changes height along the segment;
-        // one with one height whose widths differ is given heights in
-        // proportion to its widths when the track is loaded, so it keeps the
-        // slope of its wide end and its outer edge goes down to the ground
+        // one whose segment sets "height" and whose widths differ is given
+        // heights in proportion to its widths when the track is loaded, so it
+        // keeps the slope of its wide end and its outer edge goes down to the ground
         // where it narrows to zero (trackgen draws it the same way). Constant
         // width curbs rise by about seg->height across their width.
         const tdble slope = atan2(RtTrackGetBorderHeight(seg, p->toStart), w);
