@@ -303,6 +303,66 @@ static void initPits(tTrack *theTrack, void *TrackHandle, tTrackPitInfo *pits)
     Implementation:
     Compares old end vertices and new start vertices, set startNeeded if one is different
 **/
+#define PIT_HEIGHT 5.0
+#define PIT_DEEP 10.0
+#define PIT_TOP 0.2
+
+// True when a barrier's end cap, from (x1, y1) to (x2, y2), lies in one of the
+// end walls of the pit building: the barrier stops where the building starts,
+// and a cap inside the building's wall only flickers against it.
+static bool capInPitWall(const tTrackPitInfo *pits, tdble x1, tdble y1, tdble x2, tdble y2, tdble height)
+{
+    if (pits->type != TR_PIT_ON_TRACK_SIDE || pits->driversPitsNb == 0 || pits->driversPits == nullptr || height > PIT_HEIGHT)
+        return false;
+
+    for (int wall = 0; wall < 2; wall++)
+    {
+        // where the walls are drawn: at the first pit, and a pit length after the last
+        const tTrackOwnPit &pit = pits->driversPits[wall == 0 ? 0 : pits->driversPitsNb - 1];
+        tTrkLocPos pos = pit.pos;
+        tdble x, y;
+        t3Dd normvec;
+
+        RtTrackLocal2Global(&pos, &x, &y, pos.type);
+        RtTrackSideNormalG(pos.seg, x, y, pits->side, &normvec);
+
+        if (wall == 1)
+        {
+            if (pits->side == TR_RGT)
+            {
+                x += pits->len * normvec.y;
+                y -= pits->len * normvec.x;
+            }
+            else
+            {
+                x -= pits->len * normvec.y;
+                y += pits->len * normvec.x;
+            }
+        }
+
+        // the wall goes from PIT_TOP in front of the pit to PIT_DEEP behind it
+        bool inside = true;
+        const tdble px[2] = { x1, x2 };
+        const tdble py[2] = { y1, y2 };
+
+        for (int k = 0; k < 2 && inside; k++)
+        {
+            const tdble dx = px[k] - x;
+            const tdble dy = py[k] - y;
+            const tdble across = dx * normvec.y - dy * normvec.x;
+            const tdble along = -(dx * normvec.x + dy * normvec.y);
+
+            if (std::fabs(across) > 0.01 || along < -PIT_TOP - 0.01 || along > PIT_DEEP + 0.01)
+                inside = false;
+        }
+
+        if (inside)
+            return true;
+    }
+
+    return false;
+}
+
 int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool bridge)
 {
     int i;
@@ -2057,6 +2117,10 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
         }
     }
 
+    // where the pits are: the barriers end at the pit building
+    pits = &(Track->pits);
+    initPits(Track, TrackHandle, pits);
+
     /* Right Barrier */
     tTrackBarrier *lastBarrier = Track->seg->next->prev->barrier[0];
     curSurfType = Ac3d::Surface::PolygonSingleSidedSmooth;
@@ -2180,7 +2244,8 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                         trkpos.toStart = 0;
                         trkpos.toRight = -curBarrier->width;
                         RtTrackLocal2Global(&trkpos, &x, &y, TR_TORIGHT);
-                        if ((mseg->prev->barrier[0]->style != TR_WALL) || (mseg->prev->barrier[0]->height != curBarrier->height) || (mseg->prev->barrier[0]->width != curBarrier->width) || startPolygonNeeded)
+                        if (((mseg->prev->barrier[0]->style != TR_WALL) || (mseg->prev->barrier[0]->height != curBarrier->height) || (mseg->prev->barrier[0]->width != curBarrier->width) || startPolygonNeeded) &&
+                            !capInPitWall(pits, seg->vertex[TR_SR].x, seg->vertex[TR_SR].y, x, y, curBarrier->height))
                         {
                             SETPOINT(texLen - curBarrier->width / curTexSize, 0.66, seg->vertex[TR_SR].x, seg->vertex[TR_SR].y, seg->vertex[TR_SR].z + curBarrier->height);
                             SETPOINT(texLen - curBarrier->width / curTexSize, 1.00, seg->vertex[TR_SR].x, seg->vertex[TR_SR].y, seg->vertex[TR_SR].z);
@@ -2523,7 +2588,8 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                         while (nextSide->rside)
                             nextSide = nextSide->rside;
                         const bool endPolygonNeeded = std::fabs(xprev - nextSide->vertex[TR_SR].x) > 0.001 || std::fabs(yprev - nextSide->vertex[TR_SR].y) > 0.001;
-                        if ((mseg->next->barrier[0]->style != TR_WALL) || (mseg->next->barrier[0]->height != curBarrier->height) || (mseg->next->barrier[0]->width != curBarrier->width) || endPolygonNeeded)
+                        if (((mseg->next->barrier[0]->style != TR_WALL) || (mseg->next->barrier[0]->height != curBarrier->height) || (mseg->next->barrier[0]->width != curBarrier->width) || endPolygonNeeded) &&
+                            !capInPitWall(pits, seg->vertex[TR_ER].x, seg->vertex[TR_ER].y, x, y, curBarrier->height))
                         {
                             SETPOINT(texLen + curBarrier->width / curTexSize, 0.66, seg->vertex[TR_ER].x, seg->vertex[TR_ER].y, seg->vertex[TR_ER].z + curBarrier->height);
                             SETPOINT(texLen + curBarrier->width / curTexSize, 1.00, seg->vertex[TR_ER].x, seg->vertex[TR_ER].y, seg->vertex[TR_ER].z);
@@ -2659,7 +2725,8 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                         trkpos.toRight = curBarrier->width + RtTrackGetWidth(seg, 0);
                         trkpos.seg = seg;
                         RtTrackLocal2Global(&trkpos, &x, &y, TR_TORIGHT);
-                        if ((mseg->prev->barrier[1]->style != TR_WALL) || (mseg->prev->barrier[1]->height != curBarrier->height) || (mseg->prev->barrier[1]->width != curBarrier->width) || startPolygonNeeded)
+                        if (((mseg->prev->barrier[1]->style != TR_WALL) || (mseg->prev->barrier[1]->height != curBarrier->height) || (mseg->prev->barrier[1]->width != curBarrier->width) || startPolygonNeeded) &&
+                            !capInPitWall(pits, seg->vertex[TR_SL].x, seg->vertex[TR_SL].y, x, y, curBarrier->height))
                         {
                             SETPOINT(texLen - curBarrier->width / curTexSize, 1.00, seg->vertex[TR_SL].x, seg->vertex[TR_SL].y, seg->vertex[TR_SL].z);
                             SETPOINT(texLen - curBarrier->width / curTexSize, 0.66, seg->vertex[TR_SL].x, seg->vertex[TR_SL].y, seg->vertex[TR_SL].z + curBarrier->height);
@@ -3012,7 +3079,8 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
                         while (nextSide->lside)
                             nextSide = nextSide->lside;
                         const bool endPolygonNeeded = std::fabs(seg->vertex[TR_EL].x - nextSide->vertex[TR_SL].x) > 0.001 || std::fabs(seg->vertex[TR_EL].y - nextSide->vertex[TR_SL].y) > 0.001;
-                        if ((mseg->next->barrier[1]->style != TR_WALL) || (mseg->next->barrier[1]->height != curBarrier->height) || (mseg->next->barrier[1]->width != curBarrier->width) || endPolygonNeeded)
+                        if (((mseg->next->barrier[1]->style != TR_WALL) || (mseg->next->barrier[1]->height != curBarrier->height) || (mseg->next->barrier[1]->width != curBarrier->width) || endPolygonNeeded) &&
+                            !capInPitWall(pits, seg->vertex[TR_EL].x, seg->vertex[TR_EL].y, x, y, curBarrier->height))
                         {
                             SETPOINT(texLen + curBarrier->width / curTexSize, 1.00, seg->vertex[TR_EL].x, seg->vertex[TR_EL].y, seg->vertex[TR_EL].z);
                             SETPOINT(texLen + curBarrier->width / curTexSize, 0.66, seg->vertex[TR_EL].x, seg->vertex[TR_EL].y, seg->vertex[TR_EL].z + curBarrier->height);
@@ -3304,13 +3372,7 @@ int InitScene(tTrack *Track, void *TrackHandle, bool bump, bool raceline, bool b
             SETPOINT(1, 1, x, y, z + BR_HEIGHT_2);
         }
 
-        /* draw the pits */
-#define PIT_HEIGHT 5.0
-#define PIT_DEEP 10.0
-#define PIT_TOP 0.2
-
-        pits = &(Track->pits);
-        initPits(Track, TrackHandle, pits);
+        /* draw the pits (initPits was called before the barriers) */
         curSurfType = Ac3d::Surface::PolygonDoubleSidedSmooth; // this must be 2 sided
 
         switch (pits->type)
@@ -3529,6 +3591,29 @@ static void saveObject(Ac3d &ac3d, int nb, int start, char *texture, char *name,
 
         object.surfaces.push_back(surface);
     }
+
+    // a skipped triangle can leave a vertex nothing uses (the tip of a tapered
+    // curb): keep only the vertices the surfaces use, and no object at all when
+    // every triangle was skipped
+    if (object.surfaces.empty())
+        return;
+
+    std::vector<int> newIndex(object.vertices.size(), -1);
+    std::vector<Ac3d::V3d> used;
+
+    for (auto &usedSurface : object.surfaces)
+    {
+        for (auto &ref : usedSurface.refs)
+        {
+            if (newIndex[ref.index] == -1)
+            {
+                newIndex[ref.index] = static_cast<int>(used.size());
+                used.push_back(object.vertices[ref.index]);
+            }
+            ref.index = newIndex[ref.index];
+        }
+    }
+    object.vertices = used;
 
     ac3d.addObject(object);
     ac3d.stack.pop();
