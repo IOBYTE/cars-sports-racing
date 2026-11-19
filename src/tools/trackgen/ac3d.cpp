@@ -493,7 +493,7 @@ void Ac3d::Matrix::transformNormal(V3d &normal) const
     normal = dst;
 }
 
-Ac3d::Matrix Ac3d::Matrix::multiply(const Matrix &matrix)
+Ac3d::Matrix Ac3d::Matrix::multiply(const Matrix &matrix) const
 {
     Matrix result;
 
@@ -815,18 +815,30 @@ void Ac3d::Object::transform(const Matrix &matrix)
     rot[3] = 0; rot[4] = 1; rot[5] = 0;
     rot[6] = 0; rot[7] = 0; rot[8] = 1;
 
-    const Matrix newMatrix = thisMatrix.multiply(matrix);
+    // this object's own transform first, then its parent's
+    const Matrix newMatrix = matrix.multiply(thisMatrix);
 
     if (type == "poly")
     {
         for (auto &vertex : vertices)
             newMatrix.transformPoint(vertex);
+
+        // normals read from an acc file turn with it (only a uniform scale is used)
+        if (normals.size() == vertices.size())
+        {
+            for (auto &normal : normals)
+            {
+                newMatrix.transformNormal(normal);
+                const double length = normal.length();
+                if (length > 0)
+                    normal = normal / length;
+            }
+        }
     }
-    else
-    {
-        for (auto &kid : kids)
-            kid.transform(newMatrix);
-    }
+
+    // a poly can have kids too
+    for (auto &kid : kids)
+        kid.transform(newMatrix);
 }
 
 void Ac3d::Object::flipAxes(bool in)

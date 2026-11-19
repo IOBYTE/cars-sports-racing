@@ -222,7 +222,7 @@ struct Ac3d
         void makeScale(double x, double y, double z);
         void transformPoint(V3d &point) const;
         void transformNormal(V3d &normal) const;
-        Matrix multiply(const Matrix &matrix);
+        Matrix multiply(const Matrix &matrix) const;
     };
 
     struct BoundingBox
