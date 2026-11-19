@@ -48,5 +48,6 @@ extern void ReRaceSkipSession();
 extern void ReRaceRestart();
 extern void ReStopPreracePause();
 extern double ReMAXDTSIMU;
+extern double ReMAXDTWHEEL;
 
 #endif /* _RACEMAIN_H_ */

@@ -340,6 +340,8 @@ void ReSituationUpdater::runOneStep(double deltaTimeIncrement)
 
     GfProfStartProfile("rbDrive*");
     GfSchedBeginEvent("raceupdate", "robots");
+    // the time of the last human wheel step: each drive is one too
+    static double lastWheelTime = 0.0;
     if ((s->currentTime - pCurrReInfo->_reLastRobTime) >= RCM_MAX_DT_ROBOTS)
     {
         s->deltaTime = s->currentTime - pCurrReInfo->_reLastRobTime;
@@ -365,6 +367,26 @@ void ReSituationUpdater::runOneStep(double deltaTimeIncrement)
         }
 
         pCurrReInfo->_reLastRobTime = s->currentTime;
+        lastWheelTime = s->currentTime;
+    }
+    // Between drives, the humans' wheels only: read and given their force feedback
+    // every ReMAXDTWHEEL (half a simulation step's leeway for the clock's rounding).
+    // Not in network races, whose drivers are kept in step at the robots' rate.
+    else if (ReMAXDTWHEEL < RCM_MAX_DT_ROBOTS && replayReplay == 0 && !NetGetNetwork()
+             && (s->currentTime - lastWheelTime) >= ReMAXDTWHEEL - ReMAXDTSIMU / 2)
+    {
+        const double driveDeltaTime = s->deltaTime;
+        s->deltaTime = s->currentTime - lastWheelTime;
+
+        for (int i = 0; i < s->_ncars; i++)
+        {
+            tRobotItf *robot = s->cars[i]->robot;
+            if ((s->cars[i]->_state & RM_CAR_STATE_NO_SIMU) == 0 && robot->rbDriveSteer)
+                robot->rbDriveSteer(robot->index, s->cars[i], s);
+        }
+
+        s->deltaTime = driveDeltaTime;
+        lastWheelTime = s->currentTime;
     }
 
     GfSchedEndEvent("raceupdate", "robots");

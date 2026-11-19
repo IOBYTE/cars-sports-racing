@@ -544,6 +544,41 @@ GfctrlJoyGetCurrentStates(tCtrlJoyInfo *joyInfo)
    return 0;
 }
 
+/** Get the current position of the joysticks' axes only
+    @ingroup	ctrl
+    @param	joyInfo	Target joystick structure
+    @return	<tt>0 ... </tt>Ok
+        <br><tt>-1 .. </tt>Error
+    @note	Only the axes of the tCtrlJoyInfo structure are updated: its buttons keep
+            the states, and the presses and releases, GfctrlJoyGetCurrentStates last
+            found, so a press is still seen once, by whoever calls that next (a human's
+            wheel can be read more often than the rest of its controls).
+*/
+int
+GfctrlJoyGetCurrentAxes(tCtrlJoyInfo *joyInfo)
+{
+   int			ind;
+   int			i,j;
+   if (gfctrlJoyPresent == GFCTRL_JOY_UNTESTED)
+      return -1;
+
+   // Update all the joysticks
+   SDL_JoystickUpdate();
+   for (ind = 0; ind < gfctrlJoyPresent; ind++)
+   {
+      if (Joysticks[ind])
+      {
+         j = SDL_JoystickNumAxes(Joysticks[ind]);
+         if (j > GFCTRL_JOY_MAX_AXES)
+             j = GFCTRL_JOY_MAX_AXES;
+
+         for (i=0; i < j;i++)
+            joyInfo->ax[GFCTRL_JOY_MAX_AXES * ind + i] = ((float) SDL_JoystickGetAxis(Joysticks[ind],i)) / 32768;
+      }
+   }
+   return 0;
+}
+
 void
 GfctrlJoySetAxis(int joy, int axis, float value)
 {

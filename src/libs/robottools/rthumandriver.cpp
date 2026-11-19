@@ -179,6 +179,8 @@ static bool init_keybd = true;
 static bool init_mouse = false;
 static bool resume_keybd = true;
 static tdble lastKeyUpdate = -10.0;
+// when the wheels' axes were last read between drives (drive_steer)
+static double lastAxesUpdate = -10.0;
 
 static void *PrefHdle = NULL;
 
@@ -968,157 +970,21 @@ static int onKeyAction(int key, int modifier, int state)
     return 0;
 }//onKeyAction
 
-/*
- * Changes from original: none
+/**
+ * The steering, from the steering controls as they were last read, and its force
+ * feedback: in each drive, and, when it is a wheel, between drives too (drive_steer).
  */
-static void common_drive(const int index, tCarElt* car, tSituation *s)
+static void common_steer(const int index, tCarElt* car, tSituation *s)
 {
     tdble ax0;
-    tdble brake;
-    tdble clutch;
-    tdble throttle;
     tdble leftSteer;
     tdble rightSteer;
-    tdble newGlance;;
 #if (BINCTRL_STEERING == JEPZ || BINCTRL_STEERING == JPM)
     tdble sensFrac, speedFrac;
 #endif
-    int scrw, scrh, dummy;
 
     const int idx = index - 1;
     tControlCmd *cmd = HCtx[idx]->cmdControl;
-
-    if (init_keybd && !GfuiScreenIsActive(0))
-    {
-        GfuiKeyEventRegisterCurrent(onKeyAction);
-        init_keybd = false;
-    }
-
-    if (init_mouse && !GfuiScreenIsActive(0) && HCtx[idx]->mouseControlUsed)
-    {
-        GfuiMouseShow();
-        GfctrlMouseCenter();
-        GfctrlMouseInitCenter();
-        init_mouse = false;
-    }
-
-    HCtx[idx]->distToStart = RtGetDistFromStart(car);
-    HCtx[idx]->gear = (tdble)car->_gear;	/* telemetry */
-
-    GfScrGetSize(&scrw, &scrh, &dummy, &dummy);
-
-    int oldgear = car->_gearCmd;
-    memset(&(car->ctrl), 0, sizeof(tCarCtrl));
-    car->_gearCmd = oldgear;
-
-    car->_lightCmd = HCtx[idx]->lightCmd;
-
-    if (car->_laps != HCtx[idx]->lastPitStopLap)
-    {
-        car->_raceCmd = RM_CMD_PIT_ASKED;
-    }
-
-    // Update the controls at most once per "robots time slice" (RCM_MAX_DT_ROBOTS s)
-    // (i.e. keyboard/joystick/mouse values read for all players simultaneously).
-    if (lastKeyUpdate != s->currentTime && index == ControlsUpdaterIndex)
-    {
-        updateKeys();
-
-        if (joyPresent)
-        {
-            GfctrlJoyGetCurrentStates(joyInfo);
-        }
-
-        GfctrlMouseGetCurrentState(mouseInfo);
-        lastKeyUpdate = s->currentTime;
-    }
-
-    // Perform mapping of axis->buttons functions
-    for (dummy=0; dummy <= CMD_END_OF_LIST; dummy++)
-    {
-        if (cmd[dummy].type == GFCTRL_TYPE_JOY_ATOB)
-        {
-            if (joyInfo->ax[cmd[dummy].val] >= cmd[dummy].min && joyInfo->ax[cmd[dummy].val] <= cmd[dummy].max)
-            {
-                // Abuse deadZone to store state; 1=just pressed, 2=held
-                if (cmd[dummy].deadZone < 2) cmd[dummy].deadZone++;
-            }
-            else
-                cmd[dummy].deadZone = 0;
-        }
-    }
-
-    // Allow Grid Gearbox to freely change as race starts
-    if (s->currentTime <= 0 && HCtx[idx]->transmission == GEAR_MODE_GRID)
-    {
-        /* default to neutral gear */
-        preGear = 0;
-
-        for (int i = CMD_GEAR_R; i <= CMD_GEAR_6; i++)
-        {
-            if ((cmd[i].type == GFCTRL_TYPE_JOY_BUT && joyInfo->levelup[cmd[i].val])
-                    || (cmd[i].type == GFCTRL_TYPE_MOUSE_BUT && mouseInfo->button[cmd[i].val])
-#if 0	//SDW fixme
-                    || (cmd[i].type == GFCTRL_TYPE_KEYBOARD && keyInfo[lookUpKeyMap(cmd[i].val)].state)
-#endif
-               )
-            {
-                preGear = i - CMD_GEAR_N;
-            }
-        }
-
-        GfOut("Gridbox Initial Gear %d\n", preGear);
-    }
-
-    if ((cmd[CMD_ABS].type == GFCTRL_TYPE_JOY_BUT && joyInfo->edgeup[cmd[CMD_ABS].val])
-            || (cmd[CMD_ABS].type == GFCTRL_TYPE_MOUSE_BUT && mouseInfo->edgeup[cmd[CMD_ABS].val])
-            || (cmd[CMD_ABS].type == GFCTRL_TYPE_KEYBOARD && keyInfo[lookUpKeyMap(cmd[CMD_ABS].val)].edgeUp)
-            || (cmd[CMD_ABS].type == GFCTRL_TYPE_JOY_ATOB && cmd[CMD_ABS].deadZone == 1))
-    {
-        HCtx[idx]->paramAbs = !HCtx[idx]->paramAbs;
-        snprintf(sstring, sizeof(sstring), "%s/%s/%d", HM_SECT_PREF, HM_LIST_DRV, index);
-        GfParmSetStr(PrefHdle, sstring, HM_ATT_ABS, Yn[!HCtx[idx]->paramAbs].c_str());
-        GfParmWriteFile(NULL, PrefHdle, "Human");
-    }
-
-    if ((cmd[CMD_ASR].type == GFCTRL_TYPE_JOY_BUT && joyInfo->edgeup[cmd[CMD_ASR].val])
-            || (cmd[CMD_ASR].type == GFCTRL_TYPE_MOUSE_BUT && mouseInfo->edgeup[cmd[CMD_ASR].val])
-            || (cmd[CMD_ASR].type == GFCTRL_TYPE_KEYBOARD && keyInfo[lookUpKeyMap(cmd[CMD_ASR].val)].edgeUp)
-            || (cmd[CMD_ASR].type == GFCTRL_TYPE_JOY_ATOB && cmd[CMD_ASR].deadZone == 1))
-    {
-        HCtx[idx]->paramAsr = !HCtx[idx]->paramAsr;
-        snprintf(sstring, sizeof(sstring), "%s/%s/%d", HM_SECT_PREF, HM_LIST_DRV, index);
-        GfParmSetStr(PrefHdle, sstring, HM_ATT_ASR, Yn[!HCtx[idx]->paramAsr].c_str());
-        GfParmWriteFile(NULL, PrefHdle, "Human");
-    }
-
-    snprintf(car->_msgCmd[0], sizeof(car->_msgCmd[0]), "%s %s", (HCtx[idx]->paramAbs ? "ABS" : ""), (HCtx[idx]->paramAsr ? "TCS" : ""));
-    memcpy(car->_msgColorCmd, color, sizeof(car->_msgColorCmd));
-
-    if ((cmd[CMD_SPDLIM].type == GFCTRL_TYPE_JOY_BUT && joyInfo->edgeup[cmd[CMD_SPDLIM].val])
-            || (cmd[CMD_SPDLIM].type == GFCTRL_TYPE_MOUSE_BUT && mouseInfo->edgeup[cmd[CMD_SPDLIM].val])
-            || (cmd[CMD_SPDLIM].type == GFCTRL_TYPE_KEYBOARD && keyInfo[lookUpKeyMap(cmd[CMD_SPDLIM].val)].edgeUp)
-            || (cmd[CMD_SPDLIM].type == GFCTRL_TYPE_JOY_ATOB && cmd[CMD_SPDLIM].deadZone == 1))
-    {
-        speedLimiter = !speedLimiter;
-    }
-
-    snprintf(car->_msgCmd[1], sizeof(car->_msgCmd[1]), "Speed Limiter %s", (speedLimiter ? "On" : "Off"));
-
-    if ((cmd[CMD_LIGHT1].type == GFCTRL_TYPE_JOY_BUT && joyInfo->edgeup[cmd[CMD_LIGHT1].val])
-            || (cmd[CMD_LIGHT1].type == GFCTRL_TYPE_MOUSE_BUT && mouseInfo->edgeup[cmd[CMD_LIGHT1].val])
-            || (cmd[CMD_LIGHT1].type == GFCTRL_TYPE_KEYBOARD && keyInfo[lookUpKeyMap(cmd[CMD_LIGHT1].val)].edgeUp)
-            || (cmd[CMD_LIGHT1].type == GFCTRL_TYPE_JOY_ATOB && cmd[CMD_LIGHT1].deadZone == 1))
-    {
-        if (HCtx[idx]->lightCmd & RM_LIGHT_HEAD1)
-        {
-            HCtx[idx]->lightCmd &= ~(RM_LIGHT_HEAD1 | RM_LIGHT_HEAD2);
-        }
-        else
-        {
-            HCtx[idx]->lightCmd |= RM_LIGHT_HEAD1 | RM_LIGHT_HEAD2;
-        }
-    }
 
     switch (cmd[CMD_LEFTSTEER].type)
     {
@@ -1371,6 +1237,156 @@ static void common_drive(const int index, tCarElt* car, tSituation *s)
             HCtx[idx]->lastForceFeedbackLevel,
             HCtx[idx]->lastForceFeedbackDir );
     }
+}
+
+/*
+ * Changes from original: none
+ */
+static void common_drive(const int index, tCarElt* car, tSituation *s)
+{
+    tdble ax0;
+    tdble brake;
+    tdble clutch;
+    tdble throttle;
+    tdble newGlance;;
+    int scrw, scrh, dummy;
+
+    const int idx = index - 1;
+    tControlCmd *cmd = HCtx[idx]->cmdControl;
+
+    if (init_keybd && !GfuiScreenIsActive(0))
+    {
+        GfuiKeyEventRegisterCurrent(onKeyAction);
+        init_keybd = false;
+    }
+
+    if (init_mouse && !GfuiScreenIsActive(0) && HCtx[idx]->mouseControlUsed)
+    {
+        GfuiMouseShow();
+        GfctrlMouseCenter();
+        GfctrlMouseInitCenter();
+        init_mouse = false;
+    }
+
+    HCtx[idx]->distToStart = RtGetDistFromStart(car);
+    HCtx[idx]->gear = (tdble)car->_gear;	/* telemetry */
+
+    GfScrGetSize(&scrw, &scrh, &dummy, &dummy);
+
+    int oldgear = car->_gearCmd;
+    memset(&(car->ctrl), 0, sizeof(tCarCtrl));
+    car->_gearCmd = oldgear;
+
+    car->_lightCmd = HCtx[idx]->lightCmd;
+
+    if (car->_laps != HCtx[idx]->lastPitStopLap)
+    {
+        car->_raceCmd = RM_CMD_PIT_ASKED;
+    }
+
+    // Update the controls at most once per "robots time slice" (RCM_MAX_DT_ROBOTS s)
+    // (i.e. keyboard/joystick/mouse values read for all players simultaneously).
+    if (lastKeyUpdate != s->currentTime && index == ControlsUpdaterIndex)
+    {
+        updateKeys();
+
+        if (joyPresent)
+        {
+            GfctrlJoyGetCurrentStates(joyInfo);
+        }
+
+        GfctrlMouseGetCurrentState(mouseInfo);
+        lastKeyUpdate = s->currentTime;
+    }
+
+    // Perform mapping of axis->buttons functions
+    for (dummy=0; dummy <= CMD_END_OF_LIST; dummy++)
+    {
+        if (cmd[dummy].type == GFCTRL_TYPE_JOY_ATOB)
+        {
+            if (joyInfo->ax[cmd[dummy].val] >= cmd[dummy].min && joyInfo->ax[cmd[dummy].val] <= cmd[dummy].max)
+            {
+                // Abuse deadZone to store state; 1=just pressed, 2=held
+                if (cmd[dummy].deadZone < 2) cmd[dummy].deadZone++;
+            }
+            else
+                cmd[dummy].deadZone = 0;
+        }
+    }
+
+    // Allow Grid Gearbox to freely change as race starts
+    if (s->currentTime <= 0 && HCtx[idx]->transmission == GEAR_MODE_GRID)
+    {
+        /* default to neutral gear */
+        preGear = 0;
+
+        for (int i = CMD_GEAR_R; i <= CMD_GEAR_6; i++)
+        {
+            if ((cmd[i].type == GFCTRL_TYPE_JOY_BUT && joyInfo->levelup[cmd[i].val])
+                    || (cmd[i].type == GFCTRL_TYPE_MOUSE_BUT && mouseInfo->button[cmd[i].val])
+#if 0	//SDW fixme
+                    || (cmd[i].type == GFCTRL_TYPE_KEYBOARD && keyInfo[lookUpKeyMap(cmd[i].val)].state)
+#endif
+               )
+            {
+                preGear = i - CMD_GEAR_N;
+            }
+        }
+
+        GfOut("Gridbox Initial Gear %d\n", preGear);
+    }
+
+    if ((cmd[CMD_ABS].type == GFCTRL_TYPE_JOY_BUT && joyInfo->edgeup[cmd[CMD_ABS].val])
+            || (cmd[CMD_ABS].type == GFCTRL_TYPE_MOUSE_BUT && mouseInfo->edgeup[cmd[CMD_ABS].val])
+            || (cmd[CMD_ABS].type == GFCTRL_TYPE_KEYBOARD && keyInfo[lookUpKeyMap(cmd[CMD_ABS].val)].edgeUp)
+            || (cmd[CMD_ABS].type == GFCTRL_TYPE_JOY_ATOB && cmd[CMD_ABS].deadZone == 1))
+    {
+        HCtx[idx]->paramAbs = !HCtx[idx]->paramAbs;
+        snprintf(sstring, sizeof(sstring), "%s/%s/%d", HM_SECT_PREF, HM_LIST_DRV, index);
+        GfParmSetStr(PrefHdle, sstring, HM_ATT_ABS, Yn[!HCtx[idx]->paramAbs].c_str());
+        GfParmWriteFile(NULL, PrefHdle, "Human");
+    }
+
+    if ((cmd[CMD_ASR].type == GFCTRL_TYPE_JOY_BUT && joyInfo->edgeup[cmd[CMD_ASR].val])
+            || (cmd[CMD_ASR].type == GFCTRL_TYPE_MOUSE_BUT && mouseInfo->edgeup[cmd[CMD_ASR].val])
+            || (cmd[CMD_ASR].type == GFCTRL_TYPE_KEYBOARD && keyInfo[lookUpKeyMap(cmd[CMD_ASR].val)].edgeUp)
+            || (cmd[CMD_ASR].type == GFCTRL_TYPE_JOY_ATOB && cmd[CMD_ASR].deadZone == 1))
+    {
+        HCtx[idx]->paramAsr = !HCtx[idx]->paramAsr;
+        snprintf(sstring, sizeof(sstring), "%s/%s/%d", HM_SECT_PREF, HM_LIST_DRV, index);
+        GfParmSetStr(PrefHdle, sstring, HM_ATT_ASR, Yn[!HCtx[idx]->paramAsr].c_str());
+        GfParmWriteFile(NULL, PrefHdle, "Human");
+    }
+
+    snprintf(car->_msgCmd[0], sizeof(car->_msgCmd[0]), "%s %s", (HCtx[idx]->paramAbs ? "ABS" : ""), (HCtx[idx]->paramAsr ? "TCS" : ""));
+    memcpy(car->_msgColorCmd, color, sizeof(car->_msgColorCmd));
+
+    if ((cmd[CMD_SPDLIM].type == GFCTRL_TYPE_JOY_BUT && joyInfo->edgeup[cmd[CMD_SPDLIM].val])
+            || (cmd[CMD_SPDLIM].type == GFCTRL_TYPE_MOUSE_BUT && mouseInfo->edgeup[cmd[CMD_SPDLIM].val])
+            || (cmd[CMD_SPDLIM].type == GFCTRL_TYPE_KEYBOARD && keyInfo[lookUpKeyMap(cmd[CMD_SPDLIM].val)].edgeUp)
+            || (cmd[CMD_SPDLIM].type == GFCTRL_TYPE_JOY_ATOB && cmd[CMD_SPDLIM].deadZone == 1))
+    {
+        speedLimiter = !speedLimiter;
+    }
+
+    snprintf(car->_msgCmd[1], sizeof(car->_msgCmd[1]), "Speed Limiter %s", (speedLimiter ? "On" : "Off"));
+
+    if ((cmd[CMD_LIGHT1].type == GFCTRL_TYPE_JOY_BUT && joyInfo->edgeup[cmd[CMD_LIGHT1].val])
+            || (cmd[CMD_LIGHT1].type == GFCTRL_TYPE_MOUSE_BUT && mouseInfo->edgeup[cmd[CMD_LIGHT1].val])
+            || (cmd[CMD_LIGHT1].type == GFCTRL_TYPE_KEYBOARD && keyInfo[lookUpKeyMap(cmd[CMD_LIGHT1].val)].edgeUp)
+            || (cmd[CMD_LIGHT1].type == GFCTRL_TYPE_JOY_ATOB && cmd[CMD_LIGHT1].deadZone == 1))
+    {
+        if (HCtx[idx]->lightCmd & RM_LIGHT_HEAD1)
+        {
+            HCtx[idx]->lightCmd &= ~(RM_LIGHT_HEAD1 | RM_LIGHT_HEAD2);
+        }
+        else
+        {
+            HCtx[idx]->lightCmd |= RM_LIGHT_HEAD1 | RM_LIGHT_HEAD2;
+        }
+    }
+
+    common_steer(index, car, s);
 
 #define GLANCERATE 3 	// speed at which the driver turns his head, ~1/3s to full glance
     newGlance = car->_glance;
@@ -2356,6 +2372,31 @@ void HumanDriver::drive_at(int index, tCarElt* car, tSituation *s)
         car->_clutchCmd = getAutoClutch(idx, car->_gear, car->_gearCmd, car);
 
     common_brake(idx, car, s);
+}
+
+/*
+ * Between drives (see tRobotItf::rbDriveSteer): when the steering is a wheel, reads
+ * its axes again and steers, with its force feedback, so the force follows the wheel
+ * more closely; the rest of the controls are the drive's. Steering with keys,
+ * buttons or the mouse moves by the time between drives, so it waits for the drive.
+ */
+void HumanDriver::drive_steer(int index, tCarElt* car, tSituation *s)
+{
+    const int idx = index - 1;
+    tControlCmd *cmd = HCtx[idx]->cmdControl;
+
+    // the axes only, for all players at once: a button's press is still seen by the drive
+    if (joyPresent && index == ControlsUpdaterIndex && lastAxesUpdate != s->currentTime)
+    {
+        GfctrlJoyGetCurrentAxes(joyInfo);
+        lastAxesUpdate = s->currentTime;
+    }
+
+    if (cmd[CMD_LEFTSTEER].type != GFCTRL_TYPE_JOY_AXIS
+            || (cmd[CMD_RIGHTSTEER].type != GFCTRL_TYPE_JOY_AXIS && cmd[CMD_RIGHTSTEER].type != GFCTRL_TYPE_NOT_AFFECTED))
+        return;
+
+    common_steer(index, car, s);
 }
 
 /*

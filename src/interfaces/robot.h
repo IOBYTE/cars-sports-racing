@@ -54,6 +54,8 @@ typedef void (*tfRbEndRace) (int index, tCarElt *car, tSituation *s);
 typedef void (*tfRbDrive)   (int index, tCarElt *car, tSituation *s);
 /** Callback prototype */
 typedef void (*tfRbShutdown)(int index);
+/** Callback prototype: steer only, between drives (see tRobotItf::rbDriveSteer) */
+typedef void (*tfRbDriveSteer)(int index, tCarElt *car, tSituation *s);
 /** Callback prototype */
 typedef int  (*tfRbPitCmd)  (int index, tCarElt* car, tSituation *s);
 
@@ -78,6 +80,11 @@ typedef struct RobotItf {
                 */
     tfRbShutdown rbShutdown;	/**< Called before the dll is unloaded */
     int		 index;		/**< Index used if multiple interfaces */
+    tfRbDriveSteer rbDriveSteer; /**< Steer only, between drives (optional, NULL for none): a
+                                      human's wheel, read and given its force feedback more
+                                      often than the drive (see RCM_MAX_DT_HUMAN). Last, so
+                                      the fields before keep their places for robots built
+                                      before it. */
 } tRobotItf;
 
 

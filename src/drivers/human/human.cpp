@@ -45,6 +45,7 @@ static HumanDriver robot("human");
 static void initTrack(int index, tTrack* track, void *carHandle, void **carParmHandle, tSituation *s);
 static void drive_mt(int index, tCarElt* car, tSituation *s);
 static void drive_at(int index, tCarElt* car, tSituation *s);
+static void drive_steer(int index, tCarElt* car, tSituation *s);
 static void newrace(int index, tCarElt* car, tSituation *s);
 static void pauserace(int index, tCarElt* car, tSituation *s);
 static void resumerace(int index, tCarElt* car, tSituation *s);
@@ -95,6 +96,8 @@ InitFuncPt(int index, void *pt)
 	itf->rbShutdown = shutdown;
 	itf->rbPitCmd   = pitcmd;
 	itf->index      = index;
+	/* the wheel, between drives */
+	itf->rbDriveSteer = drive_steer;
 
 	return 0;
 }//InitFuncPt
@@ -252,6 +255,12 @@ drive_at(int index, tCarElt* car, tSituation *s)
     robot.drive_at(index, car, s);
 }//drive_at
 
+
+static void
+drive_steer(int index, tCarElt* car, tSituation *s)
+{
+    robot.drive_steer(index, car, s);
+}//drive_steer
 
 static int
 pitcmd(int index, tCarElt* car, tSituation *s)

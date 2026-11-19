@@ -60,6 +60,8 @@ typedef struct
 
 int *ReStartingOrderIdx = NULL; //array to hold indexes of cars (in params/RM_SECT_DRIVERS) in starting order
 double ReMAXDTSIMU = 0.002;
+// how often a human's wheel is read and given its force feedback (see RCM_MAX_DT_HUMAN)
+double ReMAXDTWHEEL = RCM_MAX_DT_HUMAN;
 
 //Utility
 
@@ -164,6 +166,23 @@ ReRaceEventInit(void)
         ReMAXDTSIMU = 0.002;
     else if (!strcmp(simuHz, RM_ATTR_SIMU_1000HZ))
         ReMAXDTSIMU = 0.001;
+
+    // A human's wheel: a multiple of the robots' rate that is a whole number of
+    // simulation steps (with 500 Hz, 50, 100, 250 or 500 Hz), so that every drive is
+    // also a wheel step; a rate between is taken down to the one below.
+    {
+        const tdble wheelHz = GfParmGetNum(simuparam, RM_SECT_RACE_ENGINE, RM_ATTR_WHEEL_RATE, (char*)NULL, (tdble)(1.0 / RCM_MAX_DT_HUMAN));
+        const int simuSteps = MAX(1, (int)floor(RCM_MAX_DT_ROBOTS / ReMAXDTSIMU + 0.5));
+        int perDrive = MIN(simuSteps, MAX(1, (int)floor(wheelHz * RCM_MAX_DT_ROBOTS + 1e-6)));
+        while (simuSteps % perDrive != 0)
+            perDrive--;
+        ReMAXDTWHEEL = RCM_MAX_DT_ROBOTS / perDrive;
+        if (fabs(1.0 / ReMAXDTWHEEL - wheelHz) > 0.5)
+            GfLogInfo("Wheel rate %g Hz: %g Hz, a multiple of %g Hz in whole simulation steps\n",
+                      (double)wheelHz, 1.0 / ReMAXDTWHEEL, 1.0 / RCM_MAX_DT_ROBOTS);
+        else
+            GfLogInfo("Wheel rate %g Hz\n", 1.0 / ReMAXDTWHEEL);
+    }
 
     const bool careerMode = strcmp(GfParmGetStr(ReInfo->mainParams, RM_SECT_SUBFILES, RM_ATTR_HASSUBFILES, RM_VAL_NO), RM_VAL_YES) == 0;
 
